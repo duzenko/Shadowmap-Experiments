@@ -35,7 +35,7 @@ int main() {
 
 	Init();
 
-	if ( !mapShader )
+	if ( !mapShader || !mainShader )
 		return 3;
 
 	while ( !glfwWindowShouldClose( window ) ) {

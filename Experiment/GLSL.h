@@ -1,8 +1,8 @@
 #pragma once
 
-GLuint mapShader;
+GLuint mapShader, mainShader;
 
-const char * mapVertexShaderCode = R"(
+const char * mapVertex = R"(
 #version 110
 
 void main() {
@@ -11,7 +11,7 @@ void main() {
 }
 )";
 
-const char * mapFragmentShaderCode = R"(
+const char * mapFragment = R"(
 #version 110
 
 void main() {
@@ -19,14 +19,31 @@ void main() {
 }
 )";
 
-GLuint LoadShaders() {
+const char * mainVertex = R"(
+#version 110
+
+void main() {
+	gl_FrontColor = gl_Color;
+	gl_Position = ftransform();
+}
+)";
+
+const char * mainFragment = R"(
+#version 110
+
+void main() {
+	gl_FragColor = gl_Color;	
+}
+)";
+
+GLuint LoadShader( const char *vertexSource, const char *fragmentSource ) {
 	GLuint VertexShaderID = glCreateShader( GL_VERTEX_SHADER );
 	GLuint FragmentShaderID = glCreateShader( GL_FRAGMENT_SHADER );
 
 	GLint Result = GL_FALSE;
 	int InfoLogLength;
 
-	glShaderSource( VertexShaderID, 1, &mapVertexShaderCode, NULL );
+	glShaderSource( VertexShaderID, 1, &vertexSource, NULL );
 	glCompileShader( VertexShaderID );
 
 	glGetShaderiv( VertexShaderID, GL_COMPILE_STATUS, &Result );
@@ -37,7 +54,7 @@ GLuint LoadShaders() {
 		fprintf( stdout, "%sn", &VertexShaderErrorMessage[0] );
 	}
 
-	glShaderSource( FragmentShaderID, 1, &mapFragmentShaderCode, NULL );
+	glShaderSource( FragmentShaderID, 1, &fragmentSource, NULL );
 	glCompileShader( FragmentShaderID );
 
 	glGetShaderiv( FragmentShaderID, GL_COMPILE_STATUS, &Result );
@@ -65,4 +82,9 @@ GLuint LoadShaders() {
 	glDeleteShader( FragmentShaderID );
 
 	return ProgramID;
+}
+
+void LoadShaders() {
+	mainShader = LoadShader( mainVertex, mainFragment );
+	mapShader = LoadShader( mapVertex, mapFragment );
 }
