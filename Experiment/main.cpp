@@ -1,10 +1,41 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include <random>
+
+void get_random2( float *xy ) {
+
+}
+
+struct Vec {
+	float x, y, z, w;
+	Vec operator + ( Vec &a ) {
+		return { x + a.x, y + a.y };
+	}
+	Vec operator + ( float a ) {
+		return { x + a, y + a };
+	}
+	Vec operator * ( float a ) {
+		return { x * a, y * a };
+	}
+	void random() { // rage 0 - 1
+		static std::default_random_engine e;
+		static std::uniform_real_distribution<float> dis( 0, 1 ); 
+		x = dis( e );
+		y = dis( e );
+	}
+};
+
+void randomLine() {
+}
+
+Vec vertexData[20];
 
 void drawWorld() {
 	glBegin( GL_LINES );
-	glVertex2d( 0.2, 0.3 );
-	glVertex2d( 0.3, 0.2 );
+	for ( int i = 0; i < 20; ) {
+		glVertex2fv( &vertexData[i++].x );
+		glVertex2fv( &vertexData[i++].x );
+	}
 	glEnd();
 }
 
@@ -62,6 +93,15 @@ int main() {
 		return -2;
 	glfwSetKeyCallback( window, key_callback );
 	glfwSwapInterval( 1 );
+
+	for ( int i = 0; i < 20; i++ )
+		vertexData[i].random();
+	for ( int i = 0; i < 10; i++ ) {
+		vertexData[i * 2] = vertexData[i * 2] * 1.6f;
+		vertexData[i * 2] = vertexData[i * 2] + -1;
+		vertexData[i * 2 + 1] = vertexData[i * 2 + 1] * 0.4f;
+		vertexData[i * 2 + 1] = vertexData[i * 2 + 1] + vertexData[i * 2];
+	}
 
 	/* Loop until the user closes the window */
 	while ( !glfwWindowShouldClose( window ) ) {
