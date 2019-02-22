@@ -7,17 +7,35 @@ struct Framebuffer {
 	ViewPort viewPort = {0, 0, 128, 1};
 
 	void Init() {
+		GLuint depth_tex;
+		glGenTextures( 1, &depth_tex );
+		glBindTexture( GL_TEXTURE_2D, depth_tex );
+		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE );
+		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE );
+		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST );
+		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST );
+		glTexParameteri( GL_TEXTURE_2D, GL_DEPTH_TEXTURE_MODE, GL_INTENSITY );
+		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_R_TO_TEXTURE );
+		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_COMPARE_FUNC, GL_LEQUAL );
+		glCheck();
+		glTexImage2D( GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, viewPort.w, viewPort.h, 0, GL_DEPTH_COMPONENT, GL_UNSIGNED_INT, NULL );
+		glCheck();
+
 		vpDefault.ReadCurrent();
 		glGenFramebuffers( 1, &glHandle );
 		Bind();
-		GLuint rbo[2];
-		glGenRenderbuffers( 2, rbo );
+		GLuint rbo[1];
+		glCheck();
+		glGenRenderbuffers( 1, rbo );
+		glCheck();
 		glBindRenderbuffer( GL_RENDERBUFFER, rbo[0] );
-		glRenderbufferStorage( GL_RENDERBUFFER, GL_DEPTH_COMPONENT, viewPort.w, viewPort.h );
-		glFramebufferRenderbuffer( GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, rbo[0] );
-		glBindRenderbuffer( GL_RENDERBUFFER, rbo[1] );
+		glCheck();
 		glRenderbufferStorage( GL_RENDERBUFFER, GL_RGBA, viewPort.w, viewPort.h );
-		glFramebufferRenderbuffer( GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, rbo[1] );
+		glCheck();
+		glFramebufferRenderbuffer( GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, rbo[0] );
+		glCheck();
+		glFramebufferTexture( GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, depth_tex, 0 );
+		glCheck();
 		if ( glCheckFramebufferStatus( GL_FRAMEBUFFER ) != GL_FRAMEBUFFER_COMPLETE )
 			Beep( 99, 99 );
 		Unbind();
