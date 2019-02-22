@@ -11,4 +11,10 @@
       <UniqueIdentifier>{b833e6e8-e4bf-4563-a745-ed8198ba449b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Matrices.h" />
+    <ClInclude Include="Types.h">
+      <Filter>util</Filter>
+    </ClInclude>
+  </ItemGroup>
 </Project>
