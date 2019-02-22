@@ -165,9 +165,14 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="FBO.h" />
     <ClInclude Include="GLSL.h" />
+    <ClInclude Include="Scene.h" />
     <ClInclude Include="Matrices.h" />
     <ClInclude Include="Types.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="misc.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

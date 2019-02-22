@@ -24,11 +24,13 @@ struct Vec {
 
 struct ViewPort { 
 	int x, y, w, h; 
+
 	void MakeCurrent() {
 		glViewport( x, y, w, h );
 		glScissor( x, y, w, h );
 	}
-	void BlitTo( ViewPort &dest ) {
-		glBlitFramebuffer( x, y, x + w, y + h, dest.x, dest.y, dest.x + dest.w, dest.y + dest.h, GL_COLOR_BUFFER_BIT, GL_NEAREST );
+
+	void ReadCurrent() {
+		glGetIntegerv( GL_VIEWPORT, &x );
 	}
 };

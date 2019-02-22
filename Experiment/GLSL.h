@@ -1,5 +1,7 @@
 #pragma once
 
+GLuint mapShader;
+
 const char * mapVertexShaderCode = R"(
 #version 110
 
