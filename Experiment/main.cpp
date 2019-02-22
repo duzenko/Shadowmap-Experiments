@@ -3,9 +3,11 @@
 
 #include "Matrices.h"
 #include "Types.h"
+#include "GLSL.h"
 
 const int lineCount = 9;
 Vec vertexData[lineCount * 2];
+GLuint mapShader;
 
 void drawWorld() {
 	glBegin( GL_LINES );
@@ -20,12 +22,15 @@ void lightView() {
 	mapProjectionMatrix.Apply();
 	ViewPort vpMain, vpLight = { 0, 0, 256, 1 };
 	glGetIntegerv( GL_VIEWPORT, &vpMain.x );
-	glClearColor( 0, .5, 0, 1 );
+	glClearColor( 0.4f, 0, 0, 1 );
+	glColor3f( 1, 1, 0.5 );
 	for ( int i = 0; i < 4; i++ ) {
 		mapViewMatrix[i].Apply();
 		vpLight.MakeCurrent();
 		glClear( GL_COLOR_BUFFER_BIT );
+		glUseProgram( mapShader );
 		drawWorld();
+		glUseProgram( 0 );
 		vpMain.MakeCurrent();
 		const int magnify = 6;
 		ViewPort vpVisual = { 0, vpMain.h - magnify*3 - i * magnify*2, vpLight.w*magnify, magnify };
@@ -43,7 +48,7 @@ void mainView() {
 	mainProjectionMatrix.Apply();
 
 	glBegin( GL_LINES );
-	glColor3f( 0.7f, 0, 0 );
+	glColor3f( 0.7f, 0, 1 );
 	glVertex2d( 1, 1 );
 	glVertex2d( -1, -1 );
 	glVertex2d( -1, 1 );
@@ -51,6 +56,7 @@ void mainView() {
 	glColor3f( 1, 1, 1 );
 	glEnd();
 
+	glColor3f( 1, 1, 1 );
 	drawWorld();
 
 	/*glBegin( GL_QUADS );	// center
@@ -85,13 +91,16 @@ int main() {
 	glfwMakeContextCurrent( window );
 	if ( !gladLoadGL() )
 		return -2;
+
+	if ( !(mapShader = LoadShaders()) )
+		return 3;
 	glfwSetKeyCallback( window, key_callback );
 	glfwSwapInterval( 1 );
 
 	random_engine.seed( 7 );
 	for ( int i = 0; i < 2 * lineCount; i++ )
 		vertexData[i].random();
-	for ( int i = 0; i < 2 * lineCount; i++ ) {
+	for ( int i = 0; i < lineCount; i++ ) {
 		vertexData[i * 2] = vertexData[i * 2] * 1.8f;
 		vertexData[i * 2] = vertexData[i * 2] + -0.9f;
 		vertexData[i * 2 + 1] = vertexData[i * 2 + 1] * 0.14f;

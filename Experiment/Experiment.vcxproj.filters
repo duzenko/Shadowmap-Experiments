@@ -16,5 +16,8 @@
     <ClInclude Include="Types.h">
       <Filter>util</Filter>
     </ClInclude>
+    <ClInclude Include="GLSL.h">
+      <Filter>util</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
