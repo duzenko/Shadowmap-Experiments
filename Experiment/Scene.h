@@ -1,6 +1,6 @@
 #pragma once
 
-const int lineCount = 79;
+const int lineCount = 31;
 Vec vertexData[lineCount * 2];
 
 void Init() {
@@ -10,12 +10,14 @@ void Init() {
 	for ( int i = 0; i < lineCount; i++ ) {
 		vertexData[i * 2] = vertexData[i * 2] * 1.8f;
 		vertexData[i * 2] = vertexData[i * 2] + -0.9f;
-		vertexData[i * 2 + 1] = vertexData[i * 2 + 1] * 0.714f + -.1f;
+		vertexData[i * 2 + 1] = vertexData[i * 2 + 1] * 0.4f + -.2f;
 		vertexData[i * 2 + 1] = vertexData[i * 2 + 1] + vertexData[i * 2];
 	}
 
 	glEnable( GL_SCISSOR_TEST );
 	glEnable( GL_DEPTH_TEST );
+	glEnable( GL_BLEND );
+	glBlendFunc( GL_SRC_ALPHA, GL_ONE );
 
 	LoadShaders();
 	fboShadows.Init();
@@ -34,11 +36,9 @@ void lightView() {
 	vpDefault.ReadCurrent();
 	mapProjectionMatrix.Apply( GL_PROJECTION );
 	glClearColor( 0.4f, 0, 0, 1 );
-	glColor3f( 1, 1, 0.5 );
-	fboShadows.Bind();
+	glColor3f( 0.8f, 0.4f, 0.2f );
 	for ( int i = 0; i < 4; i++ ) {
-		mapViewMatrix[i].Apply( GL_MODELVIEW );
-		glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
+		fboShadows.Bind(i);
 		drawWorld();
 		const int magnify = 6;
 		ViewPort vpVisual = { magnify, vpDefault.h - magnify * 3 - i * magnify * 2, fboShadows.viewPort.w*magnify, magnify };
@@ -66,12 +66,16 @@ void mainView() {
 	glColor3f( 1, 1, 1 );
 	worldShader.Use();
 	drawWorld();
-	passthroughShader.Use();
 
-	/*glBegin( GL_QUADS );	// center
-	glVertex2f( .01f, .01f );
-	glVertex2f( .01f, -.01f );
-	glVertex2f( -.01f, -.01f );
-	glVertex2f( -.01f, .01f );
-	glEnd();*/
+	glBegin( GL_QUADS );	// center
+	glColor4f( 1, 1, 1, .3f );
+	const float r = 0.6f;
+	glVertex2f( r, r );
+	glVertex2f( r, -r );
+	glVertex2f( -r, -r );
+	glVertex2f( -r, r );
+	glColor4f( 1, 1, 1, 1 );
+	glEnd();
+
+	passthroughShader.Use();
 }

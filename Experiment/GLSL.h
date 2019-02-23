@@ -55,15 +55,16 @@ struct WorldShader : Shader {
 				keyStates[i] = 0;
 			}
 		glUniform1i( colorComp, x );
+		glBindTexture( GL_TEXTURE_2D, fboShadows.depthTexture );
 	}
 };
 
 WorldShader worldShader( R"(
-#version 110
+#version 130
 
 uniform mat4 mapView[4], mapProjection;
 
-varying vec4 inMapSpace[4];
+out vec4 inMapSpace[4];
 
 void main() {
 	gl_FrontColor = gl_Color;
@@ -72,14 +73,15 @@ void main() {
 		inMapSpace[i] = mapProjection * mapView[i] * gl_Vertex;
 }
 )", R"(
-#version 110
+#version 130
 
-varying vec4 inMapSpace[4];
+in vec4 inMapSpace[4];
 
 uniform bool f;
 uniform int colorComp;
+uniform sampler2D depthTexture;
 
-int map = -1;
+int mapSide = -1;
 float mapProjection;
 
 void FindMap() {
@@ -91,20 +93,26 @@ void FindMap() {
 			continue;
 		if(mapProjection > 1.)
 			continue;
-		map = i;
+		mapSide = i;
 		break;
 	}
 }
 
 void main() {
 	gl_FragColor = gl_Color;	
-	if (!f) {
-		FindMap();
-		if(map < 0)			// show error
-			gl_FragColor.rgb = vec3(1, 0, 1);	
-		else
-			gl_FragColor.rgb = vec3(-mapProjection, mapProjection, 0);
+	if (f) {
+		return;
 	} 
+	FindMap();
+	if(mapSide < 0)	 {		// show error
+		gl_FragColor.rgb = vec3(1, 0, 1);	
+		return;
+	}
+	vec2 depthTexCoord = vec2(mapProjection * .5 + .5, 0.25 * mapSide + 0.125);
+	vec4 depthSample = texture(depthTexture, depthTexCoord);
+	float thisDepth = inMapSpace[mapSide].z / inMapSpace[mapSide].w * .5 + .5;
+	float inShadow = float( thisDepth > depthSample.r );
+	gl_FragColor.rgb = vec3(inShadow, 1-inShadow, 0);
 })" );
 
 GLuint Shader::LoadShader( const char *vertexSource, const char *fragmentSource ) {

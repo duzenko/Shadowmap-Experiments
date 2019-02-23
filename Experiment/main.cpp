@@ -4,8 +4,8 @@
 #include "misc.h"
 #include "Matrices.h"
 #include "Types.h"
-#include "GLSL.h"
 #include "FBO.h"
+#include "GLSL.h"
 #include "Scene.h"
 
 void key_callback( GLFWwindow* window, int key, int scancode, int action, int mods ) {
