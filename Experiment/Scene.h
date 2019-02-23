@@ -31,7 +31,7 @@ void drawWorld() {
 }
 
 void lightView() {
-	glUseProgram( mapShader );
+	mapShader.Use();
 	vpDefault.ReadCurrent();
 	mapProjectionMatrix.Apply();
 	glClearColor( 0.4f, 0, 0, 1 );
@@ -42,7 +42,7 @@ void lightView() {
 		glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 		drawWorld();
 		const int magnify = 6;
-		ViewPort vpVisual = { 0, vpDefault.h - magnify * 3 - i * magnify * 2, fboShadows.viewPort.w*magnify, magnify };
+		ViewPort vpVisual = { magnify, vpDefault.h - magnify * 3 - i * magnify * 2, fboShadows.viewPort.w*magnify, magnify };
 		fboShadows.BlitTo( vpVisual );
 	}
 	fboShadows.Unbind();
@@ -51,7 +51,7 @@ void lightView() {
 }
 
 void mainView() {
-	glUseProgram( mainShader );
+	mainShader.Use();
 	vpDefault.ReadCurrent();
 	mainProjectionMatrix.elements[0] = (float)vpDefault.h / vpDefault.w;
 	mainProjectionMatrix.Apply();
