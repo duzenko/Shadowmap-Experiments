@@ -45,7 +45,7 @@ struct WorldShader : Shader {
 	}
 	virtual void Use() {
 		Shader::Use();
-		glUniformMatrix4fv( mapView, 1, false, mapViewMatrix[0].elements );
+		glUniformMatrix4fv( mapView, 4, false, mapViewMatrix[0].elements );
 		glUniformMatrix4fv( mapProjection, 1, false, mapProjectionMatrix.elements );
 		glUniform1i( f, keyStates[GLFW_KEY_F1] );
 		static int x = 0;
@@ -61,36 +61,49 @@ struct WorldShader : Shader {
 WorldShader worldShader( R"(
 #version 110
 
-uniform mat4 mapView, mapProjection;
+uniform mat4 mapView[4], mapProjection;
 
-varying vec4 inMapSpace;
+varying vec4 inMapSpace[4];
 
 void main() {
-	inMapSpace = mapProjection * mapView * gl_Vertex;
 	gl_FrontColor = gl_Color;
 	gl_Position = ftransform();
+	for(int i=0; i<4; i++)
+		inMapSpace[i] = mapProjection * mapView[i] * gl_Vertex;
 }
 )", R"(
 #version 110
 
-varying vec4 inMapSpace;
+varying vec4 inMapSpace[4];
 
 uniform bool f;
 uniform int colorComp;
 
+int map = -1;
+float mapProjection;
+
+void FindMap() {
+	for(int i=0; i<4; i++) {
+		if(inMapSpace[i].w < 0.)
+			continue;
+		mapProjection = inMapSpace[i].x/inMapSpace[i].w;
+		if(mapProjection < -1.)
+			continue;
+		if(mapProjection > 1.)
+			continue;
+		map = i;
+		break;
+	}
+}
+
 void main() {
 	gl_FragColor = gl_Color;	
 	if (!f) {
-		gl_FragColor.rgb = vec3(0);	
-		float p = inMapSpace.x/inMapSpace.w;
-		if(p < -1.)
-			gl_FragColor.rgb = vec3(1, 1, 0);	
-		else if(p > 1.)
+		FindMap();
+		if(map < 0)			// show error
 			gl_FragColor.rgb = vec3(1, 0, 1);	
-		else if(inMapSpace.w < 0.)
-			gl_FragColor.rgb = vec3(0, 1, 1);	
 		else
-			gl_FragColor.rg = vec2(p) * vec2(-1, 1);
+			gl_FragColor.rgb = vec3(-mapProjection, mapProjection, 0);
 	} 
 })" );
 

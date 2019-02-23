@@ -32,12 +32,12 @@ void drawWorld() {
 
 void lightView() {
 	vpDefault.ReadCurrent();
-	mapProjectionMatrix.Apply();
+	mapProjectionMatrix.Apply( GL_PROJECTION );
 	glClearColor( 0.4f, 0, 0, 1 );
 	glColor3f( 1, 1, 0.5 );
 	fboShadows.Bind();
 	for ( int i = 0; i < 4; i++ ) {
-		mapViewMatrix[i].Apply();
+		mapViewMatrix[i].Apply( GL_MODELVIEW );
 		glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 		drawWorld();
 		const int magnify = 6;
@@ -52,7 +52,7 @@ void lightView() {
 void mainView() {
 	vpDefault.ReadCurrent();
 	mainProjectionMatrix.elements[0] = (float)vpDefault.h / vpDefault.w;
-	mainProjectionMatrix.Apply();
+	mainProjectionMatrix.Apply( GL_PROJECTION );
 
 	glBegin( GL_LINES );
 	glColor3f( 0.7f, 0, 1 );

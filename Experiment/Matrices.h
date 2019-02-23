@@ -2,8 +2,7 @@
 
 struct Mat {
 	float elements[16];
-	GLenum type;
-	void Apply() {
+	void Apply( GLenum type ) {
 		glMatrixMode( type );
 		glLoadMatrixf( elements );
 	}
@@ -15,28 +14,24 @@ Mat mapViewMatrix[4] = {
 		0,	0,	-1,	0,
 		0,	0,	0,	0,
 		0,	0,	0,	1,
-		GL_MODELVIEW
 	},
 	{
 		0,	0,	-1,	0,
 		-1,	0,	0,	0,
 		0,	0,	0,	0,
 		0,	0,	0,	1,
-		GL_MODELVIEW
 	},
 	{
 		-1,	0,	0,	0,
 		0,	0,	1,	0,
 		0,	0,	0,	0,
 		0,	0,	0,	1,
-		GL_MODELVIEW
 	},
 	{
 		0,	0,	1,	0,
 		1,	0,	0,	0,
 		0,	0,	0,	0,
 		0,	0,	0,	1,
-		GL_MODELVIEW
 	},
 };
 
@@ -45,7 +40,6 @@ Mat mainProjectionMatrix = {
 	0, 1, 0, 0,
 	0, 0, 1, 0,
 	0, 0, 0, 1,
-	GL_PROJECTION
 };
 
 Mat mapProjectionMatrix = {
@@ -53,5 +47,4 @@ Mat mapProjectionMatrix = {
 	0, 1, 0,	0,
 	0, 0, -1,	-1,
 	0, 0, -.2f,	0,
-	GL_PROJECTION
 };
