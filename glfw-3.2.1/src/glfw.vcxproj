@@ -19,8 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{42E3D6A7-EF61-3949-976A-D378AF3E4542}</ProjectGuid>
-    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+    <ProjectGuid>{FE09D17A-7A7F-322E-9A82-7473059B0162}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
     <Keyword>Win32Proj</Keyword>
     <Platform>Win32</Platform>
     <ProjectName>glfw</ProjectName>
@@ -56,26 +56,26 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:\temp\ConsoleApplication2\glfw-3.2.1\src\Debug\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\dm\smexp\glfw-3.2.1\src\Debug\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">glfw.dir\Debug\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">glfw3</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.lib</TargetExt>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:\temp\ConsoleApplication2\glfw-3.2.1\src\Release\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\dm\smexp\glfw-3.2.1\src\Release\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">glfw.dir\Release\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">glfw3</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.lib</TargetExt>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">D:\temp\ConsoleApplication2\glfw-3.2.1\src\MinSizeRel\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:\dm\smexp\glfw-3.2.1\src\MinSizeRel\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">glfw.dir\MinSizeRel\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">glfw3</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">.lib</TargetExt>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">D:\temp\ConsoleApplication2\glfw-3.2.1\src\RelWithDebInfo\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:\dm\smexp\glfw-3.2.1\src\RelWithDebInfo\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">glfw.dir\RelWithDebInfo\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">glfw3</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">.lib</TargetExt>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>D:\temp\ConsoleApplication2\glfw-3.2.1\include;D:\temp\ConsoleApplication2\glfw-3.2.1\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\dm\smexp\glfw-3.2.1\include;C:\dm\smexp\glfw-3.2.1\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>Debug/</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <CompileAs>CompileAsC</CompileAs>
@@ -86,17 +86,16 @@
       <Optimization>Disabled</Optimization>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;_WINDOWS;_GLFW_USE_CONFIG_H;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_GLFW_USE_CONFIG_H;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>D:\temp\ConsoleApplication2\glfw-3.2.1\include;D:\temp\ConsoleApplication2\glfw-3.2.1\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\dm\smexp\glfw-3.2.1\include;C:\dm\smexp\glfw-3.2.1\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>D:\temp\ConsoleApplication2\glfw-3.2.1\include;D:\temp\ConsoleApplication2\glfw-3.2.1\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\dm\smexp\glfw-3.2.1\include;C:\dm\smexp\glfw-3.2.1\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -109,7 +108,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>D:\temp\ConsoleApplication2\glfw-3.2.1\include;D:\temp\ConsoleApplication2\glfw-3.2.1\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\dm\smexp\glfw-3.2.1\include;C:\dm\smexp\glfw-3.2.1\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>Release/</AssemblerListingLocation>
       <CompileAs>CompileAsC</CompileAs>
       <ExceptionHandling>
@@ -118,7 +117,6 @@
       <Optimization>MaxSpeed</Optimization>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_GLFW_USE_CONFIG_H;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
@@ -127,10 +125,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_GLFW_USE_CONFIG_H;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>D:\temp\ConsoleApplication2\glfw-3.2.1\include;D:\temp\ConsoleApplication2\glfw-3.2.1\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\dm\smexp\glfw-3.2.1\include;C:\dm\smexp\glfw-3.2.1\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>D:\temp\ConsoleApplication2\glfw-3.2.1\include;D:\temp\ConsoleApplication2\glfw-3.2.1\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\dm\smexp\glfw-3.2.1\include;C:\dm\smexp\glfw-3.2.1\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -143,7 +141,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>D:\temp\ConsoleApplication2\glfw-3.2.1\include;D:\temp\ConsoleApplication2\glfw-3.2.1\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\dm\smexp\glfw-3.2.1\include;C:\dm\smexp\glfw-3.2.1\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>MinSizeRel/</AssemblerListingLocation>
       <CompileAs>CompileAsC</CompileAs>
       <ExceptionHandling>
@@ -152,7 +150,6 @@
       <Optimization>MinSpace</Optimization>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_GLFW_USE_CONFIG_H;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR="MinSizeRel";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
@@ -161,10 +158,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_GLFW_USE_CONFIG_H;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"MinSizeRel\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>D:\temp\ConsoleApplication2\glfw-3.2.1\include;D:\temp\ConsoleApplication2\glfw-3.2.1\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\dm\smexp\glfw-3.2.1\include;C:\dm\smexp\glfw-3.2.1\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>D:\temp\ConsoleApplication2\glfw-3.2.1\include;D:\temp\ConsoleApplication2\glfw-3.2.1\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\dm\smexp\glfw-3.2.1\include;C:\dm\smexp\glfw-3.2.1\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -177,7 +174,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>D:\temp\ConsoleApplication2\glfw-3.2.1\include;D:\temp\ConsoleApplication2\glfw-3.2.1\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\dm\smexp\glfw-3.2.1\include;C:\dm\smexp\glfw-3.2.1\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>RelWithDebInfo/</AssemblerListingLocation>
       <CompileAs>CompileAsC</CompileAs>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -187,17 +184,16 @@
       <Optimization>MaxSpeed</Optimization>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_GLFW_USE_CONFIG_H;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR="RelWithDebInfo";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_GLFW_USE_CONFIG_H;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"RelWithDebInfo\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>D:\temp\ConsoleApplication2\glfw-3.2.1\include;D:\temp\ConsoleApplication2\glfw-3.2.1\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\dm\smexp\glfw-3.2.1\include;C:\dm\smexp\glfw-3.2.1\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>D:\temp\ConsoleApplication2\glfw-3.2.1\include;D:\temp\ConsoleApplication2\glfw-3.2.1\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\dm\smexp\glfw-3.2.1\include;C:\dm\smexp\glfw-3.2.1\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -209,10 +205,10 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CustomBuild Include="D:\temp\ConsoleApplication2\glfw-3.2.1\src\CMakeLists.txt">
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Building Custom Rule D:/temp/ConsoleApplication2/glfw-3.2.1/src/CMakeLists.txt</Message>
+    <CustomBuild Include="C:\dm\smexp\glfw-3.2.1\src\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Building Custom Rule C:/dm/smexp/glfw-3.2.1/src/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
-"D:\Program Files\CMake\bin\cmake.exe" -SD:/temp/ConsoleApplication2/glfw-3.2.1 -BD:/temp/ConsoleApplication2/glfw-3.2.1 --check-stamp-file D:/temp/ConsoleApplication2/glfw-3.2.1/src/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/dm/smexp/glfw-3.2.1 -BC:/dm/smexp/glfw-3.2.1 --check-stamp-file C:/dm/smexp/glfw-3.2.1/src/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -220,12 +216,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:/temp/ConsoleApplication2/glfw-3.2.1/src/CMakeLists.txt;D:\temp\ConsoleApplication2\glfw-3.2.1\src\CMakeLists.txt;D:\temp\ConsoleApplication2\glfw-3.2.1\src\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:\temp\ConsoleApplication2\glfw-3.2.1\src\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:/dm/smexp/glfw-3.2.1/src/CMakeLists.txt;C:\dm\smexp\glfw-3.2.1\src\CMakeLists.txt;C:\dm\smexp\glfw-3.2.1\src\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\dm\smexp\glfw-3.2.1\src\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Building Custom Rule D:/temp/ConsoleApplication2/glfw-3.2.1/src/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Building Custom Rule C:/dm/smexp/glfw-3.2.1/src/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
-"D:\Program Files\CMake\bin\cmake.exe" -SD:/temp/ConsoleApplication2/glfw-3.2.1 -BD:/temp/ConsoleApplication2/glfw-3.2.1 --check-stamp-file D:/temp/ConsoleApplication2/glfw-3.2.1/src/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/dm/smexp/glfw-3.2.1 -BC:/dm/smexp/glfw-3.2.1 --check-stamp-file C:/dm/smexp/glfw-3.2.1/src/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -233,12 +229,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:/temp/ConsoleApplication2/glfw-3.2.1/src/CMakeLists.txt;D:\temp\ConsoleApplication2\glfw-3.2.1\src\CMakeLists.txt;D:\temp\ConsoleApplication2\glfw-3.2.1\src\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:\temp\ConsoleApplication2\glfw-3.2.1\src\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:/dm/smexp/glfw-3.2.1/src/CMakeLists.txt;C:\dm\smexp\glfw-3.2.1\src\CMakeLists.txt;C:\dm\smexp\glfw-3.2.1\src\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\dm\smexp\glfw-3.2.1\src\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Building Custom Rule D:/temp/ConsoleApplication2/glfw-3.2.1/src/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Building Custom Rule C:/dm/smexp/glfw-3.2.1/src/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">setlocal
-"D:\Program Files\CMake\bin\cmake.exe" -SD:/temp/ConsoleApplication2/glfw-3.2.1 -BD:/temp/ConsoleApplication2/glfw-3.2.1 --check-stamp-file D:/temp/ConsoleApplication2/glfw-3.2.1/src/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/dm/smexp/glfw-3.2.1 -BC:/dm/smexp/glfw-3.2.1 --check-stamp-file C:/dm/smexp/glfw-3.2.1/src/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -246,12 +242,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">D:/temp/ConsoleApplication2/glfw-3.2.1/src/CMakeLists.txt;D:\temp\ConsoleApplication2\glfw-3.2.1\src\CMakeLists.txt;D:\temp\ConsoleApplication2\glfw-3.2.1\src\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">D:\temp\ConsoleApplication2\glfw-3.2.1\src\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:/dm/smexp/glfw-3.2.1/src/CMakeLists.txt;C:\dm\smexp\glfw-3.2.1\src\CMakeLists.txt;C:\dm\smexp\glfw-3.2.1\src\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:\dm\smexp\glfw-3.2.1\src\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Building Custom Rule D:/temp/ConsoleApplication2/glfw-3.2.1/src/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Building Custom Rule C:/dm/smexp/glfw-3.2.1/src/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">setlocal
-"D:\Program Files\CMake\bin\cmake.exe" -SD:/temp/ConsoleApplication2/glfw-3.2.1 -BD:/temp/ConsoleApplication2/glfw-3.2.1 --check-stamp-file D:/temp/ConsoleApplication2/glfw-3.2.1/src/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/dm/smexp/glfw-3.2.1 -BC:/dm/smexp/glfw-3.2.1 --check-stamp-file C:/dm/smexp/glfw-3.2.1/src/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -259,41 +255,39 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">D:/temp/ConsoleApplication2/glfw-3.2.1/src/CMakeLists.txt;D:\temp\ConsoleApplication2\glfw-3.2.1\src\CMakeLists.txt;D:\temp\ConsoleApplication2\glfw-3.2.1\src\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">D:\temp\ConsoleApplication2\glfw-3.2.1\src\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:/dm/smexp/glfw-3.2.1/src/CMakeLists.txt;C:\dm\smexp\glfw-3.2.1\src\CMakeLists.txt;C:\dm\smexp\glfw-3.2.1\src\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:\dm\smexp\glfw-3.2.1\src\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">false</LinkObjects>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="D:\temp\ConsoleApplication2\glfw-3.2.1\src\context.c" />
-    <ClCompile Include="D:\temp\ConsoleApplication2\glfw-3.2.1\src\init.c" />
-    <ClCompile Include="D:\temp\ConsoleApplication2\glfw-3.2.1\src\input.c" />
-    <ClCompile Include="D:\temp\ConsoleApplication2\glfw-3.2.1\src\monitor.c" />
-    <ClCompile Include="D:\temp\ConsoleApplication2\glfw-3.2.1\src\vulkan.c" />
-    <ClCompile Include="D:\temp\ConsoleApplication2\glfw-3.2.1\src\window.c" />
-    <ClCompile Include="D:\temp\ConsoleApplication2\glfw-3.2.1\src\win32_init.c" />
-    <ClCompile Include="D:\temp\ConsoleApplication2\glfw-3.2.1\src\win32_joystick.c" />
-    <ClCompile Include="D:\temp\ConsoleApplication2\glfw-3.2.1\src\win32_monitor.c" />
-    <ClCompile Include="D:\temp\ConsoleApplication2\glfw-3.2.1\src\win32_time.c" />
-    <ClCompile Include="D:\temp\ConsoleApplication2\glfw-3.2.1\src\win32_tls.c" />
-    <ClCompile Include="D:\temp\ConsoleApplication2\glfw-3.2.1\src\win32_window.c" />
-    <ClCompile Include="D:\temp\ConsoleApplication2\glfw-3.2.1\src\wgl_context.c" />
-    <ClCompile Include="D:\temp\ConsoleApplication2\glfw-3.2.1\src\egl_context.c" />
-    <ClInclude Include="D:\temp\ConsoleApplication2\glfw-3.2.1\src\internal.h" />
-    <ClInclude Include="D:\temp\ConsoleApplication2\glfw-3.2.1\src\glfw_config.h" />
-    <ClInclude Include="D:\temp\ConsoleApplication2\glfw-3.2.1\include\GLFW\glfw3.h" />
-    <ClInclude Include="D:\temp\ConsoleApplication2\glfw-3.2.1\include\GLFW\glfw3native.h" />
-    <ClInclude Include="D:\temp\ConsoleApplication2\glfw-3.2.1\src\win32_platform.h" />
-    <ClInclude Include="D:\temp\ConsoleApplication2\glfw-3.2.1\src\win32_joystick.h" />
-    <ClInclude Include="D:\temp\ConsoleApplication2\glfw-3.2.1\src\wgl_context.h" />
-    <ClInclude Include="D:\temp\ConsoleApplication2\glfw-3.2.1\src\egl_context.h" />
+    <ClCompile Include="C:\dm\smexp\glfw-3.2.1\src\context.c" />
+    <ClCompile Include="C:\dm\smexp\glfw-3.2.1\src\init.c" />
+    <ClCompile Include="C:\dm\smexp\glfw-3.2.1\src\input.c" />
+    <ClCompile Include="C:\dm\smexp\glfw-3.2.1\src\monitor.c" />
+    <ClCompile Include="C:\dm\smexp\glfw-3.2.1\src\vulkan.c" />
+    <ClCompile Include="C:\dm\smexp\glfw-3.2.1\src\window.c" />
+    <ClCompile Include="C:\dm\smexp\glfw-3.2.1\src\win32_init.c" />
+    <ClCompile Include="C:\dm\smexp\glfw-3.2.1\src\win32_joystick.c" />
+    <ClCompile Include="C:\dm\smexp\glfw-3.2.1\src\win32_monitor.c" />
+    <ClCompile Include="C:\dm\smexp\glfw-3.2.1\src\win32_time.c" />
+    <ClCompile Include="C:\dm\smexp\glfw-3.2.1\src\win32_tls.c" />
+    <ClCompile Include="C:\dm\smexp\glfw-3.2.1\src\win32_window.c" />
+    <ClCompile Include="C:\dm\smexp\glfw-3.2.1\src\wgl_context.c" />
+    <ClCompile Include="C:\dm\smexp\glfw-3.2.1\src\egl_context.c" />
+    <ClInclude Include="C:\dm\smexp\glfw-3.2.1\src\internal.h" />
+    <ClInclude Include="C:\dm\smexp\glfw-3.2.1\src\glfw_config.h" />
+    <ClInclude Include="C:\dm\smexp\glfw-3.2.1\include\GLFW\glfw3.h" />
+    <ClInclude Include="C:\dm\smexp\glfw-3.2.1\include\GLFW\glfw3native.h" />
+    <ClInclude Include="C:\dm\smexp\glfw-3.2.1\src\win32_platform.h" />
+    <ClInclude Include="C:\dm\smexp\glfw-3.2.1\src\win32_joystick.h" />
+    <ClInclude Include="C:\dm\smexp\glfw-3.2.1\src\wgl_context.h" />
+    <ClInclude Include="C:\dm\smexp\glfw-3.2.1\src\egl_context.h" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="D:\temp\ConsoleApplication2\glfw-3.2.1\ZERO_CHECK.vcxproj">
-      <Project>{6578A102-E29D-3465-92DB-5240AEA90515}</Project>
+    <ProjectReference Include="C:\dm\smexp\glfw-3.2.1\ZERO_CHECK.vcxproj">
+      <Project>{63E0EB26-582B-3CCC-B7AD-33EB7F2EC019}</Project>
       <Name>ZERO_CHECK</Name>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

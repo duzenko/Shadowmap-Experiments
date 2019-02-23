@@ -1,84 +1,84 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="D:\temp\ConsoleApplication2\glfw-3.2.1\src\context.c">
+    <ClCompile Include="C:\dm\smexp\glfw-3.2.1\src\context.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\temp\ConsoleApplication2\glfw-3.2.1\src\init.c">
+    <ClCompile Include="C:\dm\smexp\glfw-3.2.1\src\init.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\temp\ConsoleApplication2\glfw-3.2.1\src\input.c">
+    <ClCompile Include="C:\dm\smexp\glfw-3.2.1\src\input.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\temp\ConsoleApplication2\glfw-3.2.1\src\monitor.c">
+    <ClCompile Include="C:\dm\smexp\glfw-3.2.1\src\monitor.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\temp\ConsoleApplication2\glfw-3.2.1\src\vulkan.c">
+    <ClCompile Include="C:\dm\smexp\glfw-3.2.1\src\vulkan.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\temp\ConsoleApplication2\glfw-3.2.1\src\window.c">
+    <ClCompile Include="C:\dm\smexp\glfw-3.2.1\src\window.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\temp\ConsoleApplication2\glfw-3.2.1\src\win32_init.c">
+    <ClCompile Include="C:\dm\smexp\glfw-3.2.1\src\win32_init.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\temp\ConsoleApplication2\glfw-3.2.1\src\win32_joystick.c">
+    <ClCompile Include="C:\dm\smexp\glfw-3.2.1\src\win32_joystick.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\temp\ConsoleApplication2\glfw-3.2.1\src\win32_monitor.c">
+    <ClCompile Include="C:\dm\smexp\glfw-3.2.1\src\win32_monitor.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\temp\ConsoleApplication2\glfw-3.2.1\src\win32_time.c">
+    <ClCompile Include="C:\dm\smexp\glfw-3.2.1\src\win32_time.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\temp\ConsoleApplication2\glfw-3.2.1\src\win32_tls.c">
+    <ClCompile Include="C:\dm\smexp\glfw-3.2.1\src\win32_tls.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\temp\ConsoleApplication2\glfw-3.2.1\src\win32_window.c">
+    <ClCompile Include="C:\dm\smexp\glfw-3.2.1\src\win32_window.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\temp\ConsoleApplication2\glfw-3.2.1\src\wgl_context.c">
+    <ClCompile Include="C:\dm\smexp\glfw-3.2.1\src\wgl_context.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\temp\ConsoleApplication2\glfw-3.2.1\src\egl_context.c">
+    <ClCompile Include="C:\dm\smexp\glfw-3.2.1\src\egl_context.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="D:\temp\ConsoleApplication2\glfw-3.2.1\src\internal.h">
+    <ClInclude Include="C:\dm\smexp\glfw-3.2.1\src\internal.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="D:\temp\ConsoleApplication2\glfw-3.2.1\src\glfw_config.h">
+    <ClInclude Include="C:\dm\smexp\glfw-3.2.1\src\glfw_config.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="D:\temp\ConsoleApplication2\glfw-3.2.1\include\GLFW\glfw3.h">
+    <ClInclude Include="C:\dm\smexp\glfw-3.2.1\include\GLFW\glfw3.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="D:\temp\ConsoleApplication2\glfw-3.2.1\include\GLFW\glfw3native.h">
+    <ClInclude Include="C:\dm\smexp\glfw-3.2.1\include\GLFW\glfw3native.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="D:\temp\ConsoleApplication2\glfw-3.2.1\src\win32_platform.h">
+    <ClInclude Include="C:\dm\smexp\glfw-3.2.1\src\win32_platform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="D:\temp\ConsoleApplication2\glfw-3.2.1\src\win32_joystick.h">
+    <ClInclude Include="C:\dm\smexp\glfw-3.2.1\src\win32_joystick.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="D:\temp\ConsoleApplication2\glfw-3.2.1\src\wgl_context.h">
+    <ClInclude Include="C:\dm\smexp\glfw-3.2.1\src\wgl_context.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="D:\temp\ConsoleApplication2\glfw-3.2.1\src\egl_context.h">
+    <ClInclude Include="C:\dm\smexp\glfw-3.2.1\src\egl_context.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="D:\temp\ConsoleApplication2\glfw-3.2.1\src\CMakeLists.txt" />
+    <CustomBuild Include="C:\dm\smexp\glfw-3.2.1\src\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{EC71BA93-2BBA-360A-A780-0D23B8BE8CAC}</UniqueIdentifier>
+      <UniqueIdentifier>{E0BE36F2-2C48-3D5A-A10F-1140DD54B42A}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{CDCF2D50-E78E-3B9C-9DE4-0C3DC6466390}</UniqueIdentifier>
+      <UniqueIdentifier>{C15DE713-B8F7-387F-8A28-EC6F372E2178}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -19,8 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{106DD590-897A-380C-AFC9-A45D8CEC650B}</ProjectGuid>
-    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+    <ProjectGuid>{49D8E322-3A8E-3A9C-861D-78762780B166}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
     <Keyword>Win32Proj</Keyword>
     <Platform>Win32</Platform>
     <ProjectName>ALL_BUILD</ProjectName>
@@ -102,10 +102,10 @@
     </Midl>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CustomBuild Include="D:\temp\ConsoleApplication2\glfw-3.2.1\CMakeLists.txt">
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Building Custom Rule D:/temp/ConsoleApplication2/glfw-3.2.1/CMakeLists.txt</Message>
+    <CustomBuild Include="C:\dm\smexp\glfw-3.2.1\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Building Custom Rule C:/dm/smexp/glfw-3.2.1/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
-"D:\Program Files\CMake\bin\cmake.exe" -SD:/temp/ConsoleApplication2/glfw-3.2.1 -BD:/temp/ConsoleApplication2/glfw-3.2.1 --check-stamp-file D:/temp/ConsoleApplication2/glfw-3.2.1/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/dm/smexp/glfw-3.2.1 -BC:/dm/smexp/glfw-3.2.1 --check-stamp-file C:/dm/smexp/glfw-3.2.1/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -113,12 +113,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:/temp/ConsoleApplication2/glfw-3.2.1/CMakeLists.txt;D:\Program Files\CMake\share\cmake-3.13\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeCCompiler.cmake.in;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeCCompilerABI.c;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeCInformation.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeCommonLanguageInclude.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeCompilerIdDetection.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeDetermineCCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeDetermineCompileFeatures.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeDetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeDetermineCompilerABI.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeDetermineCompilerId.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeDetermineRCCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeDetermineSystem.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeFindBinUtils.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeGenericSystem.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeInitializeConfigs.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeLanguageInformation.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakePackageConfigHelpers.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeParseImplicitLinkInfo.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeRCCompiler.cmake.in;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeRCInformation.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeSystem.cmake.in;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeSystemSpecificInformation.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeSystemSpecificInitialize.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeTestCCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeTestCompilerCommon.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeTestRCCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CheckIncludeFile.c.in;D:\Program Files\CMake\share\cmake-3.13\Modules\CheckIncludeFile.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CheckLibraryExists.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CheckSymbolExists.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\ADSP-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\ARMCC-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\AppleClang-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\Borland-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\Bruce-C-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\Clang-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\Clang-DetermineCompilerInternal.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\Compaq-C-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\Cray-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\Embarcadero-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\Fujitsu-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\GHS-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\GNU-C-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\HP-C-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\IAR-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\IBMCPP-C-DetermineVersionInternal.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\Intel-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\MIPSpro-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\MSVC-C-FeatureTests.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\MSVC-C.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\MSVC-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\NVIDIA-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\OpenWatcom-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\PGI-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\PathScale-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\SCO-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\SDCC-C-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\SunPro-C-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\TI-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\TinyCC-C-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\VisualAge-C-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\Watcom-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\XL-C-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\zOS-C-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CompilerId\VS-10.vcxproj.in;D:\Program Files\CMake\share\cmake-3.13\Modules\FindDoxygen.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\FindPackageHandleStandardArgs.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\FindPackageMessage.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\FindThreads.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Internal\FeatureTesting.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Platform\Windows-MSVC-C.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Platform\Windows-MSVC.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Platform\Windows.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Platform\WindowsPaths.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\WriteBasicConfigVersionFile.cmake;D:\temp\ConsoleApplication2\glfw-3.2.1\CMake\modules\FindVulkan.cmake;D:\temp\ConsoleApplication2\glfw-3.2.1\CMakeFiles\3.13.4\CMakeCCompiler.cmake;D:\temp\ConsoleApplication2\glfw-3.2.1\CMakeFiles\3.13.4\CMakeRCCompiler.cmake;D:\temp\ConsoleApplication2\glfw-3.2.1\CMakeFiles\3.13.4\CMakeSystem.cmake;D:\temp\ConsoleApplication2\glfw-3.2.1\CMakeFiles\feature_tests.c;D:\temp\ConsoleApplication2\glfw-3.2.1\CMakeLists.txt;D:\temp\ConsoleApplication2\glfw-3.2.1\cmake_uninstall.cmake.in;D:\temp\ConsoleApplication2\glfw-3.2.1\src\glfw3.pc.in;D:\temp\ConsoleApplication2\glfw-3.2.1\src\glfw3Config.cmake.in;D:\temp\ConsoleApplication2\glfw-3.2.1\src\glfw_config.h.in;D:\temp\ConsoleApplication2\glfw-3.2.1\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:\temp\ConsoleApplication2\glfw-3.2.1\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:/dm/smexp/glfw-3.2.1/CMakeLists.txt;C:\dm\smexp\glfw-3.2.1\CMakeLists.txt;C:\dm\smexp\glfw-3.2.1\CMakeFiles\3.11.3\CMakeSystem.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeSystemSpecificInitialize.cmake;C:\dm\smexp\glfw-3.2.1\CMakeFiles\3.11.3\CMakeCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC.cmake;C:\dm\smexp\glfw-3.2.1\CMakeFiles\3.11.3\CMakeRCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CheckSymbolExists.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageMessage.cmake;C:\dm\smexp\glfw-3.2.1\CMake\modules\FindVulkan.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindDoxygen.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakePackageConfigHelpers.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\WriteBasicConfigVersionFile.cmake;C:\dm\smexp\glfw-3.2.1\src\glfw3Config.cmake.in;C:\Program Files\CMake\share\cmake-3.11\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;C:\dm\smexp\glfw-3.2.1\src\glfw_config.h.in;C:\dm\smexp\glfw-3.2.1\src\glfw3.pc.in;C:\dm\smexp\glfw-3.2.1\cmake_uninstall.cmake.in;C:\dm\smexp\glfw-3.2.1\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\dm\smexp\glfw-3.2.1\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Building Custom Rule D:/temp/ConsoleApplication2/glfw-3.2.1/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Building Custom Rule C:/dm/smexp/glfw-3.2.1/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
-"D:\Program Files\CMake\bin\cmake.exe" -SD:/temp/ConsoleApplication2/glfw-3.2.1 -BD:/temp/ConsoleApplication2/glfw-3.2.1 --check-stamp-file D:/temp/ConsoleApplication2/glfw-3.2.1/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/dm/smexp/glfw-3.2.1 -BC:/dm/smexp/glfw-3.2.1 --check-stamp-file C:/dm/smexp/glfw-3.2.1/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -126,12 +126,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:/temp/ConsoleApplication2/glfw-3.2.1/CMakeLists.txt;D:\Program Files\CMake\share\cmake-3.13\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeCCompiler.cmake.in;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeCCompilerABI.c;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeCInformation.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeCommonLanguageInclude.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeCompilerIdDetection.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeDetermineCCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeDetermineCompileFeatures.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeDetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeDetermineCompilerABI.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeDetermineCompilerId.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeDetermineRCCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeDetermineSystem.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeFindBinUtils.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeGenericSystem.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeInitializeConfigs.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeLanguageInformation.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakePackageConfigHelpers.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeParseImplicitLinkInfo.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeRCCompiler.cmake.in;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeRCInformation.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeSystem.cmake.in;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeSystemSpecificInformation.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeSystemSpecificInitialize.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeTestCCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeTestCompilerCommon.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeTestRCCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CheckIncludeFile.c.in;D:\Program Files\CMake\share\cmake-3.13\Modules\CheckIncludeFile.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CheckLibraryExists.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CheckSymbolExists.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\ADSP-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\ARMCC-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\AppleClang-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\Borland-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\Bruce-C-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\Clang-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\Clang-DetermineCompilerInternal.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\Compaq-C-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\Cray-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\Embarcadero-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\Fujitsu-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\GHS-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\GNU-C-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\HP-C-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\IAR-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\IBMCPP-C-DetermineVersionInternal.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\Intel-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\MIPSpro-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\MSVC-C-FeatureTests.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\MSVC-C.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\MSVC-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\NVIDIA-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\OpenWatcom-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\PGI-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\PathScale-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\SCO-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\SDCC-C-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\SunPro-C-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\TI-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\TinyCC-C-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\VisualAge-C-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\Watcom-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\XL-C-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\zOS-C-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CompilerId\VS-10.vcxproj.in;D:\Program Files\CMake\share\cmake-3.13\Modules\FindDoxygen.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\FindPackageHandleStandardArgs.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\FindPackageMessage.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\FindThreads.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Internal\FeatureTesting.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Platform\Windows-MSVC-C.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Platform\Windows-MSVC.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Platform\Windows.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Platform\WindowsPaths.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\WriteBasicConfigVersionFile.cmake;D:\temp\ConsoleApplication2\glfw-3.2.1\CMake\modules\FindVulkan.cmake;D:\temp\ConsoleApplication2\glfw-3.2.1\CMakeFiles\3.13.4\CMakeCCompiler.cmake;D:\temp\ConsoleApplication2\glfw-3.2.1\CMakeFiles\3.13.4\CMakeRCCompiler.cmake;D:\temp\ConsoleApplication2\glfw-3.2.1\CMakeFiles\3.13.4\CMakeSystem.cmake;D:\temp\ConsoleApplication2\glfw-3.2.1\CMakeFiles\feature_tests.c;D:\temp\ConsoleApplication2\glfw-3.2.1\CMakeLists.txt;D:\temp\ConsoleApplication2\glfw-3.2.1\cmake_uninstall.cmake.in;D:\temp\ConsoleApplication2\glfw-3.2.1\src\glfw3.pc.in;D:\temp\ConsoleApplication2\glfw-3.2.1\src\glfw3Config.cmake.in;D:\temp\ConsoleApplication2\glfw-3.2.1\src\glfw_config.h.in;D:\temp\ConsoleApplication2\glfw-3.2.1\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:\temp\ConsoleApplication2\glfw-3.2.1\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:/dm/smexp/glfw-3.2.1/CMakeLists.txt;C:\dm\smexp\glfw-3.2.1\CMakeLists.txt;C:\dm\smexp\glfw-3.2.1\CMakeFiles\3.11.3\CMakeSystem.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeSystemSpecificInitialize.cmake;C:\dm\smexp\glfw-3.2.1\CMakeFiles\3.11.3\CMakeCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC.cmake;C:\dm\smexp\glfw-3.2.1\CMakeFiles\3.11.3\CMakeRCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CheckSymbolExists.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageMessage.cmake;C:\dm\smexp\glfw-3.2.1\CMake\modules\FindVulkan.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindDoxygen.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakePackageConfigHelpers.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\WriteBasicConfigVersionFile.cmake;C:\dm\smexp\glfw-3.2.1\src\glfw3Config.cmake.in;C:\Program Files\CMake\share\cmake-3.11\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;C:\dm\smexp\glfw-3.2.1\src\glfw_config.h.in;C:\dm\smexp\glfw-3.2.1\src\glfw3.pc.in;C:\dm\smexp\glfw-3.2.1\cmake_uninstall.cmake.in;C:\dm\smexp\glfw-3.2.1\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\dm\smexp\glfw-3.2.1\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Building Custom Rule D:/temp/ConsoleApplication2/glfw-3.2.1/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Building Custom Rule C:/dm/smexp/glfw-3.2.1/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">setlocal
-"D:\Program Files\CMake\bin\cmake.exe" -SD:/temp/ConsoleApplication2/glfw-3.2.1 -BD:/temp/ConsoleApplication2/glfw-3.2.1 --check-stamp-file D:/temp/ConsoleApplication2/glfw-3.2.1/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/dm/smexp/glfw-3.2.1 -BC:/dm/smexp/glfw-3.2.1 --check-stamp-file C:/dm/smexp/glfw-3.2.1/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -139,12 +139,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">D:/temp/ConsoleApplication2/glfw-3.2.1/CMakeLists.txt;D:\Program Files\CMake\share\cmake-3.13\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeCCompiler.cmake.in;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeCCompilerABI.c;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeCInformation.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeCommonLanguageInclude.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeCompilerIdDetection.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeDetermineCCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeDetermineCompileFeatures.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeDetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeDetermineCompilerABI.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeDetermineCompilerId.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeDetermineRCCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeDetermineSystem.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeFindBinUtils.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeGenericSystem.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeInitializeConfigs.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeLanguageInformation.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakePackageConfigHelpers.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeParseImplicitLinkInfo.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeRCCompiler.cmake.in;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeRCInformation.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeSystem.cmake.in;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeSystemSpecificInformation.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeSystemSpecificInitialize.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeTestCCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeTestCompilerCommon.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeTestRCCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CheckIncludeFile.c.in;D:\Program Files\CMake\share\cmake-3.13\Modules\CheckIncludeFile.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CheckLibraryExists.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CheckSymbolExists.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\ADSP-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\ARMCC-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\AppleClang-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\Borland-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\Bruce-C-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\Clang-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\Clang-DetermineCompilerInternal.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\Compaq-C-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\Cray-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\Embarcadero-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\Fujitsu-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\GHS-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\GNU-C-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\HP-C-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\IAR-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\IBMCPP-C-DetermineVersionInternal.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\Intel-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\MIPSpro-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\MSVC-C-FeatureTests.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\MSVC-C.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\MSVC-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\NVIDIA-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\OpenWatcom-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\PGI-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\PathScale-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\SCO-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\SDCC-C-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\SunPro-C-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\TI-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\TinyCC-C-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\VisualAge-C-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\Watcom-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\XL-C-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\zOS-C-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CompilerId\VS-10.vcxproj.in;D:\Program Files\CMake\share\cmake-3.13\Modules\FindDoxygen.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\FindPackageHandleStandardArgs.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\FindPackageMessage.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\FindThreads.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Internal\FeatureTesting.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Platform\Windows-MSVC-C.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Platform\Windows-MSVC.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Platform\Windows.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Platform\WindowsPaths.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\WriteBasicConfigVersionFile.cmake;D:\temp\ConsoleApplication2\glfw-3.2.1\CMake\modules\FindVulkan.cmake;D:\temp\ConsoleApplication2\glfw-3.2.1\CMakeFiles\3.13.4\CMakeCCompiler.cmake;D:\temp\ConsoleApplication2\glfw-3.2.1\CMakeFiles\3.13.4\CMakeRCCompiler.cmake;D:\temp\ConsoleApplication2\glfw-3.2.1\CMakeFiles\3.13.4\CMakeSystem.cmake;D:\temp\ConsoleApplication2\glfw-3.2.1\CMakeFiles\feature_tests.c;D:\temp\ConsoleApplication2\glfw-3.2.1\CMakeLists.txt;D:\temp\ConsoleApplication2\glfw-3.2.1\cmake_uninstall.cmake.in;D:\temp\ConsoleApplication2\glfw-3.2.1\src\glfw3.pc.in;D:\temp\ConsoleApplication2\glfw-3.2.1\src\glfw3Config.cmake.in;D:\temp\ConsoleApplication2\glfw-3.2.1\src\glfw_config.h.in;D:\temp\ConsoleApplication2\glfw-3.2.1\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">D:\temp\ConsoleApplication2\glfw-3.2.1\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:/dm/smexp/glfw-3.2.1/CMakeLists.txt;C:\dm\smexp\glfw-3.2.1\CMakeLists.txt;C:\dm\smexp\glfw-3.2.1\CMakeFiles\3.11.3\CMakeSystem.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeSystemSpecificInitialize.cmake;C:\dm\smexp\glfw-3.2.1\CMakeFiles\3.11.3\CMakeCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC.cmake;C:\dm\smexp\glfw-3.2.1\CMakeFiles\3.11.3\CMakeRCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CheckSymbolExists.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageMessage.cmake;C:\dm\smexp\glfw-3.2.1\CMake\modules\FindVulkan.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindDoxygen.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakePackageConfigHelpers.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\WriteBasicConfigVersionFile.cmake;C:\dm\smexp\glfw-3.2.1\src\glfw3Config.cmake.in;C:\Program Files\CMake\share\cmake-3.11\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;C:\dm\smexp\glfw-3.2.1\src\glfw_config.h.in;C:\dm\smexp\glfw-3.2.1\src\glfw3.pc.in;C:\dm\smexp\glfw-3.2.1\cmake_uninstall.cmake.in;C:\dm\smexp\glfw-3.2.1\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:\dm\smexp\glfw-3.2.1\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Building Custom Rule D:/temp/ConsoleApplication2/glfw-3.2.1/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Building Custom Rule C:/dm/smexp/glfw-3.2.1/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">setlocal
-"D:\Program Files\CMake\bin\cmake.exe" -SD:/temp/ConsoleApplication2/glfw-3.2.1 -BD:/temp/ConsoleApplication2/glfw-3.2.1 --check-stamp-file D:/temp/ConsoleApplication2/glfw-3.2.1/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/dm/smexp/glfw-3.2.1 -BC:/dm/smexp/glfw-3.2.1 --check-stamp-file C:/dm/smexp/glfw-3.2.1/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -152,175 +152,121 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">D:/temp/ConsoleApplication2/glfw-3.2.1/CMakeLists.txt;D:\Program Files\CMake\share\cmake-3.13\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeCCompiler.cmake.in;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeCCompilerABI.c;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeCInformation.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeCommonLanguageInclude.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeCompilerIdDetection.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeDetermineCCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeDetermineCompileFeatures.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeDetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeDetermineCompilerABI.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeDetermineCompilerId.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeDetermineRCCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeDetermineSystem.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeFindBinUtils.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeGenericSystem.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeInitializeConfigs.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeLanguageInformation.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakePackageConfigHelpers.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeParseImplicitLinkInfo.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeRCCompiler.cmake.in;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeRCInformation.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeSystem.cmake.in;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeSystemSpecificInformation.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeSystemSpecificInitialize.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeTestCCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeTestCompilerCommon.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeTestRCCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CheckIncludeFile.c.in;D:\Program Files\CMake\share\cmake-3.13\Modules\CheckIncludeFile.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CheckLibraryExists.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CheckSymbolExists.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\ADSP-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\ARMCC-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\AppleClang-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\Borland-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\Bruce-C-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\Clang-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\Clang-DetermineCompilerInternal.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\Compaq-C-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\Cray-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\Embarcadero-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\Fujitsu-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\GHS-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\GNU-C-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\HP-C-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\IAR-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\IBMCPP-C-DetermineVersionInternal.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\Intel-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\MIPSpro-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\MSVC-C-FeatureTests.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\MSVC-C.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\MSVC-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\NVIDIA-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\OpenWatcom-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\PGI-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\PathScale-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\SCO-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\SDCC-C-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\SunPro-C-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\TI-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\TinyCC-C-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\VisualAge-C-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\Watcom-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\XL-C-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\zOS-C-DetermineCompiler.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CompilerId\VS-10.vcxproj.in;D:\Program Files\CMake\share\cmake-3.13\Modules\FindDoxygen.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\FindPackageHandleStandardArgs.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\FindPackageMessage.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\FindThreads.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Internal\FeatureTesting.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Platform\Windows-MSVC-C.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Platform\Windows-MSVC.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Platform\Windows.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Platform\WindowsPaths.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\WriteBasicConfigVersionFile.cmake;D:\temp\ConsoleApplication2\glfw-3.2.1\CMake\modules\FindVulkan.cmake;D:\temp\ConsoleApplication2\glfw-3.2.1\CMakeFiles\3.13.4\CMakeCCompiler.cmake;D:\temp\ConsoleApplication2\glfw-3.2.1\CMakeFiles\3.13.4\CMakeRCCompiler.cmake;D:\temp\ConsoleApplication2\glfw-3.2.1\CMakeFiles\3.13.4\CMakeSystem.cmake;D:\temp\ConsoleApplication2\glfw-3.2.1\CMakeFiles\feature_tests.c;D:\temp\ConsoleApplication2\glfw-3.2.1\CMakeLists.txt;D:\temp\ConsoleApplication2\glfw-3.2.1\cmake_uninstall.cmake.in;D:\temp\ConsoleApplication2\glfw-3.2.1\src\glfw3.pc.in;D:\temp\ConsoleApplication2\glfw-3.2.1\src\glfw3Config.cmake.in;D:\temp\ConsoleApplication2\glfw-3.2.1\src\glfw_config.h.in;D:\temp\ConsoleApplication2\glfw-3.2.1\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">D:\temp\ConsoleApplication2\glfw-3.2.1\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:/dm/smexp/glfw-3.2.1/CMakeLists.txt;C:\dm\smexp\glfw-3.2.1\CMakeLists.txt;C:\dm\smexp\glfw-3.2.1\CMakeFiles\3.11.3\CMakeSystem.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeSystemSpecificInitialize.cmake;C:\dm\smexp\glfw-3.2.1\CMakeFiles\3.11.3\CMakeCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC.cmake;C:\dm\smexp\glfw-3.2.1\CMakeFiles\3.11.3\CMakeRCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CheckSymbolExists.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageMessage.cmake;C:\dm\smexp\glfw-3.2.1\CMake\modules\FindVulkan.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindDoxygen.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakePackageConfigHelpers.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\WriteBasicConfigVersionFile.cmake;C:\dm\smexp\glfw-3.2.1\src\glfw3Config.cmake.in;C:\Program Files\CMake\share\cmake-3.11\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;C:\dm\smexp\glfw-3.2.1\src\glfw_config.h.in;C:\dm\smexp\glfw-3.2.1\src\glfw3.pc.in;C:\dm\smexp\glfw-3.2.1\cmake_uninstall.cmake.in;C:\dm\smexp\glfw-3.2.1\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:\dm\smexp\glfw-3.2.1\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">false</LinkObjects>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="D:\temp\ConsoleApplication2\glfw-3.2.1\ZERO_CHECK.vcxproj">
-      <Project>{6578A102-E29D-3465-92DB-5240AEA90515}</Project>
+    <ProjectReference Include="C:\dm\smexp\glfw-3.2.1\ZERO_CHECK.vcxproj">
+      <Project>{63E0EB26-582B-3CCC-B7AD-33EB7F2EC019}</Project>
       <Name>ZERO_CHECK</Name>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
-    <ProjectReference Include="D:\temp\ConsoleApplication2\glfw-3.2.1\examples\boing.vcxproj">
-      <Project>{5A0D2E36-FF1B-3776-891C-FF307DEE8176}</Project>
+    <ProjectReference Include="C:\dm\smexp\glfw-3.2.1\examples\boing.vcxproj">
+      <Project>{1E353B35-85C7-335D-BE21-45FCD1CBD6E2}</Project>
       <Name>boing</Name>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
-    <ProjectReference Include="D:\temp\ConsoleApplication2\glfw-3.2.1\tests\clipboard.vcxproj">
-      <Project>{38556C02-65C9-3D62-B450-FD531295130A}</Project>
+    <ProjectReference Include="C:\dm\smexp\glfw-3.2.1\tests\clipboard.vcxproj">
+      <Project>{E4835CCB-FECE-3D5F-ADA0-DD2A16AC615E}</Project>
       <Name>clipboard</Name>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
-    <ProjectReference Include="D:\temp\ConsoleApplication2\glfw-3.2.1\tests\cursor.vcxproj">
-      <Project>{1B25DC25-87FC-3365-864A-A321BAA9D54E}</Project>
+    <ProjectReference Include="C:\dm\smexp\glfw-3.2.1\tests\cursor.vcxproj">
+      <Project>{C3568B4C-089C-3CE0-8145-F0D8D9F9615D}</Project>
       <Name>cursor</Name>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
-    <ProjectReference Include="D:\temp\ConsoleApplication2\glfw-3.2.1\tests\empty.vcxproj">
-      <Project>{7E3D09F1-D095-3BCC-AABD-947F76594201}</Project>
+    <ProjectReference Include="C:\dm\smexp\glfw-3.2.1\tests\empty.vcxproj">
+      <Project>{46903BC2-C97D-3764-9395-D866E1A749A8}</Project>
       <Name>empty</Name>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
-    <ProjectReference Include="D:\temp\ConsoleApplication2\glfw-3.2.1\tests\events.vcxproj">
-      <Project>{79E6FC66-1DF5-3AFB-9F60-260621F9E21A}</Project>
+    <ProjectReference Include="C:\dm\smexp\glfw-3.2.1\tests\events.vcxproj">
+      <Project>{34DCF320-C573-3340-B772-DB97AD229E62}</Project>
       <Name>events</Name>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
-    <ProjectReference Include="D:\temp\ConsoleApplication2\glfw-3.2.1\tests\gamma.vcxproj">
-      <Project>{7ECDB857-792C-302C-AD19-5058EDFB7002}</Project>
+    <ProjectReference Include="C:\dm\smexp\glfw-3.2.1\tests\gamma.vcxproj">
+      <Project>{4E8CC77F-70DF-3D79-A552-CF4A3129C093}</Project>
       <Name>gamma</Name>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
-    <ProjectReference Include="D:\temp\ConsoleApplication2\glfw-3.2.1\examples\gears.vcxproj">
-      <Project>{4FE3F310-9D60-37FA-A099-7BC2DAE87AE1}</Project>
+    <ProjectReference Include="C:\dm\smexp\glfw-3.2.1\examples\gears.vcxproj">
+      <Project>{99CE6E19-8945-3236-876B-72DA7A4B9AD6}</Project>
       <Name>gears</Name>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
-    <ProjectReference Include="D:\temp\ConsoleApplication2\glfw-3.2.1\src\glfw.vcxproj">
-      <Project>{42E3D6A7-EF61-3949-976A-D378AF3E4542}</Project>
+    <ProjectReference Include="C:\dm\smexp\glfw-3.2.1\src\glfw.vcxproj">
+      <Project>{FE09D17A-7A7F-322E-9A82-7473059B0162}</Project>
       <Name>glfw</Name>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
-    <ProjectReference Include="D:\temp\ConsoleApplication2\glfw-3.2.1\tests\glfwinfo.vcxproj">
-      <Project>{5036221F-529D-3D5A-B0AD-38B78A1C7B06}</Project>
+    <ProjectReference Include="C:\dm\smexp\glfw-3.2.1\tests\glfwinfo.vcxproj">
+      <Project>{33E94DC9-51EF-3C42-BEF7-1A11C43E97E5}</Project>
       <Name>glfwinfo</Name>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
-    <ProjectReference Include="D:\temp\ConsoleApplication2\glfw-3.2.1\examples\heightmap.vcxproj">
-      <Project>{773ACB6D-F6DD-38A1-B169-5B7CDABA4BC6}</Project>
+    <ProjectReference Include="C:\dm\smexp\glfw-3.2.1\examples\heightmap.vcxproj">
+      <Project>{66EE2DFD-C11E-38F9-A61B-DE1C5B0B81A7}</Project>
       <Name>heightmap</Name>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
-    <ProjectReference Include="D:\temp\ConsoleApplication2\glfw-3.2.1\tests\icon.vcxproj">
-      <Project>{6C57B828-6038-3473-91C8-5B7E87B5BBFB}</Project>
+    <ProjectReference Include="C:\dm\smexp\glfw-3.2.1\tests\icon.vcxproj">
+      <Project>{4304A22D-080C-3ED2-815A-04FD5A705CD5}</Project>
       <Name>icon</Name>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
-    <ProjectReference Include="D:\temp\ConsoleApplication2\glfw-3.2.1\tests\iconify.vcxproj">
-      <Project>{04017F89-08F9-3A9B-8478-B349CB38836A}</Project>
+    <ProjectReference Include="C:\dm\smexp\glfw-3.2.1\tests\iconify.vcxproj">
+      <Project>{8DB028AA-C945-3C6A-9DBE-CA0B5AC740D9}</Project>
       <Name>iconify</Name>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
-    <ProjectReference Include="D:\temp\ConsoleApplication2\glfw-3.2.1\tests\joysticks.vcxproj">
-      <Project>{9F502441-0C26-3D24-A1F9-CF6C499F2E87}</Project>
+    <ProjectReference Include="C:\dm\smexp\glfw-3.2.1\tests\joysticks.vcxproj">
+      <Project>{69F9ADDB-2EE1-3F02-BF0E-EEBA8DE29835}</Project>
       <Name>joysticks</Name>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
-    <ProjectReference Include="D:\temp\ConsoleApplication2\glfw-3.2.1\tests\monitors.vcxproj">
-      <Project>{E7B9B691-F8AC-3B84-8289-720C7584F4BE}</Project>
+    <ProjectReference Include="C:\dm\smexp\glfw-3.2.1\tests\monitors.vcxproj">
+      <Project>{0833D11A-1552-3EF0-95CB-E07C724925EE}</Project>
       <Name>monitors</Name>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
-    <ProjectReference Include="D:\temp\ConsoleApplication2\glfw-3.2.1\tests\msaa.vcxproj">
-      <Project>{FE9A71BC-1291-3583-BE78-2141CDE2DF0C}</Project>
+    <ProjectReference Include="C:\dm\smexp\glfw-3.2.1\tests\msaa.vcxproj">
+      <Project>{DB32635E-AF10-33F1-BA60-549FFDA4ECE5}</Project>
       <Name>msaa</Name>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
-    <ProjectReference Include="D:\temp\ConsoleApplication2\glfw-3.2.1\examples\particles.vcxproj">
-      <Project>{DB5B59D1-CDF1-36DF-8FD6-54519AB066CD}</Project>
+    <ProjectReference Include="C:\dm\smexp\glfw-3.2.1\examples\particles.vcxproj">
+      <Project>{C0F3DCA8-3FAF-3DE8-8D5F-C7667D440F88}</Project>
       <Name>particles</Name>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
-    <ProjectReference Include="D:\temp\ConsoleApplication2\glfw-3.2.1\tests\reopen.vcxproj">
-      <Project>{DE02FCA5-E28D-30D6-81C9-AA76C8929F80}</Project>
+    <ProjectReference Include="C:\dm\smexp\glfw-3.2.1\tests\reopen.vcxproj">
+      <Project>{6AECC86D-3428-3C5F-B319-E74FC262E46A}</Project>
       <Name>reopen</Name>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
-    <ProjectReference Include="D:\temp\ConsoleApplication2\glfw-3.2.1\tests\sharing.vcxproj">
-      <Project>{1F6EAE21-003E-3A37-B1C5-F7F4185FAD62}</Project>
+    <ProjectReference Include="C:\dm\smexp\glfw-3.2.1\tests\sharing.vcxproj">
+      <Project>{AA310AF6-FA9D-3802-9CCA-986CB0CE0365}</Project>
       <Name>sharing</Name>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
-    <ProjectReference Include="D:\temp\ConsoleApplication2\glfw-3.2.1\examples\simple.vcxproj">
-      <Project>{8DC27F55-33B4-3A22-8458-9A4A4B787D41}</Project>
+    <ProjectReference Include="C:\dm\smexp\glfw-3.2.1\examples\simple.vcxproj">
+      <Project>{06A53973-C57E-3B17-AD24-802E8453C324}</Project>
       <Name>simple</Name>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
-    <ProjectReference Include="D:\temp\ConsoleApplication2\glfw-3.2.1\examples\splitview.vcxproj">
-      <Project>{943CDA66-4D91-37FF-AD2D-46096299EA1C}</Project>
+    <ProjectReference Include="C:\dm\smexp\glfw-3.2.1\examples\splitview.vcxproj">
+      <Project>{52FFD3F1-A089-3A7E-A0CF-50EF78739DA3}</Project>
       <Name>splitview</Name>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
-    <ProjectReference Include="D:\temp\ConsoleApplication2\glfw-3.2.1\tests\tearing.vcxproj">
-      <Project>{8C24C6B2-62C5-34F9-9D7D-277D8B7B7709}</Project>
+    <ProjectReference Include="C:\dm\smexp\glfw-3.2.1\tests\tearing.vcxproj">
+      <Project>{8D04E543-63DF-30F3-9777-5EC7F388631B}</Project>
       <Name>tearing</Name>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
-    <ProjectReference Include="D:\temp\ConsoleApplication2\glfw-3.2.1\tests\threads.vcxproj">
-      <Project>{1055DAAE-0E37-37B6-990C-AB7F4B73B433}</Project>
+    <ProjectReference Include="C:\dm\smexp\glfw-3.2.1\tests\threads.vcxproj">
+      <Project>{B104238C-6F8A-316C-A32F-61B54B417079}</Project>
       <Name>threads</Name>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
-    <ProjectReference Include="D:\temp\ConsoleApplication2\glfw-3.2.1\tests\timeout.vcxproj">
-      <Project>{2F4620D0-6D9A-31AF-ADD9-5FEEDC7AED0E}</Project>
+    <ProjectReference Include="C:\dm\smexp\glfw-3.2.1\tests\timeout.vcxproj">
+      <Project>{D12C311D-8066-3E85-8A72-56A596908F04}</Project>
       <Name>timeout</Name>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
-    <ProjectReference Include="D:\temp\ConsoleApplication2\glfw-3.2.1\tests\title.vcxproj">
-      <Project>{AE4EF6BF-E900-33F3-B9BD-30DC2CAA6A7D}</Project>
+    <ProjectReference Include="C:\dm\smexp\glfw-3.2.1\tests\title.vcxproj">
+      <Project>{ED3A02BF-76E7-3488-910C-2ADB15F6874C}</Project>
       <Name>title</Name>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
-    <ProjectReference Include="D:\temp\ConsoleApplication2\glfw-3.2.1\examples\wave.vcxproj">
-      <Project>{4CF78AAF-A951-3369-A4D8-3AF6175A5749}</Project>
+    <ProjectReference Include="C:\dm\smexp\glfw-3.2.1\examples\wave.vcxproj">
+      <Project>{B4DFE9F8-6927-3E0F-91E8-35D0BFDBCA2B}</Project>
       <Name>wave</Name>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
-    <ProjectReference Include="D:\temp\ConsoleApplication2\glfw-3.2.1\tests\windows.vcxproj">
-      <Project>{0B80D839-23FA-30F7-BBCD-974FE2C2156C}</Project>
+    <ProjectReference Include="C:\dm\smexp\glfw-3.2.1\tests\windows.vcxproj">
+      <Project>{F2CB4A3F-102D-33A4-92DD-D3D9ABA5B2DC}</Project>
       <Name>windows</Name>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
