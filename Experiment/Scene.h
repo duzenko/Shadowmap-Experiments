@@ -31,7 +31,6 @@ void drawWorld() {
 }
 
 void lightView() {
-	mapShader.Use();
 	vpDefault.ReadCurrent();
 	mapProjectionMatrix.Apply();
 	glClearColor( 0.4f, 0, 0, 1 );
@@ -51,7 +50,6 @@ void lightView() {
 }
 
 void mainView() {
-	mainShader.Use();
 	vpDefault.ReadCurrent();
 	mainProjectionMatrix.elements[0] = (float)vpDefault.h / vpDefault.w;
 	mainProjectionMatrix.Apply();
@@ -66,7 +64,9 @@ void mainView() {
 	glEnd();
 
 	glColor3f( 1, 1, 1 );
+	worldShader.Use();
 	drawWorld();
+	passthroughShader.Use();
 
 	/*glBegin( GL_QUADS );	// center
 	glVertex2f( .01f, .01f );

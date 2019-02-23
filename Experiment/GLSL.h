@@ -7,25 +7,16 @@ struct Shader {
 	void Load() {
 		program = LoadShader( vertexSource, fragmentSource );
 		LocateUniforms();
+		glCheck();
 	}
 	static GLuint LoadShader( const char *vertexSource, const char *fragmentSource );
 	virtual void LocateUniforms() {}
-	void Use() {
+	virtual void Use() {
 		glUseProgram( program );
 	}
 };
 
-struct MainShader : Shader {
-	GLint start, end;
-	using Shader::Shader;
-	virtual void LocateUniforms() {
-		Use();
-		start = glGetUniformLocation( program, "start" );
-		end = glGetUniformLocation( program, "end" );
-	}
-};
-
-Shader mapShader( R"(
+Shader passthroughShader( R"(
 #version 110
 
 void main() {
@@ -40,20 +31,56 @@ void main() {
 }
 )" );
 
-MainShader mainShader( R"(
+#define BindUniform(name) name = glGetUniformLocation( program, #name )
+#define BindUniforms(...)		int i, _arr_[] = {__VA_ARGS__};						\
+								for(i=0; i<sizeof(_arr_)/sizeof(int) ; i++)			\
+								BindUniform(_arr_[i])
+							
+
+struct WorldShader : Shader {
+	GLint mapView, mapProjection, f1;
+	using Shader::Shader;
+	virtual void LocateUniforms() {
+		glUseProgram( program );
+		//BindUniforms( mapView, mapProjection, f1 );
+		BindUniform( mapView );
+		BindUniform( mapProjection );
+		BindUniform( f1 );
+	}
+	virtual void Use() {
+		Shader::Use();
+		glUniformMatrix4fv( mapView, 1, false, mapViewMatrix[0].elements );
+		glUniformMatrix4fv( mapProjection, 1, false, mapProjectionMatrix.elements );
+		glUniform1i( f1, keyStates[GLFW_KEY_F1] );
+	}
+};
+
+WorldShader worldShader( R"(
 #version 110
 
+uniform mat4 mapView, mapProjection;
+
+varying vec4 inMapSpace;
+
 void main() {
+	inMapSpace = mapView * mapProjection * gl_Vertex;
+	inMapSpace = mapProjection * gl_Vertex;
 	gl_FrontColor = gl_Color;
 	gl_Position = ftransform();
 }
 )", R"(
 #version 110
 
-uniform vec2 start, end;
+varying vec4 inMapSpace;
+
+uniform bool f1;
 
 void main() {
 	gl_FragColor = gl_Color;	
+	if (!f1) {
+		gl_FragColor.rgb = vec3(0);	
+		gl_FragColor.rg = vec2(inMapSpace.x) * vec2(1, -1);
+	}
 })" );
 
 GLuint Shader::LoadShader( const char *vertexSource, const char *fragmentSource ) {
@@ -69,7 +96,7 @@ GLuint Shader::LoadShader( const char *vertexSource, const char *fragmentSource 
 	glGetShaderiv( VertexShaderID, GL_COMPILE_STATUS, &Result );
 	glGetShaderiv( VertexShaderID, GL_INFO_LOG_LENGTH, &InfoLogLength );
 	if ( InfoLogLength > 0 ) {
-		std::vector<char> VertexShaderErrorMessage( InfoLogLength + 1 );
+		std::string VertexShaderErrorMessage( InfoLogLength + 1, 0 );
 		glGetShaderInfoLog( VertexShaderID, InfoLogLength, NULL, &VertexShaderErrorMessage[0] );
 		fprintf( stdout, "%sn", &VertexShaderErrorMessage[0] );
 		return 0;
@@ -108,6 +135,6 @@ GLuint Shader::LoadShader( const char *vertexSource, const char *fragmentSource 
 }
 
 void LoadShaders() {
-	mainShader.Load();
-	mapShader.Load();
+	worldShader.Load();
+	passthroughShader.Load();
 }

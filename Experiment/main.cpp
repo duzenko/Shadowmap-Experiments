@@ -9,7 +9,14 @@
 #include "Scene.h"
 
 void key_callback( GLFWwindow* window, int key, int scancode, int action, int mods ) {
-	if ( key == GLFW_KEY_ESCAPE && action == GLFW_PRESS )
+	if ( action != GLFW_PRESS )
+		return;
+	if ( key >= MAX_KEY ) {
+		Beep( 99, 99 );
+		return;
+	}
+	keyStates[key] = !keyStates[key];
+	if ( key == GLFW_KEY_ESCAPE )
 		glfwSetWindowShouldClose( window, GLFW_TRUE );
 }
 
@@ -31,12 +38,14 @@ int main() {
 		return -2;
 
 	glfwSetKeyCallback( window, key_callback );
-	glfwSwapInterval( 1 );
+	glfwSwapInterval( GLFW_TRUE );
 
 	Init();
 
-	if ( !mapShader.program || !mainShader.program )
+	if ( !passthroughShader.program || !worldShader.program )
 		return 3;
+
+	glfwSetWindowTitle(window, (char *)glGetString( GL_VERSION ));
 
 	while ( !glfwWindowShouldClose( window ) ) {
 		glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
