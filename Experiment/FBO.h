@@ -1,10 +1,18 @@
 #pragma once
 
+float mapSideNear[4] = { .1f,.1f,.1f,.1f };
+Vec mapCorners[4] = {
+	{ -.1f, .1f },
+	{ .1f, .1f },
+	{ .1f, -.1f },
+	{ -.1f, -.1f },
+};
+
 ViewPort vpDefault;
 
 struct Framebuffer {
 	GLuint glHandle, depthTexture;
-	ViewPort viewPort = {0, 0, 128, 4}, vpSide = { 0, 0, viewPort.w, 1 };
+	ViewPort viewPort = {0, 0, 64, 4}, vpSide = { 0, 0, viewPort.w, 1 };
 
 	void Init() {
 		glGenTextures( 1, &depthTexture );
@@ -40,10 +48,19 @@ struct Framebuffer {
 	}
 
 	void Bind(int side) {
+		Mat &proj = mapProjectionMatrix[side];
+		Vec left = mapViewMatrix[side] * mapCorners[side], right = mapViewMatrix[side] * mapCorners[(side + 1) % 4];
+		proj[0] = 2 * mapSideNear[side] / (right.x - left.x);
+		proj[8] = (right.x + left.x) / (right.x - left.x);
+		proj[5] = 1;
+		proj[10] = proj[11] = -1;
+		proj[14] = -2 * mapSideNear[side];
+		proj.Apply( GL_PROJECTION );
+		mapViewMatrix[side].Apply( GL_MODELVIEW );
+
 		glBindFramebuffer( GL_FRAMEBUFFER, glHandle );
 		vpSide.y = side;
 		vpSide.MakeCurrent();
-		mapViewMatrix[side].Apply( GL_MODELVIEW );
 		glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 		glCheck();
 	}

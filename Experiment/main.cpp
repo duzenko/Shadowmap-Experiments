@@ -2,8 +2,8 @@
 #include <GLFW/glfw3.h>
 
 #include "misc.h"
-#include "Matrices.h"
 #include "Types.h"
+#include "Matrices.h"
 #include "FBO.h"
 #include "GLSL.h"
 #include "Scene.h"
@@ -16,10 +16,24 @@ void key_callback( GLFWwindow* window, int key, int scancode, int action, int mo
 		return;
 	}
 	keyStates[key] = !keyStates[key];
-	if ( key == GLFW_KEY_ESCAPE )
+	switch ( key ) {
+	case GLFW_KEY_ESCAPE:
 		glfwSetWindowShouldClose( window, GLFW_TRUE );
-	if ( key == GLFW_KEY_SPACE )
+		break;
+	case GLFW_KEY_SPACE:
 		memset( keyStates, 0, sizeof( keyStates ) );
+		break;
+	case GLFW_KEY_DOWN:
+		mapSideNear[0] *= .8f;
+		mapSideNear[2] *= 1.25;
+		break;
+	case GLFW_KEY_UP:
+		mapSideNear[2] *= .8f;
+		mapSideNear[0] *= 1.25;
+		break;
+	default:
+		break;
+	}
 }
 
 int main() {

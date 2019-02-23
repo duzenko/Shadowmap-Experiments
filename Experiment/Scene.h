@@ -33,8 +33,12 @@ void drawWorld() {
 }
 
 void lightView() {
+	mapCorners[0].y = mapCorners[1].y = mapSideNear[0];
+	mapCorners[1].x = mapCorners[2].x = mapSideNear[1];
+	mapCorners[2].y = mapCorners[3].y = -mapSideNear[2];
+	mapCorners[3].x = mapCorners[0].x = -mapSideNear[3];
+
 	vpDefault.ReadCurrent();
-	mapProjectionMatrix.Apply( GL_PROJECTION );
 	glClearColor( 0.4f, 0, 0, 1 );
 	glColor3f( 0.8f, 0.4f, 0.2f );
 	for ( int i = 0; i < 4; i++ ) {
@@ -56,26 +60,23 @@ void mainView() {
 
 	glBegin( GL_LINES );
 	glColor3f( 0.7f, 0, 1 );
-	glVertex2d( 1, 1 );
-	glVertex2d( -1, -1 );
-	glVertex2d( -1, 1 );
-	glVertex2d( 1, -1 );
-	glColor3f( 1, 1, 1 );
+	for ( int i = 0; i < 4; i++ ) {
+		glVertex2f( 0, 0 );
+		glVertex4fv( &mapCorners[i].x );
+	}
 	glEnd();
 
 	glColor3f( 1, 1, 1 );
 	worldShader.Use();
 	drawWorld();
 
-	glBegin( GL_QUADS );	// center
-	glColor4f( 1, 1, 1, .3f );
-	const float r = 0.6f;
-	glVertex2f( r, r );
-	glVertex2f( r, -r );
-	glVertex2f( -r, -r );
-	glVertex2f( -r, r );
-	glColor4f( 1, 1, 1, 1 );
+	glBegin( GL_LINE_LOOP );
+	for ( int i = 0; i<4; i++ )
+		glVertex2fv( &mapCorners[i].x );
 	glEnd();
+	
+	glColor4f( 1, 1, 1, .25f );
+	drawCenterRect( 2 );
 
 	passthroughShader.Use();
 }

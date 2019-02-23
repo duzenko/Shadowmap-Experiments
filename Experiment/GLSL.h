@@ -46,7 +46,7 @@ struct WorldShader : Shader {
 	virtual void Use() {
 		Shader::Use();
 		glUniformMatrix4fv( mapView, 4, false, mapViewMatrix[0].elements );
-		glUniformMatrix4fv( mapProjection, 1, false, mapProjectionMatrix.elements );
+		glUniformMatrix4fv( mapProjection, 4, false, mapProjectionMatrix[0].elements );
 		glUniform1i( f, keyStates[GLFW_KEY_F1] );
 		static int x = 0;
 		for ( int i = GLFW_KEY_F2; i <= GLFW_KEY_F5; i++ ) // F2-F5 toggle color display for x,y,z,w
@@ -62,7 +62,7 @@ struct WorldShader : Shader {
 WorldShader worldShader( R"(
 #version 130
 
-uniform mat4 mapView[4], mapProjection;
+uniform mat4 mapView[4], mapProjection[4];
 
 out vec4 inMapSpace[4];
 
@@ -70,7 +70,7 @@ void main() {
 	gl_FrontColor = gl_Color;
 	gl_Position = ftransform();
 	for(int i=0; i<4; i++)
-		inMapSpace[i] = mapProjection * mapView[i] * gl_Vertex;
+		inMapSpace[i] = mapProjection[i] * mapView[i] * gl_Vertex;
 }
 )", R"(
 #version 130
