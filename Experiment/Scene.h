@@ -1,6 +1,6 @@
 #pragma once
 
-const int lineCount = 9;
+const int lineCount = 79;
 Vec vertexData[lineCount * 2];
 
 void Init() {
@@ -10,7 +10,7 @@ void Init() {
 	for ( int i = 0; i < lineCount; i++ ) {
 		vertexData[i * 2] = vertexData[i * 2] * 1.8f;
 		vertexData[i * 2] = vertexData[i * 2] + -0.9f;
-		vertexData[i * 2 + 1] = vertexData[i * 2 + 1] * 0.14f;
+		vertexData[i * 2 + 1] = vertexData[i * 2 + 1] * 0.714f + -.1f;
 		vertexData[i * 2 + 1] = vertexData[i * 2 + 1] + vertexData[i * 2];
 	}
 

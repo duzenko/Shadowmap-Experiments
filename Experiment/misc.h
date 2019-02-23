@@ -1,7 +1,7 @@
 #pragma once
 
 const int MAX_KEY = 512; // ?
-bool keyStates[MAX_KEY];
+int keyStates[MAX_KEY];
 
 void glCheck() {
 	auto error = glGetError();

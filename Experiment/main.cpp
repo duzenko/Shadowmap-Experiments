@@ -18,6 +18,8 @@ void key_callback( GLFWwindow* window, int key, int scancode, int action, int mo
 	keyStates[key] = !keyStates[key];
 	if ( key == GLFW_KEY_ESCAPE )
 		glfwSetWindowShouldClose( window, GLFW_TRUE );
+	if ( key == GLFW_KEY_SPACE )
+		memset( keyStates, 0, sizeof( keyStates ) );
 }
 
 int main() {

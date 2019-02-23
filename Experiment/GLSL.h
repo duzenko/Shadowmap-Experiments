@@ -32,26 +32,29 @@ void main() {
 )" );
 
 #define BindUniform(name) name = glGetUniformLocation( program, #name )
-#define BindUniforms(...)		int i, _arr_[] = {__VA_ARGS__};						\
-								for(i=0; i<sizeof(_arr_)/sizeof(int) ; i++)			\
-								BindUniform(_arr_[i])
-							
 
 struct WorldShader : Shader {
-	GLint mapView, mapProjection, f1;
+	GLint mapView, mapProjection, f, colorComp;
 	using Shader::Shader;
 	virtual void LocateUniforms() {
 		glUseProgram( program );
-		//BindUniforms( mapView, mapProjection, f1 );
 		BindUniform( mapView );
 		BindUniform( mapProjection );
-		BindUniform( f1 );
+		BindUniform( f );
+		BindUniform( colorComp );
 	}
 	virtual void Use() {
 		Shader::Use();
 		glUniformMatrix4fv( mapView, 1, false, mapViewMatrix[0].elements );
 		glUniformMatrix4fv( mapProjection, 1, false, mapProjectionMatrix.elements );
-		glUniform1i( f1, keyStates[GLFW_KEY_F1] );
+		glUniform1i( f, keyStates[GLFW_KEY_F1] );
+		static int x = 0;
+		for ( int i = GLFW_KEY_F2; i <= GLFW_KEY_F5; i++ ) // F2-F5 toggle color display for x,y,z,w
+			if ( keyStates[i] ) {
+				x = i - GLFW_KEY_F2;
+				keyStates[i] = 0;
+			}
+		glUniform1i( colorComp, x );
 	}
 };
 
@@ -63,8 +66,7 @@ uniform mat4 mapView, mapProjection;
 varying vec4 inMapSpace;
 
 void main() {
-	inMapSpace = mapView * mapProjection * gl_Vertex;
-	inMapSpace = mapProjection * gl_Vertex;
+	inMapSpace = mapProjection * mapView * gl_Vertex;
 	gl_FrontColor = gl_Color;
 	gl_Position = ftransform();
 }
@@ -73,14 +75,23 @@ void main() {
 
 varying vec4 inMapSpace;
 
-uniform bool f1;
+uniform bool f;
+uniform int colorComp;
 
 void main() {
 	gl_FragColor = gl_Color;	
-	if (!f1) {
+	if (!f) {
 		gl_FragColor.rgb = vec3(0);	
-		gl_FragColor.rg = vec2(inMapSpace.x) * vec2(1, -1);
-	}
+		float p = inMapSpace.x/inMapSpace.w;
+		if(p < -1.)
+			gl_FragColor.rgb = vec3(1, 1, 0);	
+		else if(p > 1.)
+			gl_FragColor.rgb = vec3(1, 0, 1);	
+		else if(inMapSpace.w < 0.)
+			gl_FragColor.rgb = vec3(0, 1, 1);	
+		else
+			gl_FragColor.rg = vec2(p) * vec2(-1, 1);
+	} 
 })" );
 
 GLuint Shader::LoadShader( const char *vertexSource, const char *fragmentSource ) {
@@ -108,7 +119,7 @@ GLuint Shader::LoadShader( const char *vertexSource, const char *fragmentSource 
 	glGetShaderiv( FragmentShaderID, GL_COMPILE_STATUS, &Result );
 	glGetShaderiv( FragmentShaderID, GL_INFO_LOG_LENGTH, &InfoLogLength );
 	if ( InfoLogLength > 0 ) {
-		std::vector<char> FragmentShaderErrorMessage( InfoLogLength + 1 );
+		std::string FragmentShaderErrorMessage( InfoLogLength + 1, 0 );
 		glGetShaderInfoLog( FragmentShaderID, InfoLogLength, NULL, &FragmentShaderErrorMessage[0] );
 		fprintf( stdout, "%s\n", &FragmentShaderErrorMessage[0] );
 		return 0;
