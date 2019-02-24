@@ -8,6 +8,8 @@
 #include "GLSL.h"
 #include "Scene.h"
 
+int seed = 0;
+
 void key_callback( GLFWwindow* window, int key, int scancode, int action, int mods ) {
 	if ( action != GLFW_PRESS )
 		return;
@@ -22,6 +24,10 @@ void key_callback( GLFWwindow* window, int key, int scancode, int action, int mo
 		break;
 	case GLFW_KEY_SPACE:
 		memset( keyStates, 0, sizeof( keyStates ) );
+		break;
+	case GLFW_KEY_TAB:
+		random_engine.seed( seed++ );
+		ShuffleLines();
 		break;
 	case GLFW_KEY_DOWN:
 		mapSideNear[0] *= .8f;
@@ -56,6 +62,7 @@ int main() {
 	glfwSetKeyCallback( window, key_callback );
 	glfwSwapInterval( GLFW_TRUE );
 
+	random_engine.seed( 20 );
 	Init();
 
 	if ( !passthroughShader.program || !worldShader.program )
@@ -71,11 +78,15 @@ int main() {
 		glfwSwapBuffers( window );
 		glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
+		glfwPollEvents();
+		int width, height;
+		glfwGetWindowSize( window, &width, &height );
+		glViewport( 0, 0, width, height );
+		glScissor( 0, 0, width, height );
 		double xpos, ypos;
 		glfwGetCursorPos( window, &xpos, &ypos );
-		playerPosition.x = (float)xpos / vpDefault.w * 2 - 1;
-		playerPosition.y = (float)ypos / vpDefault.h * 2 - 1;
-		glfwPollEvents();
+		playerPosition.x = (float)(xpos - vpDefault.w / 2) / vpDefault.h * 2;
+		playerPosition.y = (float)(ypos - vpDefault.h / 2) / vpDefault.h * 2;
 	}
 
 	glfwTerminate();

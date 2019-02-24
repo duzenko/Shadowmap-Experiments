@@ -4,17 +4,19 @@ const int lineCount = 31;
 Vec vertexData[lineCount * 2];
 Vec playerPosition;
 
-void Init() {
-	random_engine.seed( 7 );
+void ShuffleLines() {
 	for ( int i = 0; i < 2 * lineCount; i++ )
 		vertexData[i].random();
 	for ( int i = 0; i < lineCount; i++ ) {
-		vertexData[i * 2] = vertexData[i * 2] * 1.8f;
-		vertexData[i * 2] = vertexData[i * 2] + -0.9f;
+		const float distrib = 1.3f;
+		vertexData[i * 2] = vertexData[i * 2] * distrib * 2;
+		vertexData[i * 2] = vertexData[i * 2] + -distrib;
 		vertexData[i * 2 + 1] = vertexData[i * 2 + 1] * 0.4f + -.2f;
 		vertexData[i * 2 + 1] = vertexData[i * 2 + 1] + vertexData[i * 2];
 	}
+}
 
+void Init() {
 	glEnable( GL_SCISSOR_TEST );
 	glEnable( GL_DEPTH_TEST );
 	glEnable( GL_BLEND );
@@ -22,6 +24,8 @@ void Init() {
 
 	LoadShaders();
 	fboShadows.Init();
+
+	ShuffleLines();
 }
 
 void drawWorld() {
@@ -34,8 +38,12 @@ void drawWorld() {
 }
 
 void lightView() {
+	float dist = playerPosition.Length2();
 	float movingAngle = atan2( playerPosition.y, playerPosition.x ) + (float)M_PI / 2;
-	float squeeze = pow( 1 + 3e1f * playerPosition.Length2(), 0.3f ); // magic const's
+	if ( dist < .1f ) {		// anti-flicker								// magic const's
+		//movingAngle *= dist / .1f;
+	}
+	float squeeze = pow( 1 + 3e1f * playerPosition.Length2(), 0.3f );	// magic const's
 	mapSideNear[0] = BASE_NEAR * squeeze;
 	mapSideNear[2] = BASE_NEAR / squeeze;
 
