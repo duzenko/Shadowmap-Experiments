@@ -17,61 +17,16 @@ struct Mat {
 	float & operator [] (int i) {
 		return elements[i];
 	}
+	void rotateToNorm( float fromAngle ) {
+		memset( elements, 0, sizeof( elements ) );
+		elements[0] = elements[5] = cos( fromAngle );
+		elements[1] = sin( fromAngle );
+		elements[4] = -elements[1];
+		elements[10] = elements[15] = 1;
+	}
 };
 
-Mat mapViewMatrix[4] = {
-	{
-		1,	0,	0,	0,
-		0,	1,	0,	0,
-		0,	0,	1,	0,
-		0,	0,	0,	1,
-	},
-	{
-		0,	1,	0,	0,
-		-1,	0,	0,	0,
-		0,	0,	1,	0,
-		0,	0,	0,	1,
-	},
-	{
-		-1,	0,	0,	0,
-		0,	-1,	0,	0,
-		0,	0,	1,	0,
-		0,	0,	0,	1,
-	},
-	{
-		0,	-1,	0,	0,
-		1,	0,	0,	0,
-		0,	0,	1,	0,
-		0,	0,	0,	1,
-	},
-};
-
-Mat mapViewInvMatrix[4] = {
-	{
-		1,	0,	0,	0,
-		0,	1,	0,	0,
-		0,	0,	1,	0,
-		0,	0,	0,	1,
-	},
-	{
-		0,	-1,	0,	0,
-		1,	0,	0,	0,
-		0,	0,	1,	0,
-		0,	0,	0,	1,
-	},
-	{
-		-1,	0,	0,	0,
-		0,	-1,	0,	0,
-		0,	0,	1,	0,
-		0,	0,	0,	1,
-	},
-	{
-		0,	1,	0,	0,
-		-1,	0,	0,	0,
-		0,	0,	1,	0,
-		0,	0,	0,	1,
-	},
-};
+Mat mapViewMatrix[4], mapProjectionMatrix[4];
 
 Mat mainProjectionMatrix = {
 	1, 0, 0, 0,
@@ -79,10 +34,3 @@ Mat mainProjectionMatrix = {
 	0, 0, 1, 0,
 	0, 0, 0, 1,
 };
-
-Mat mapProjectionMatrix[4];/* = {
-	1, 0, 0,	0,
-	0, 1, 0,	0,
-	0, 0, -1,	-1,
-	0, 0, -.2f,	0,
-};*/

@@ -14,11 +14,11 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Types.h" />
     <ClInclude Include="GLSL.h" />
     <ClInclude Include="Matrices.h" />
     <ClInclude Include="FBO.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="Vectors.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="misc.h">

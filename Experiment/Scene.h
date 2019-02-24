@@ -33,11 +33,6 @@ void drawWorld() {
 }
 
 void lightView() {
-	mapCorners[0].y = mapCorners[1].y = mapSideNear[0];
-	mapCorners[1].x = mapCorners[2].x = mapSideNear[1];
-	mapCorners[2].y = mapCorners[3].y = -mapSideNear[2];
-	mapCorners[3].x = mapCorners[0].x = -mapSideNear[3];
-
 	vpDefault.ReadCurrent();
 	glClearColor( 0.4f, 0, 0, 1 );
 	glColor3f( 0.8f, 0.4f, 0.2f );
@@ -62,7 +57,7 @@ void mainView() {
 	glColor3f( 0.7f, 0, 1 );
 	for ( int i = 0; i < 4; i++ ) {
 		glVertex2f( 0, 0 );
-		glVertex4fv( &mapCorners[i].x );
+		glVertex4f( mapCorners[i].x, mapCorners[i].y, 0, 0 ); // infinity projection
 	}
 	glEnd();
 

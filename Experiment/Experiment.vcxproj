@@ -169,7 +169,7 @@
     <ClInclude Include="GLSL.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Matrices.h" />
-    <ClInclude Include="Types.h" />
+    <ClInclude Include="Vectors.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="misc.h" />

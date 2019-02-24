@@ -2,7 +2,7 @@
 #include <GLFW/glfw3.h>
 
 #include "misc.h"
-#include "Types.h"
+#include "Vectors.h"
 #include "Matrices.h"
 #include "FBO.h"
 #include "GLSL.h"

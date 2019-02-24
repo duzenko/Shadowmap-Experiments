@@ -1,5 +1,8 @@
 #pragma once
 
+#define _USE_MATH_DEFINES
+#include <math.h>
+
 float mapSideNear[4] = { .1f,.1f,.1f,.1f };
 Vec mapCorners[4] = {
 	{ -.1f, .1f },
@@ -7,6 +10,19 @@ Vec mapCorners[4] = {
 	{ .1f, -.1f },
 	{ -.1f, -.1f },
 };
+
+struct ViewPort {
+	int x, y, w, h;
+
+	void MakeCurrent() {
+		glViewport( x, y, w, h );
+		glScissor( x, y, w, h );
+	}
+
+	void ReadCurrent() {
+		glGetIntegerv( GL_VIEWPORT, &x );
+	}
+}; 
 
 ViewPort vpDefault;
 
@@ -48,12 +64,24 @@ struct Framebuffer {
 	}
 
 	void Bind(int side) {
-		Mat &proj = mapProjectionMatrix[side];
-		Vec left = mapViewMatrix[side] * mapCorners[side], right = mapViewMatrix[side] * mapCorners[(side + 1) % 4];
-		proj[0] = 2 * mapSideNear[side] / (right.x - left.x);
-		proj[4] = -(right.x + left.x) / (right.x - left.x);
-		proj[9] = 1;
+		static float movingAngle = 0;
+		if ( keyStates[GLFW_KEY_RIGHT] )
+			movingAngle += 1e-3f;
+		if ( keyStates[GLFW_KEY_LEFT] )
+			movingAngle -= 1e-3f;
+		Mat &proj = mapProjectionMatrix[side], viewInv;
+		mapViewMatrix[side].rotateToNorm( movingAngle + side * (float)M_PI / 2 );
+		gluInvertMatrix( mapViewMatrix[side].elements, viewInv.elements );
+		
+		int leftSide = (side /* -1 */ + 3 ) % 4, rightSide = (side + 1) % 4;
+		Vec leftCorner( -mapSideNear[leftSide], mapSideNear[side] ), rightCorner( mapSideNear[rightSide], mapSideNear[side] );
+		mapCorners[side] = viewInv * leftCorner;
+		mapCorners[rightSide] = viewInv * rightCorner;
+		
+		proj[0] = 2 * mapSideNear[side] / (rightCorner.x - leftCorner.x);
+		proj[4] = -(rightCorner.x + leftCorner.x) / (rightCorner.x - leftCorner.x);
 		proj[6] = proj[7] = 1;
+		proj[9] = 1;
 		proj[14] = -2 * mapSideNear[side];
 		proj.Apply( GL_PROJECTION );
 		mapViewMatrix[side].Apply( GL_MODELVIEW );

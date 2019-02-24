@@ -7,6 +7,8 @@ static std::uniform_real_distribution<float> real_distribution( 0, 1 );
 
 struct Vec {
 	float x, y, z, w;
+	Vec() {};
+	Vec( float x, float y ) : x( x ), y( y ) {};
 	Vec operator + ( Vec &a ) {
 		return { x + a.x, y + a.y };
 	}
@@ -19,18 +21,5 @@ struct Vec {
 	void random() { // rage 0 - 1
 		x = real_distribution( random_engine );
 		y = real_distribution( random_engine );
-	}
-};
-
-struct ViewPort { 
-	int x, y, w, h; 
-
-	void MakeCurrent() {
-		glViewport( x, y, w, h );
-		glScissor( x, y, w, h );
-	}
-
-	void ReadCurrent() {
-		glGetIntegerv( GL_VIEWPORT, &x );
 	}
 };
