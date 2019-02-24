@@ -1,9 +1,10 @@
 #pragma once
 
+#define BindUniform(name) name = glGetUniformLocation( program, #name )
+
 struct Shader {
 	const char *vertexSource, *fragmentSource;
 	GLuint program;
-	Shader( const char *vertexSource, const char *fragmentSource ) : vertexSource( vertexSource ), fragmentSource( fragmentSource ) {}
 	void Load() {
 		program = LoadShader( vertexSource, fragmentSource );
 		LocateUniforms();
@@ -14,9 +15,8 @@ struct Shader {
 	virtual void Use() {
 		glUseProgram( program );
 	}
-};
-
-Shader passthroughShader( R"(
+	Shader( const char *vertexSource, const char *fragmentSource ) : vertexSource( vertexSource ), fragmentSource( fragmentSource ) {}
+	Shader() : Shader( R"(
 #version 110
 
 void main() {
@@ -29,9 +29,11 @@ void main() {
 void main() {
 	gl_FragColor = gl_Color;	
 }
-)" );
+)" ) {};
+};
 
-#define BindUniform(name) name = glGetUniformLocation( program, #name )
+struct ShadowShader : Shader {
+};
 
 struct WorldShader : Shader {
 	GLint mapView, mapProjection, f, colorComp;
@@ -57,9 +59,7 @@ struct WorldShader : Shader {
 		glUniform1i( colorComp, x );
 		glBindTexture( GL_TEXTURE_2D, fboShadows.depthTexture );
 	}
-};
-
-WorldShader worldShader( R"(
+	WorldShader() : Shader( R"(
 #version 130
 
 uniform mat4 mapView[4], mapProjection[4];
@@ -113,7 +113,12 @@ void main() {
 	float thisDepth = inMapSpace[mapSide].z / inMapSpace[mapSide].w * .5 + .5;
 	float inShadow = float( thisDepth > depthSample.r );
 	gl_FragColor.rgb = vec3(inShadow, 1-inShadow, 0);
-})" );
+})" ) {}
+};
+
+Shader passthroughShader;
+ShadowShader shadowShader;
+WorldShader worldShader;
 
 GLuint Shader::LoadShader( const char *vertexSource, const char *fragmentSource ) {
 	GLuint VertexShaderID = glCreateShader( GL_VERTEX_SHADER );

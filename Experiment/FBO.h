@@ -51,9 +51,9 @@ struct Framebuffer {
 		Mat &proj = mapProjectionMatrix[side];
 		Vec left = mapViewMatrix[side] * mapCorners[side], right = mapViewMatrix[side] * mapCorners[(side + 1) % 4];
 		proj[0] = 2 * mapSideNear[side] / (right.x - left.x);
-		proj[8] = (right.x + left.x) / (right.x - left.x);
-		proj[5] = 1;
-		proj[10] = proj[11] = -1;
+		proj[4] = -(right.x + left.x) / (right.x - left.x);
+		proj[9] = 1;
+		proj[6] = proj[7] = 1;
 		proj[14] = -2 * mapSideNear[side];
 		proj.Apply( GL_PROJECTION );
 		mapViewMatrix[side].Apply( GL_MODELVIEW );
