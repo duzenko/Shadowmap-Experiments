@@ -64,14 +64,17 @@ int main() {
 	glfwSetWindowTitle(window, (char *)glGetString( GL_VERSION ));
 
 	while ( !glfwWindowShouldClose( window ) ) {
-		glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
-
 		lightView();
 		mainView();
 		glCheck();
 
 		glfwSwapBuffers( window );
+		glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
+		double xpos, ypos;
+		glfwGetCursorPos( window, &xpos, &ypos );
+		playerPosition.x = (float)xpos / vpDefault.w * 2 - 1;
+		playerPosition.y = (float)ypos / vpDefault.h * 2 - 1;
 		glfwPollEvents();
 	}
 

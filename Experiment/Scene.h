@@ -2,6 +2,7 @@
 
 const int lineCount = 31;
 Vec vertexData[lineCount * 2];
+Vec playerPosition;
 
 void Init() {
 	random_engine.seed( 7 );
@@ -33,14 +34,20 @@ void drawWorld() {
 }
 
 void lightView() {
+	float movingAngle = atan2( playerPosition.y, playerPosition.x ) + (float)M_PI / 2;
+	float squeeze = pow( 1 + 3e1f * playerPosition.Length2(), 0.3f ); // magic const's
+	mapSideNear[0] = BASE_NEAR * squeeze;
+	mapSideNear[2] = BASE_NEAR / squeeze;
+
 	vpDefault.ReadCurrent();
 	glClearColor( 0.4f, 0, 0, 1 );
 	glColor3f( 0.8f, 0.4f, 0.2f );
-	for ( int i = 0; i < 4; i++ ) {
-		fboShadows.Bind(i);
+	for ( int side = 0; side < 4; side++ ) {
+		mapViewMatrix[side].rotateToNorm( movingAngle + side * (float)M_PI / 2 );
+		fboShadows.Bind( side );
 		drawWorld();
 		const int magnify = 6;
-		ViewPort vpVisual = { magnify, vpDefault.h - magnify * 3 - i * magnify * 2, fboShadows.viewPort.w*magnify, magnify };
+		ViewPort vpVisual = { magnify, vpDefault.h - magnify * 3 - side * magnify * 2, fboShadows.viewPort.w*magnify, magnify };
 		fboShadows.BlitTo( vpVisual );
 	}
 	fboShadows.Unbind();

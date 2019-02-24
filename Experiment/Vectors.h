@@ -22,4 +22,7 @@ struct Vec {
 		x = real_distribution( random_engine );
 		y = real_distribution( random_engine );
 	}
+	float Length2() {
+		return x * x + y * y;
+	}
 };

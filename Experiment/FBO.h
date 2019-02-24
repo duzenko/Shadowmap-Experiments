@@ -3,13 +3,9 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 
-float mapSideNear[4] = { .1f,.1f,.1f,.1f };
-Vec mapCorners[4] = {
-	{ -.1f, .1f },
-	{ .1f, .1f },
-	{ .1f, -.1f },
-	{ -.1f, -.1f },
-};
+const float BASE_NEAR = 0.1f;
+float mapSideNear[4] = {0, BASE_NEAR, 0, BASE_NEAR}; // front, right, back, left
+Vec mapCorners[4];	// front left, front right, back right, back left
 
 struct ViewPort {
 	int x, y, w, h;
@@ -64,13 +60,7 @@ struct Framebuffer {
 	}
 
 	void Bind(int side) {
-		static float movingAngle = 0;
-		if ( keyStates[GLFW_KEY_RIGHT] )
-			movingAngle += 1e-3f;
-		if ( keyStates[GLFW_KEY_LEFT] )
-			movingAngle -= 1e-3f;
 		Mat &proj = mapProjectionMatrix[side], viewInv;
-		mapViewMatrix[side].rotateToNorm( movingAngle + side * (float)M_PI / 2 );
 		gluInvertMatrix( mapViewMatrix[side].elements, viewInv.elements );
 		
 		int leftSide = (side /* -1 */ + 3 ) % 4, rightSide = (side + 1) % 4;
