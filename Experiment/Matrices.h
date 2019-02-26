@@ -2,10 +2,6 @@
 
 struct Mat {
 	float elements[16];
-	void Apply( GLenum type ) {
-		glMatrixMode( type );
-		glLoadMatrixf( elements );
-	}
 	Vec operator *( Vec &a ) {
 		Vec r;
 		r.x = a.x * elements[0] + a.y * elements[4] + a.z * elements[8] + a.w * elements[12];
@@ -26,11 +22,9 @@ struct Mat {
 	}
 };
 
-Mat mapViewMatrix[4], mapProjectionMatrix[4];
-
-Mat mainProjectionMatrix = {
+Mat identity = {
 	1, 0, 0, 0,
 	0, 1, 0, 0,
 	0, 0, 1, 0,
 	0, 0, 0, 1,
-};
+}, mainProjectionMatrix = identity, mapViewMatrix[4], mapProjectionMatrix[4];

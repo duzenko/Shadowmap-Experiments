@@ -18,6 +18,9 @@ struct Vec {
 	Vec operator * ( float a ) {
 		return { x * a, y * a };
 	}
+	operator float * () {
+		return &x;
+	}
 	void random() { // rage 0 - 1
 		x = real_distribution( random_engine );
 		y = real_distribution( random_engine );

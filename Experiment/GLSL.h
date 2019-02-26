@@ -4,27 +4,37 @@
 
 struct Shader {
 	const char *vertexSource, *fragmentSource;
-	GLuint program;
+	GLuint program, viewMatrix, projectionMatrix;
 	void Load() {
 		program = LoadShader( vertexSource, fragmentSource );
 		LocateUniforms();
 		glCheck();
 	}
 	static GLuint LoadShader( const char *vertexSource, const char *fragmentSource );
-	virtual void LocateUniforms() {}
+	virtual void LocateUniforms() {
+		glUseProgram( program );
+		BindUniform( viewMatrix );
+		BindUniform( projectionMatrix );
+	}
 	virtual void Use() {
 		glUseProgram( program );
 	}
+	void SetMatrices( Mat &view, Mat projection ) {
+		glUniformMatrix4fv( viewMatrix, 1, false, view.elements );
+		glUniformMatrix4fv( projectionMatrix, 1, false, projection.elements );
+	}
 	Shader( const char *vertexSource, const char *fragmentSource ) : vertexSource( vertexSource ), fragmentSource( fragmentSource ) {}
 	Shader() : Shader( R"(
-#version 110
+#version 130
+
+uniform mat4 viewMatrix, projectionMatrix;
 
 void main() {
 	gl_FrontColor = gl_Color;
-	gl_Position = ftransform();
+	gl_Position = projectionMatrix * viewMatrix * gl_Vertex;
 }
 )", R"(
-#version 110
+#version 130
 
 void main() {
 	gl_FragColor = gl_Color;	
@@ -39,7 +49,7 @@ struct WorldShader : Shader {
 	GLint mapView, mapProjection, f, colorComp;
 	using Shader::Shader;
 	virtual void LocateUniforms() {
-		glUseProgram( program );
+		Shader::LocateUniforms();
 		BindUniform( mapView );
 		BindUniform( mapProjection );
 		BindUniform( f );
@@ -57,18 +67,18 @@ struct WorldShader : Shader {
 				keyStates[i] = 0;
 			}
 		glUniform1i( colorComp, x );
-		glBindTexture( GL_TEXTURE_2D, fboShadows.depthTexture );
 	}
 	WorldShader() : Shader( R"(
 #version 130
 
+uniform mat4 viewMatrix, projectionMatrix;
 uniform mat4 mapView[4], mapProjection[4];
 
 out vec4 inMapSpace[4];
 
 void main() {
 	gl_FrontColor = gl_Color;
-	gl_Position = ftransform();
+	gl_Position = projectionMatrix * viewMatrix * gl_Vertex;
 	for(int i=0; i<4; i++)
 		inMapSpace[i] = mapProjection[i] * mapView[i] * gl_Vertex;
 }
@@ -136,8 +146,9 @@ GLuint Shader::LoadShader( const char *vertexSource, const char *fragmentSource 
 		std::string VertexShaderErrorMessage( InfoLogLength + 1, 0 );
 		glGetShaderInfoLog( VertexShaderID, InfoLogLength, NULL, &VertexShaderErrorMessage[0] );
 		fprintf( stdout, "%sn", &VertexShaderErrorMessage[0] );
-		return 0;
 	}
+	if( Result != GL_TRUE )
+		return 0;
 
 	glShaderSource( FragmentShaderID, 1, &fragmentSource, NULL );
 	glCompileShader( FragmentShaderID );
@@ -148,8 +159,9 @@ GLuint Shader::LoadShader( const char *vertexSource, const char *fragmentSource 
 		std::string FragmentShaderErrorMessage( InfoLogLength + 1, 0 );
 		glGetShaderInfoLog( FragmentShaderID, InfoLogLength, NULL, &FragmentShaderErrorMessage[0] );
 		fprintf( stdout, "%s\n", &FragmentShaderErrorMessage[0] );
-		return 0;
 	}
+	if ( Result != GL_TRUE )
+		return 0;
 
 	GLuint ProgramID = glCreateProgram();
 	glAttachShader( ProgramID, VertexShaderID );
@@ -162,8 +174,9 @@ GLuint Shader::LoadShader( const char *vertexSource, const char *fragmentSource 
 		std::vector<char> ProgramErrorMessage( InfoLogLength + 1 );
 		glGetProgramInfoLog( ProgramID, InfoLogLength, NULL, &ProgramErrorMessage[0] );
 		fprintf( stdout, "%s\n", &ProgramErrorMessage[0] );
-		return 0;
 	}
+	if ( Result != GL_TRUE )
+		return 0;
 
 	glDeleteShader( VertexShaderID );
 	glDeleteShader( FragmentShaderID );
@@ -173,5 +186,6 @@ GLuint Shader::LoadShader( const char *vertexSource, const char *fragmentSource 
 
 void LoadShaders() {
 	worldShader.Load();
+	shadowShader.Load();
 	passthroughShader.Load();
 }

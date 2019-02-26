@@ -50,8 +50,25 @@ void lightView() {
 	vpDefault.ReadCurrent();
 	glClearColor( 0.4f, 0, 0, 1 );
 	glColor3f( 0.8f, 0.4f, 0.2f );
+	shadowShader.Use();
 	for ( int side = 0; side < 4; side++ ) {
 		mapViewMatrix[side].rotateToNorm( movingAngle + side * (float)M_PI / 2 );
+		
+		Mat &proj = mapProjectionMatrix[side], viewInv;
+		gluInvertMatrix( mapViewMatrix[side].elements, viewInv.elements );
+
+		int leftSide = (side /* -1 */ + 3) % 4, rightSide = (side + 1) % 4;
+		Vec leftCorner( -mapSideNear[leftSide], mapSideNear[side] ), rightCorner( mapSideNear[rightSide], mapSideNear[side] );
+		mapCorners[side] = viewInv * leftCorner;
+		mapCorners[rightSide] = viewInv * rightCorner;
+
+		proj[0] = 2 * mapSideNear[side] / (rightCorner.x - leftCorner.x);
+		proj[4] = -(rightCorner.x + leftCorner.x) / (rightCorner.x - leftCorner.x);
+		proj[6] = proj[7] = 1;
+		proj[9] = 1;
+		proj[14] = -2 * mapSideNear[side];
+		shadowShader.SetMatrices( mapViewMatrix[side], proj ); 
+		
 		fboShadows.Bind( side );
 		drawWorld();
 		const int magnify = 6;
@@ -60,13 +77,21 @@ void lightView() {
 	}
 	fboShadows.Unbind();
 	glClearColor( 0, 0, 0, 1 );
+	glColor3f( 1, 1, 1 );
 	glLoadIdentity();
 }
 
 void mainView() {
 	vpDefault.ReadCurrent();
 	mainProjectionMatrix.elements[0] = (float)vpDefault.h / vpDefault.w;
-	mainProjectionMatrix.Apply( GL_PROJECTION );
+
+	passthroughShader.Use();
+	passthroughShader.SetMatrices( identity, mainProjectionMatrix );
+
+	glBegin( GL_LINE_LOOP );
+	for ( int i = 0; i < 4; i++ )
+		glVertex2fv( mapCorners[i] );
+	glEnd();
 
 	glBegin( GL_LINES );
 	glColor3f( 0.7f, 0, 1 );
@@ -76,17 +101,12 @@ void mainView() {
 	}
 	glEnd();
 
-	glColor3f( 1, 1, 1 );
 	worldShader.Use();
+	worldShader.SetMatrices( identity, mainProjectionMatrix );
+	glBindTexture( GL_TEXTURE_2D, fboShadows.depthTexture );
 	drawWorld();
 
-	glBegin( GL_LINE_LOOP );
-	for ( int i = 0; i<4; i++ )
-		glVertex2fv( &mapCorners[i].x );
-	glEnd();
-	
 	glColor4f( 1, 1, 1, .25f );
 	drawCenterRect( 2 );
-
-	passthroughShader.Use();
+	glColor4f( 1, 1, 1, 1 );
 }

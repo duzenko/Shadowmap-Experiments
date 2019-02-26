@@ -60,22 +60,6 @@ struct Framebuffer {
 	}
 
 	void Bind(int side) {
-		Mat &proj = mapProjectionMatrix[side], viewInv;
-		gluInvertMatrix( mapViewMatrix[side].elements, viewInv.elements );
-		
-		int leftSide = (side /* -1 */ + 3 ) % 4, rightSide = (side + 1) % 4;
-		Vec leftCorner( -mapSideNear[leftSide], mapSideNear[side] ), rightCorner( mapSideNear[rightSide], mapSideNear[side] );
-		mapCorners[side] = viewInv * leftCorner;
-		mapCorners[rightSide] = viewInv * rightCorner;
-		
-		proj[0] = 2 * mapSideNear[side] / (rightCorner.x - leftCorner.x);
-		proj[4] = -(rightCorner.x + leftCorner.x) / (rightCorner.x - leftCorner.x);
-		proj[6] = proj[7] = 1;
-		proj[9] = 1;
-		proj[14] = -2 * mapSideNear[side];
-		proj.Apply( GL_PROJECTION );
-		mapViewMatrix[side].Apply( GL_MODELVIEW );
-
 		glBindFramebuffer( GL_FRAMEBUFFER, glHandle );
 		vpSide.y = side;
 		vpSide.MakeCurrent();
