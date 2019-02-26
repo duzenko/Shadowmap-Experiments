@@ -167,6 +167,7 @@
   <ItemGroup>
     <ClInclude Include="FBO.h" />
     <ClInclude Include="GLSL.h" />
+    <ClInclude Include="Light.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Matrices.h" />
     <ClInclude Include="Vectors.h" />

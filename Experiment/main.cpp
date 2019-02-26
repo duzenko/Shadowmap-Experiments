@@ -6,6 +6,7 @@
 #include "Matrices.h"
 #include "FBO.h"
 #include "GLSL.h"
+#include "Light.h"
 #include "Scene.h"
 
 int seed = 0;
@@ -87,6 +88,8 @@ int main() {
 		glfwGetCursorPos( window, &xpos, &ypos );
 		playerPosition.x = (float)(xpos - vpDefault.w / 2) / vpDefault.h * 2;
 		playerPosition.y = (float)(ypos - vpDefault.h / 2) / vpDefault.h * 2;
+		vpDefault.ReadCurrent();
+		mainProjectionMatrix.elements[0] = (float)vpDefault.h / vpDefault.w;
 	}
 
 	glfwTerminate();

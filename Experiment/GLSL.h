@@ -89,7 +89,7 @@ in vec4 inMapSpace[4];
 
 uniform bool f;
 uniform int colorComp;
-uniform sampler2D depthTexture;
+uniform sampler2DShadow depthTexture;
 
 int mapSide = -1;
 float mapProjection;
@@ -118,11 +118,14 @@ void main() {
 		gl_FragColor.rgb = vec3(1, 0, 1);	
 		return;
 	}
-	vec2 depthTexCoord = vec2(mapProjection * .5 + .5, 0.25 * mapSide + 0.125);
-	vec4 depthSample = texture(depthTexture, depthTexCoord);
 	float thisDepth = inMapSpace[mapSide].z / inMapSpace[mapSide].w * .5 + .5;
+#if 1
+	vec3 depthTexCoord = vec3(mapProjection * .5 + .5, 0.25 * mapSide + 0.125, thisDepth);
+	float inShadow = texture(depthTexture, depthTexCoord);
+#else
 	float inShadow = float( thisDepth > depthSample.r );
-	gl_FragColor.rgb = vec3(inShadow, 1-inShadow, 0);
+#endif
+	gl_FragColor.rgb = vec3(1-inShadow, inShadow, 0);
 })" ) {}
 };
 

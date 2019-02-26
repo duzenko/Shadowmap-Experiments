@@ -19,6 +19,7 @@
     <ClInclude Include="FBO.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Vectors.h" />
+    <ClInclude Include="Light.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="misc.h">

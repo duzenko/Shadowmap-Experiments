@@ -2,7 +2,6 @@
 
 const int lineCount = 31;
 Vec vertexData[lineCount * 2];
-Vec playerPosition;
 
 void ShuffleLines() {
 	for ( int i = 0; i < 2 * lineCount; i++ )
@@ -37,41 +36,17 @@ void drawWorld() {
 	glEnd();
 }
 
-void lightViewSide( int side ) {
-	float dist = playerPosition.Length2();
-	float movingAngle = atan2( playerPosition.y, playerPosition.x ) + (float)M_PI / 2;
-	if ( dist < .1f ) {		// anti-flicker								// magic const's
-		//movingAngle *= dist / .1f;
-	}
-	mapViewMatrix[side].rotateToNorm( movingAngle + side * (float)M_PI / 2 );
-
-	Mat viewInv;
-	gluInvertMatrix( mapViewMatrix[side].elements, viewInv.elements );
-
-	int leftSide = (side /* -1 */ + 3) % 4, rightSide = (side + 1) % 4;
-	Vec leftCorner( -mapSideNear[leftSide], mapSideNear[side] ), rightCorner( mapSideNear[rightSide], mapSideNear[side] );
-	mapCorners[side] = viewInv * leftCorner;
-	mapCorners[rightSide] = viewInv * rightCorner;
-
-	float zNear = mapSideNear[side];
-	mapProjectionMatrix[side].projectionFor( leftCorner.x, rightCorner.x, zNear, -zNear, zNear );
-	shadowShader.SetMatrices( mapViewMatrix[side], mapProjectionMatrix[side] );
-
-	fboShadows.Bind( side );
-	drawWorld();
-}
-
 void lightView() {
-	float squeeze = pow( 1 + 3e1f * playerPosition.Length2(), 0.3f );	// magic const's
-	mapSideNear[0] = BASE_NEAR * squeeze;
-	mapSideNear[2] = BASE_NEAR / squeeze;
+	calcLightMatrices();
 
-	vpDefault.ReadCurrent();
 	glClearColor( 0.4f, 0, 0, 1 );
 	glColor3f( 0.8f, 0.4f, 0.2f );
 	shadowShader.Use();
 	for ( int side = 0; side < 4; side++ ) {
-		lightViewSide( side );
+		shadowShader.SetMatrices( mapViewMatrix[side], mapProjectionMatrix[side] );
+		fboShadows.Bind( side );
+		drawWorld();
+
 		const int magnify = 6;
 		ViewPort vpVisual = { magnify, vpDefault.h - magnify * 3 - side * magnify * 2, fboShadows.viewPort.w*magnify, magnify };
 		fboShadows.BlitTo( vpVisual );
@@ -83,9 +58,6 @@ void lightView() {
 }
 
 void mainView() {
-	vpDefault.ReadCurrent();
-	mainProjectionMatrix.elements[0] = (float)vpDefault.h / vpDefault.w;
-
 	passthroughShader.Use();
 	passthroughShader.SetMatrices( identity, mainProjectionMatrix );
 
