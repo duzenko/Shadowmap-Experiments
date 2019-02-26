@@ -35,14 +35,6 @@ void key_callback( GLFWwindow* window, int key, int scancode, int action, int mo
 		random_engine.seed( seed++ );
 		ShuffleLines();
 		break;
-	case GLFW_KEY_DOWN:
-		mapSideNear[0] *= .8f;
-		mapSideNear[2] *= 1.25;
-		break;
-	case GLFW_KEY_UP:
-		mapSideNear[2] *= .8f;
-		mapSideNear[0] *= 1.25;
-		break;
 	case GLFW_KEY_KP_ADD:
 		fboShadows.viewPort.w *= 2;
 		break;
