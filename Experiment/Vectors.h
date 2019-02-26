@@ -5,8 +5,9 @@ static std::uniform_real_distribution<float> real_distribution( 0, 1 );
 
 struct Vec {
 	float x, y, z, w;
-	Vec() {};
-	Vec( float x, float y ) : x( x ), y( y ) {};
+	Vec() : x( 0 ), y( 0 ), z( 0 ), w( 1 ) {};
+	Vec( float x, float y ) : x( x ), y( y ), z( 0 ), w( 1 ) {};
+	Vec( float x, float y, float z, float w ) : x( x ), y( y ), z( z ), w( w ) {};
 	Vec operator + ( Vec &a ) {
 		return { x + a.x, y + a.y };
 	}

@@ -10,13 +10,14 @@ void glCheck() {
 }
 
 void drawCenterRect( float r ) {
-	glBegin( GL_QUADS );	
-	glVertex2f( r, r );
-	glVertex2f( r, -r );
-	glVertex2f( -r, -r );
-	glVertex2f( -r, r );
-	glColor4f( 1, 1, 1, 1 );
-	glEnd();
+	Vec glData[4] = {
+		{ r, r},
+		{ r, -r},
+		{ -r, -r },
+		{ -r, r},
+	};
+	glVertexAttribPointer( 0, 4, GL_FLOAT, false, 0, glData );
+	glDrawArrays( GL_QUADS, 0, 4 * 2 );
 }
 
 bool gluInvertMatrix( const float m[16], float invOut[16] ) {

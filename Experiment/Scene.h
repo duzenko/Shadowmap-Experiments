@@ -20,6 +20,7 @@ void Init() {
 	glEnable( GL_DEPTH_TEST );
 	glEnable( GL_BLEND );
 	glBlendFunc( GL_SRC_ALPHA, GL_ONE );
+	glEnableVertexAttribArray( 0 );
 
 	LoadShaders();
 	fboShadows.Init();
@@ -28,12 +29,8 @@ void Init() {
 }
 
 void drawWorld() {
-	glBegin( GL_LINES );
-	for ( int i = 0; i < 2 * lineCount; ) {
-		glVertex2fv( &vertexData[i++].x );
-		glVertex2fv( &vertexData[i++].x );
-	}
-	glEnd();
+	glVertexAttribPointer( 0, 4, GL_FLOAT, false, 0, vertexData );
+	glDrawArrays( GL_LINES, 0, lineCount * 2 );
 }
 
 void lightView() {
@@ -61,18 +58,15 @@ void mainView() {
 	passthroughShader.Use();
 	passthroughShader.SetMatrices( identity, mainProjectionMatrix );
 
-	glBegin( GL_LINE_LOOP );
-	for ( int i = 0; i < 4; i++ )
-		glVertex2fv( mapCorners[i] );
-	glEnd();
+	glVertexAttribPointer( 0, 4, GL_FLOAT, false, 0, mapCorners );
+	glDrawArrays( GL_LINE_LOOP, 0, 4 );
 
-	glBegin( GL_LINES );
 	glColor3f( 0.7f, 0, 1 );
-	for ( int i = 0; i < 4; i++ ) {
-		glVertex2f( 0, 0 );
-		glVertex4f( mapCorners[i].x, mapCorners[i].y, 0, 0 ); // infinity projection
-	}
-	glEnd();
+	Vec glData[4 * 2];
+	for ( int i = 0; i < 4; i++ ) 
+		glData[i * 2 + 1] = { mapCorners[i].x, mapCorners[i].y, 0, 0 }; // infinity projection
+	glVertexAttribPointer( 0, 4, GL_FLOAT, false, 0, glData );
+	glDrawArrays( GL_LINES, 0, 4 * 2 );
 
 	worldShader.Use();
 	worldShader.SetMatrices( identity, mainProjectionMatrix );

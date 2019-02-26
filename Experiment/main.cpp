@@ -6,8 +6,8 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-#include "misc.h"
 #include "Vectors.h"
+#include "misc.h"
 #include "Matrices.h"
 #include "FBO.h"
 #include "GLSL.h"
