@@ -20,6 +20,13 @@ struct Mat {
 		elements[4] = -elements[1];
 		elements[10] = elements[15] = 1;
 	}
+	void projectionFor( float l, float r, float t, float b, float n ) {
+		elements[0] = 2 * n / (r - l );
+		elements[4] = -(r + l) / (r - l);
+		elements[6] = elements[7] = 1;
+		elements[9] = 1;
+		elements[14] = -2 * n;
+	}
 };
 
 Mat identity = {

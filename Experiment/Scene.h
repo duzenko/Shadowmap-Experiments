@@ -37,12 +37,31 @@ void drawWorld() {
 	glEnd();
 }
 
-void lightView() {
+void lightViewSide( int side ) {
 	float dist = playerPosition.Length2();
 	float movingAngle = atan2( playerPosition.y, playerPosition.x ) + (float)M_PI / 2;
 	if ( dist < .1f ) {		// anti-flicker								// magic const's
 		//movingAngle *= dist / .1f;
 	}
+	mapViewMatrix[side].rotateToNorm( movingAngle + side * (float)M_PI / 2 );
+
+	Mat viewInv;
+	gluInvertMatrix( mapViewMatrix[side].elements, viewInv.elements );
+
+	int leftSide = (side /* -1 */ + 3) % 4, rightSide = (side + 1) % 4;
+	Vec leftCorner( -mapSideNear[leftSide], mapSideNear[side] ), rightCorner( mapSideNear[rightSide], mapSideNear[side] );
+	mapCorners[side] = viewInv * leftCorner;
+	mapCorners[rightSide] = viewInv * rightCorner;
+
+	float zNear = mapSideNear[side];
+	mapProjectionMatrix[side].projectionFor( leftCorner.x, rightCorner.x, zNear, -zNear, zNear );
+	shadowShader.SetMatrices( mapViewMatrix[side], mapProjectionMatrix[side] );
+
+	fboShadows.Bind( side );
+	drawWorld();
+}
+
+void lightView() {
 	float squeeze = pow( 1 + 3e1f * playerPosition.Length2(), 0.3f );	// magic const's
 	mapSideNear[0] = BASE_NEAR * squeeze;
 	mapSideNear[2] = BASE_NEAR / squeeze;
@@ -52,25 +71,7 @@ void lightView() {
 	glColor3f( 0.8f, 0.4f, 0.2f );
 	shadowShader.Use();
 	for ( int side = 0; side < 4; side++ ) {
-		mapViewMatrix[side].rotateToNorm( movingAngle + side * (float)M_PI / 2 );
-		
-		Mat &proj = mapProjectionMatrix[side], viewInv;
-		gluInvertMatrix( mapViewMatrix[side].elements, viewInv.elements );
-
-		int leftSide = (side /* -1 */ + 3) % 4, rightSide = (side + 1) % 4;
-		Vec leftCorner( -mapSideNear[leftSide], mapSideNear[side] ), rightCorner( mapSideNear[rightSide], mapSideNear[side] );
-		mapCorners[side] = viewInv * leftCorner;
-		mapCorners[rightSide] = viewInv * rightCorner;
-
-		proj[0] = 2 * mapSideNear[side] / (rightCorner.x - leftCorner.x);
-		proj[4] = -(rightCorner.x + leftCorner.x) / (rightCorner.x - leftCorner.x);
-		proj[6] = proj[7] = 1;
-		proj[9] = 1;
-		proj[14] = -2 * mapSideNear[side];
-		shadowShader.SetMatrices( mapViewMatrix[side], proj ); 
-		
-		fboShadows.Bind( side );
-		drawWorld();
+		lightViewSide( side );
 		const int magnify = 6;
 		ViewPort vpVisual = { magnify, vpDefault.h - magnify * 3 - side * magnify * 2, fboShadows.viewPort.w*magnify, magnify };
 		fboShadows.BlitTo( vpVisual );
