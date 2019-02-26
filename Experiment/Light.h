@@ -12,12 +12,15 @@ void calcLightMatrices() {
 	mapSideNear[0] = BASE_NEAR * squeeze;
 	mapSideNear[2] = BASE_NEAR / squeeze;
 
-	float texelSize = 2 * BASE_NEAR / fboShadows.viewPort.w;
-	float angleStep = atan2( texelSize, mapSideNear[0] );
-	float movingAngle = atan2( playerPosition.y, playerPosition.x ) + (float)M_PI / 2;
-	if ( !keyStates[GLFW_KEY_S] ) { // anti-flicker #2
-		int steps = (int)(movingAngle / angleStep);
-		movingAngle = steps * angleStep;
+	float movingAngle = 0;
+	if ( squeeze > 1 ) {
+		float texelSize = 2 * BASE_NEAR / fboShadows.viewPort.w;
+		float angleStep = atan2( texelSize, mapSideNear[0] );
+		movingAngle = atan2( playerPosition.y, playerPosition.x ) + (float)M_PI / 2;
+		if ( !keyStates[GLFW_KEY_S] ) { // anti-flicker #2
+			int steps = (int)(movingAngle / angleStep);
+			movingAngle = steps * angleStep;
+		}
 	}
 
 	for ( int side = 0; side < 4; side++ ) {
