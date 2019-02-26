@@ -14,7 +14,7 @@ void calcLightMatrices() {
 
 	float movingAngle = 0;
 	if ( squeeze > 1 ) {
-		float texelSize = 2 * BASE_NEAR / fboShadows.viewPort.w;
+		float texelSize = 2 * BASE_NEAR / fboShadows.pageSize;
 		float angleStep = atan2( texelSize, mapSideNear[0] );
 		movingAngle = atan2( playerPosition.y, playerPosition.x ) + (float)M_PI / 2;
 		if ( !keyStates[GLFW_KEY_S] ) { // anti-flicker #2

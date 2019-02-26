@@ -43,11 +43,11 @@ void lightView() {
 		shadowShader.SetMatrices( mapViewMatrix[side], mapProjectionMatrix[side] );
 		fboShadows.Bind( side );
 		drawWorld();
-
-		const int magnify = 6;
-		ViewPort vpVisual = { magnify, vpDefault.h - magnify * 3 - side * magnify * 2, fboShadows.viewPort.w*magnify, magnify };
-		fboShadows.BlitTo( vpVisual );
 	}
+	float magnify = (float)vpDefault.h / fboShadows.pageSize / 12;
+	ViewPort vpVisual = { vpDefault.h / 99.f, vpDefault.h / 99.f, fboShadows.pageSize * magnify, fboShadows.pageSize * magnify * 4 };
+	fboShadows.BlitTo( vpVisual );
+
 	fboShadows.Unbind();
 	glClearColor( 0, 0, 0, 1 );
 	glColor3f( 1, 1, 1 );

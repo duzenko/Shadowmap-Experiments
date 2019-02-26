@@ -36,9 +36,10 @@ void main() {
 	float thisDepth = inMapSpace[mapSide].z / inMapSpace[mapSide].w * .5 + .5;
 #if 1
 	vec3 depthTexCoord = vec3(mapProjection * .5 + .5, 0.25 * mapSide + 0.125, thisDepth);
-	float inShadow = texture(depthTexture, depthTexCoord);
+	float lit = texture(depthTexture, depthTexCoord);
+    lit = lit * 2 - 1;
 #else
 	float inShadow = float( thisDepth > depthSample.r );
 #endif
-	gl_FragColor.rgb = vec3(1-inShadow, inShadow, 0);
+	gl_FragColor.rgb = vec3(1-lit, lit, 0);
 })"

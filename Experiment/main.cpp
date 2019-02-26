@@ -36,10 +36,10 @@ void key_callback( GLFWwindow* window, int key, int scancode, int action, int mo
 		ShuffleLines();
 		break;
 	case GLFW_KEY_KP_ADD:
-		fboShadows.viewPort.w *= 2;
+		fboShadows.pageSize *= 2;
 		break;
 	case GLFW_KEY_KP_SUBTRACT:
-		fboShadows.viewPort.w /= 2;
+		fboShadows.pageSize /= 2;
 		break;
 	default:
 		break;

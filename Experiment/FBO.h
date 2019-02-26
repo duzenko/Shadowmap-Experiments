@@ -7,6 +7,10 @@ Vec mapCorners[4];	// front left, front right, back right, back left
 struct ViewPort {
 	int x, y, w, h;
 
+	ViewPort() {}
+	ViewPort( int x, int y, int w, int h ) : x( x ), y( y ), w( w ), h( h ) {}
+	ViewPort( float x, float y, float w, float h ) : x( (int)x ), y( (int)y ), w( (int)w ), h( (int)h ) {}
+
 	void MakeCurrent() {
 		glViewport( x, y, w, h );
 		glScissor( x, y, w, h );
@@ -21,7 +25,8 @@ ViewPort vpDefault;
 
 struct Framebuffer {
 	GLuint glHandle, depthTexture, rboColor;
-	ViewPort viewPort = {0, 0, 64, 4}, vpSide = { 0, 0, viewPort.w, 1 };
+	int pageSize = 64;
+	ViewPort vpInternal = {0, 0, pageSize, pageSize*4 };
 
 	void Init() {
 		glGenTextures( 1, &depthTexture );
@@ -32,7 +37,7 @@ struct Framebuffer {
 		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
 		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_R_TO_TEXTURE );
 		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_COMPARE_FUNC, GL_LEQUAL );
-		glTexImage2D( GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, viewPort.w, viewPort.h, 0, GL_DEPTH_COMPONENT, GL_UNSIGNED_INT, NULL );
+		glTexImage2D( GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, vpInternal.w, vpInternal.h, 0, GL_DEPTH_COMPONENT, GL_UNSIGNED_INT, NULL );
 		glCheck();
 
 		vpDefault.ReadCurrent();
@@ -43,7 +48,7 @@ struct Framebuffer {
 		glCheck();
 		glBindRenderbuffer( GL_RENDERBUFFER, rboColor );
 		glCheck();
-		glRenderbufferStorage( GL_RENDERBUFFER, GL_RGBA, viewPort.w, viewPort.h );
+		glRenderbufferStorage( GL_RENDERBUFFER, GL_RGBA, vpInternal.w, vpInternal.h );
 		glCheck();
 		glFramebufferRenderbuffer( GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, rboColor );
 		glCheck();
@@ -56,17 +61,18 @@ struct Framebuffer {
 	}
 
 	void Bind(int side) {
-		if ( viewPort.w != vpSide.w ) {
-			vpSide.w = viewPort.w;
+		if ( vpInternal.w != pageSize ) {
+			vpInternal.w = pageSize;
+			vpInternal.h = pageSize*4;
 			glBindTexture( GL_TEXTURE_2D, depthTexture );
-			glTexImage2D( GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, viewPort.w, viewPort.h, 0, GL_DEPTH_COMPONENT, GL_UNSIGNED_INT, NULL );
+			glTexImage2D( GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, vpInternal.w, vpInternal.h, 0, GL_DEPTH_COMPONENT, GL_UNSIGNED_INT, NULL );
 			glBindRenderbuffer( GL_RENDERBUFFER, rboColor );
-			glRenderbufferStorage( GL_RENDERBUFFER, GL_RGBA, viewPort.w, viewPort.h );
+			glRenderbufferStorage( GL_RENDERBUFFER, GL_RGBA, vpInternal.w, vpInternal.h );
 		}
 
 		glBindFramebuffer( GL_FRAMEBUFFER, glHandle );
-		vpSide.y = side;
-		vpSide.MakeCurrent();
+		ViewPort vpPage = { 0, side*pageSize, pageSize, pageSize };
+		vpPage.MakeCurrent();
 		glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 		glCheck();
 	}
@@ -81,10 +87,10 @@ struct Framebuffer {
 		glCheck();
 		vpDefault.MakeCurrent();
 		glBindFramebuffer( GL_DRAW_FRAMEBUFFER, 0 );
-		glBlitFramebuffer( vpSide.x, vpSide.y, vpSide.x + vpSide.w, vpSide.y + vpSide.h,
+		glBlitFramebuffer( 0, 0, vpInternal.w, vpInternal.h,
 			dest.x, dest.y, dest.x + dest.w, dest.y + dest.h, GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT, GL_NEAREST );
 		glBindFramebuffer( GL_DRAW_FRAMEBUFFER, glHandle );
-		viewPort.MakeCurrent();
+		//viewPort.MakeCurrent();
 		glCheck();
 	}
 };
