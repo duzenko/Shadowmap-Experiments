@@ -3,14 +3,19 @@
 Vec playerPosition;
 
 void calcLightMatrices() {
-	float squeeze = pow( 1 + 30 * playerPosition.Length2(), 0.3f );	// magic const's
+	float squeeze = log2( playerPosition.Length() / BASE_NEAR ) - 1;
+	squeeze = std::max<float>( squeeze, 0 );
+	std::cout << squeeze << '\n';
+	if ( !keyStates[GLFW_KEY_F] ) // anti-flicker #1
+		squeeze = floor( squeeze );
+	squeeze = (float) pow( 2, squeeze );
 	mapSideNear[0] = BASE_NEAR * squeeze;
 	mapSideNear[2] = BASE_NEAR / squeeze;
 
 	float texelSize = 2 * BASE_NEAR / fboShadows.viewPort.w;
 	float angleStep = atan2( texelSize, mapSideNear[0] );
 	float movingAngle = atan2( playerPosition.y, playerPosition.x ) + (float)M_PI / 2;
-	if ( !keyStates[GLFW_KEY_S] ) {
+	if ( !keyStates[GLFW_KEY_S] ) { // anti-flicker #2
 		int steps = (int)(movingAngle / angleStep);
 		movingAngle = steps * angleStep;
 	}

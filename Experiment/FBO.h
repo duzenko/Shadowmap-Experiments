@@ -1,8 +1,5 @@
 #pragma once
 
-#define _USE_MATH_DEFINES
-#include <math.h>
-
 const float BASE_NEAR = 0.1f;
 float mapSideNear[4] = {0, BASE_NEAR, 0, BASE_NEAR}; // front, right, back, left
 Vec mapCorners[4];	// front left, front right, back right, back left
@@ -23,7 +20,7 @@ struct ViewPort {
 ViewPort vpDefault;
 
 struct Framebuffer {
-	GLuint glHandle, depthTexture;
+	GLuint glHandle, depthTexture, rboColor;
 	ViewPort viewPort = {0, 0, 64, 4}, vpSide = { 0, 0, viewPort.w, 1 };
 
 	void Init() {
@@ -41,15 +38,14 @@ struct Framebuffer {
 		vpDefault.ReadCurrent();
 		glGenFramebuffers( 1, &glHandle );
 		glBindFramebuffer( GL_FRAMEBUFFER, glHandle );
-		GLuint rbo[1];
 		glCheck();
-		glGenRenderbuffers( 1, rbo );
+		glGenRenderbuffers( 1, &rboColor );
 		glCheck();
-		glBindRenderbuffer( GL_RENDERBUFFER, rbo[0] );
+		glBindRenderbuffer( GL_RENDERBUFFER, rboColor );
 		glCheck();
 		glRenderbufferStorage( GL_RENDERBUFFER, GL_RGBA, viewPort.w, viewPort.h );
 		glCheck();
-		glFramebufferRenderbuffer( GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, rbo[0] );
+		glFramebufferRenderbuffer( GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, rboColor );
 		glCheck();
 		glFramebufferTexture( GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, depthTexture, 0 );
 		glCheck();
@@ -60,6 +56,14 @@ struct Framebuffer {
 	}
 
 	void Bind(int side) {
+		if ( viewPort.w != vpSide.w ) {
+			vpSide.w = viewPort.w;
+			glBindTexture( GL_TEXTURE_2D, depthTexture );
+			glTexImage2D( GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, viewPort.w, viewPort.h, 0, GL_DEPTH_COMPONENT, GL_UNSIGNED_INT, NULL );
+			glBindRenderbuffer( GL_RENDERBUFFER, rboColor );
+			glRenderbufferStorage( GL_RENDERBUFFER, GL_RGBA, viewPort.w, viewPort.h );
+		}
+
 		glBindFramebuffer( GL_FRAMEBUFFER, glHandle );
 		vpSide.y = side;
 		vpSide.MakeCurrent();

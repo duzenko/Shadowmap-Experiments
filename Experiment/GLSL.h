@@ -24,22 +24,11 @@ struct Shader {
 		glUniformMatrix4fv( projectionMatrix, 1, false, projection.elements );
 	}
 	Shader( const char *vertexSource, const char *fragmentSource ) : vertexSource( vertexSource ), fragmentSource( fragmentSource ) {}
-	Shader() : Shader( R"(
-#version 130
-
-uniform mat4 viewMatrix, projectionMatrix;
-
-void main() {
-	gl_FrontColor = gl_Color;
-	gl_Position = projectionMatrix * viewMatrix * gl_Vertex;
-}
-)", R"(
-#version 130
-
-void main() {
-	gl_FragColor = gl_Color;	
-}
-)" ) {};
+	Shader() : Shader( 
+#include "shaders/generic.vs"
+		,
+#include "shaders/generic.fs"
+	) {};
 };
 
 struct ShadowShader : Shader {
@@ -68,65 +57,11 @@ struct WorldShader : Shader {
 			}
 		glUniform1i( colorComp, x );
 	}
-	WorldShader() : Shader( R"(
-#version 130
-
-uniform mat4 viewMatrix, projectionMatrix;
-uniform mat4 mapView[4], mapProjection[4];
-
-out vec4 inMapSpace[4];
-
-void main() {
-	gl_FrontColor = gl_Color;
-	gl_Position = projectionMatrix * viewMatrix * gl_Vertex;
-	for(int i=0; i<4; i++)
-		inMapSpace[i] = mapProjection[i] * mapView[i] * gl_Vertex;
-}
-)", R"(
-#version 130
-
-in vec4 inMapSpace[4];
-
-uniform bool f;
-uniform int colorComp;
-uniform sampler2DShadow depthTexture;
-
-int mapSide = -1;
-float mapProjection;
-
-void FindMap() {
-	for(int i=0; i<4; i++) {
-		if(inMapSpace[i].w < 0.)
-			continue;
-		mapProjection = inMapSpace[i].x/inMapSpace[i].w;
-		if(mapProjection < -1.)
-			continue;
-		if(mapProjection > 1.)
-			continue;
-		mapSide = i;
-		break;
-	}
-}
-
-void main() {
-	gl_FragColor = gl_Color;	
-	if (f) {
-		return;
-	} 
-	FindMap();
-	if(mapSide < 0)	 {		// show error
-		gl_FragColor.rgb = vec3(1, 0, 1);	
-		return;
-	}
-	float thisDepth = inMapSpace[mapSide].z / inMapSpace[mapSide].w * .5 + .5;
-#if 1
-	vec3 depthTexCoord = vec3(mapProjection * .5 + .5, 0.25 * mapSide + 0.125, thisDepth);
-	float inShadow = texture(depthTexture, depthTexCoord);
-#else
-	float inShadow = float( thisDepth > depthSample.r );
-#endif
-	gl_FragColor.rgb = vec3(1-inShadow, inShadow, 0);
-})" ) {}
+	WorldShader() : Shader(
+#include "shaders/world.vs"
+		,
+#include "shaders/world.fs"
+	) {}
 };
 
 Shader passthroughShader;

@@ -1,7 +1,5 @@
 #pragma once
 
-#include <random>
-
 static std::default_random_engine random_engine;
 static std::uniform_real_distribution<float> real_distribution( 0, 1 );
 
@@ -25,7 +23,7 @@ struct Vec {
 		x = real_distribution( random_engine );
 		y = real_distribution( random_engine );
 	}
-	float Length2() {
-		return x * x + y * y;
+	float Length() {
+		return sqrt( x * x + y * y );
 	}
 };

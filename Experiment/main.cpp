@@ -1,3 +1,8 @@
+#include <iostream>
+#define _USE_MATH_DEFINES
+#include <math.h>
+#include <algorithm>
+#include <random>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
@@ -37,6 +42,12 @@ void key_callback( GLFWwindow* window, int key, int scancode, int action, int mo
 	case GLFW_KEY_UP:
 		mapSideNear[2] *= .8f;
 		mapSideNear[0] *= 1.25;
+		break;
+	case GLFW_KEY_KP_ADD:
+		fboShadows.viewPort.w *= 2;
+		break;
+	case GLFW_KEY_KP_SUBTRACT:
+		fboShadows.viewPort.w /= 2;
 		break;
 	default:
 		break;
@@ -86,8 +97,11 @@ int main() {
 		glScissor( 0, 0, width, height );
 		double xpos, ypos;
 		glfwGetCursorPos( window, &xpos, &ypos );
-		playerPosition.x = (float)(xpos - vpDefault.w / 2) / vpDefault.h * 2;
-		playerPosition.y = (float)(ypos - vpDefault.h / 2) / vpDefault.h * 2;
+		int focused = glfwGetWindowAttrib( window, GLFW_FOCUSED ); 
+		if ( focused ) {
+			playerPosition.x = (float)(xpos - vpDefault.w / 2) / vpDefault.h * 2;
+			playerPosition.y = (float)(ypos - vpDefault.h / 2) / vpDefault.h * 2;
+		}
 		vpDefault.ReadCurrent();
 		mainProjectionMatrix.elements[0] = (float)vpDefault.h / vpDefault.w;
 	}

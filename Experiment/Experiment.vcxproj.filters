@@ -12,6 +12,9 @@
     <Filter Include="util">
       <UniqueIdentifier>{b833e6e8-e4bf-4563-a745-ed8198ba449b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="shaders">
+      <UniqueIdentifier>{9f08d3db-ca34-4042-a3af-74e16828540e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GLSL.h" />
@@ -24,6 +27,18 @@
   <ItemGroup>
     <None Include="misc.h">
       <Filter>util</Filter>
+    </None>
+    <None Include="shaders\generic.fs">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\generic.vs">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\world.fs">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\world.vs">
+      <Filter>shaders</Filter>
     </None>
   </ItemGroup>
 </Project>
