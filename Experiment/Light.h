@@ -6,7 +6,7 @@ void calcLightMatrices() {
 	float squeeze = log2( playerPosition.Length() / BASE_NEAR ) - 1;
 	squeeze = std::max<float>( squeeze, 0 );
 	std::cout << squeeze << '\n';
-	if ( !keyStates[GLFW_KEY_F] ) // anti-flicker #1
+	if ( keyStates[GLFW_KEY_F] ) // anti-flicker #1
 		squeeze = floor( squeeze );
 	squeeze = (float) pow( 2, squeeze );
 	mapSideNear[0] = BASE_NEAR * squeeze;
@@ -17,7 +17,7 @@ void calcLightMatrices() {
 		float texelSize = 2 * BASE_NEAR / fboShadows.pageSize;
 		float angleStep = atan2( texelSize, mapSideNear[0] );
 		movingAngle = atan2( playerPosition.y, playerPosition.x ) + (float)M_PI / 2;
-		if ( !keyStates[GLFW_KEY_S] ) { // anti-flicker #2
+		if ( keyStates[GLFW_KEY_S] ) { // anti-flicker #2
 			int steps = (int)(movingAngle / angleStep);
 			movingAngle = steps * angleStep;
 		}

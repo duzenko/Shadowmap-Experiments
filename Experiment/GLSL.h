@@ -35,7 +35,7 @@ struct ShadowShader : Shader {
 };
 
 struct WorldShader : Shader {
-	GLint mapView, mapProjection, f, colorComp;
+	GLint mapView, mapProjection, f, colorComp, pageSize;
 	using Shader::Shader;
 	virtual void LocateUniforms() {
 		Shader::LocateUniforms();
@@ -43,12 +43,14 @@ struct WorldShader : Shader {
 		BindUniform( mapProjection );
 		BindUniform( f );
 		BindUniform( colorComp );
+		BindUniform( pageSize );
 	}
 	virtual void Use() {
 		Shader::Use();
 		glUniformMatrix4fv( mapView, 4, false, mapViewMatrix[0].elements );
 		glUniformMatrix4fv( mapProjection, 4, false, mapProjectionMatrix[0].elements );
 		glUniform1i( f, keyStates[GLFW_KEY_F1] );
+		glUniform1i( pageSize, fboShadows.pageSize );
 		static int x = 0;
 		for ( int i = GLFW_KEY_F2; i <= GLFW_KEY_F5; i++ ) // F2-F5 toggle color display for x,y,z,w
 			if ( keyStates[i] ) {

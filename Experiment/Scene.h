@@ -38,6 +38,7 @@ void lightView() {
 
 	glClearColor( 0.4f, 0, 0, 1 );
 	glColor3f( 0.8f, 0.4f, 0.2f );
+	glLineWidth( 2 );		// HW smoothing conflict with line width = 1
 	shadowShader.Use();
 	for ( int side = 0; side < 4; side++ ) {
 		shadowShader.SetMatrices( mapViewMatrix[side], mapProjectionMatrix[side] );
@@ -47,8 +48,9 @@ void lightView() {
 	float magnify = (float)vpDefault.h / fboShadows.pageSize / 12;
 	ViewPort vpVisual = { vpDefault.h / 99.f, vpDefault.h / 99.f, fboShadows.pageSize * magnify, fboShadows.pageSize * magnify * 4 };
 	fboShadows.BlitTo( vpVisual );
-
 	fboShadows.Unbind();
+
+	glLineWidth( 1 );
 	glClearColor( 0, 0, 0, 1 );
 	glColor3f( 1, 1, 1 );
 	glLoadIdentity();
