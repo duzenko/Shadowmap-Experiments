@@ -78,12 +78,12 @@ int main() {
 	glfwSetCursorPos( window, width/2, height/2 );
 
 	while ( !glfwWindowShouldClose( window ) ) {
+		glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 		lightView();
 		mainView();
 		glCheck();
 
 		glfwSwapBuffers( window );
-		glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
 		glfwPollEvents();
 		glfwGetWindowSize( window, &width, &height );

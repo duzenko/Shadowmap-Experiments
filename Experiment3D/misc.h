@@ -5,8 +5,17 @@ int keyStates[MAX_KEY];
 
 void glCheck() {
 	auto error = glGetError();
-	if ( error != GL_NO_ERROR )
-		Beep( 99, 99 );
+	if ( error != GL_NO_ERROR ) {
+		switch ( error ) {
+		case GL_INVALID_OPERATION:
+			Beep( 88, 99 );
+			break;
+		default:
+			Beep( 99, 99 );
+			break;
+		}
+	}
+	while ( glGetError() != GL_NO_ERROR );
 }
 
 void drawCenterRect( float r ) {
@@ -17,7 +26,7 @@ void drawCenterRect( float r ) {
 		{ -r, r},
 	};
 	glVertexAttribPointer( 0, 4, GL_FLOAT, false, 0, glData );
-	glDrawArrays( GL_QUADS, 0, 4 * 2 );
+	glDrawArrays( GL_QUADS, 0, 4 );
 }
 
 bool gluInvertMatrix( const float m[16], float invOut[16] ) {

@@ -25,9 +25,12 @@ struct Shader {
 		current = this;
 	}
 	void SetViewProjectionMatrices( const Mat &view, const Mat &projection ) {
+		glCheck();
 		glUniformMatrix4fv( viewMatrix, 1, false, view.elements );
+		glCheck();
 		glUniformMatrix4fv( projectionMatrix, 1, false, projection.elements );
-	}	
+		glCheck();
+	}
 	void SetModelMatrix( const Mat &model ) {
 		glUniformMatrix4fv( modelMatrix, 1, false, model.elements );
 	}
@@ -56,6 +59,7 @@ struct ShadowShader : Shader {
 	virtual void Use() {
 		Shader::Use();
 		glUniform1i( pageSize, fboShadows.pageSize );
+		glCheck();
 	}
 };
 

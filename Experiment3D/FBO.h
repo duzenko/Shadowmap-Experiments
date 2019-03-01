@@ -61,6 +61,7 @@ struct Framebuffer {
 	}
 
 	void Bind(int side) {
+		glCheck();
 		if ( vpInternal.w != pageSize ) {
 			vpInternal.w = pageSize;
 			vpInternal.h = pageSize*4;
@@ -91,6 +92,7 @@ struct Framebuffer {
 		glBlitFramebuffer( 0, 0, vpInternal.w, vpInternal.h,
 			dest.x, dest.y, dest.x + dest.w, dest.y + dest.h, GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT, GL_NEAREST );
 		//viewPort.MakeCurrent();
+		glBindFramebuffer( GL_FRAMEBUFFER, 0 );
 		glCheck();
 	}
 };

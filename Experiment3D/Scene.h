@@ -24,16 +24,23 @@ void Init() {
 }
 
 void drawWorld() {
+	glCheck();
 	glVertexAttribPointer( 0, 3, GL_FLOAT, false, 0, cubeVertices );
+	glCheck();
 	for ( int i = 0; i < cubeCount; i++ ) {
 		Mat model;
-		Vec v( playerPosition.x, 0 );
 		model.translationTo( cubes[i] );
-		//model.translationTo( v );
+		Vec v( playerPosition.x, 0 );
+		model.translationTo( v );
+		glCheck();
 		Shader::current->SetModelMatrix( model );
+		glCheck();
 		glDrawArrays( GL_TRIANGLES, 0, 36 );
+		glCheck();
 	}
+	glCheck();
 	Shader::current->SetModelMatrix( Mat::identity );
+	glCheck();
 }
 
 void lightView() {
@@ -44,10 +51,10 @@ void lightView() {
 	glLineWidth( 2 );		// HW smoothing conflict with line width = 1
 	glBlendFunc( GL_ONE, GL_ZERO ); // ROP overwrite
 	shadowShader.Use();
-	for ( int side = 0; side < 4; side++ ) {
+	for ( int side = 0; side < 0; side++ ) {
 		shadowShader.SetViewProjectionMatrices( mapViewMatrix[side], mapProjectionMatrix[side] );
 		fboShadows.Bind( side );
-		//drawWorld();
+		drawWorld();
 	}
 	fboShadows.Unbind();
 	glBlendFunc( GL_SRC_ALPHA, GL_ONE ); // ROP blend

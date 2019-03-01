@@ -33,14 +33,14 @@ struct Mat {
 		elements[0] = 1/a;
 		elements[5] = 1;
 		elements[10] = -1;
-		elements[11] = -1;
-		elements[14] = -2 * n;
+		elements[11] = -2 * n;
+		elements[14] = -1;
 	}
 	void viewFrom( Vec v ) {
 		*this = identity;
-		elements[12] = -v.x;
-		elements[13] = -v.y;
-		elements[14] = -v.z;
+		elements[3] = -v.x;
+		elements[7] = -v.y;
+		elements[11] = -v.z;
 	}	
 	void translationTo( Vec v ) {
 		*this = identity;
