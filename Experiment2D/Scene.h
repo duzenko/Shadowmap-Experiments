@@ -56,7 +56,7 @@ void lightView() {
 
 void mainView() {
 	passthroughShader.Use();
-	passthroughShader.SetMatrices( identity, mainProjectionMatrix );
+	passthroughShader.SetMatrices( Mat::identity, mainProjectionMatrix );
 
 	// Z-near 
 	glColor4f( 0, 1, 1, 1 );
@@ -73,7 +73,7 @@ void mainView() {
 
 	glColor4f( 1, 1, 1, 1 );
 	worldShader.Use();
-	worldShader.SetMatrices( identity, mainProjectionMatrix );
+	worldShader.SetMatrices( Mat::identity, mainProjectionMatrix );
 	drawWorld();
 
 	if ( !keyStates[GLFW_KEY_F1] ) {									// space light up

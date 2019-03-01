@@ -19,7 +19,7 @@ struct Shader {
 	virtual void Use() {
 		glUseProgram( program );
 	}
-	void SetMatrices( Mat &view, Mat projection ) {
+	void SetMatrices( const Mat &view, const Mat &projection ) {
 		glUniformMatrix4fv( viewMatrix, 1, false, view.elements );
 		glUniformMatrix4fv( projectionMatrix, 1, false, projection.elements );
 	}

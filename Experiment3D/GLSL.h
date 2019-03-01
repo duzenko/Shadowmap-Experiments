@@ -4,7 +4,7 @@
 
 struct Shader {
 	const char *vertexSource, *geometrySource, *fragmentSource;
-	GLuint program, viewMatrix, projectionMatrix;
+	GLuint program, modelMatrix, viewMatrix, projectionMatrix;
 	void Load() {
 		program = LoadShader( vertexSource, geometrySource, fragmentSource );
 		LocateUniforms();
@@ -13,15 +13,21 @@ struct Shader {
 	static GLuint LoadShader( const char *vertexSource, const char *geometrySource, const char *fragmentSource );
 	virtual void LocateUniforms() {
 		glUseProgram( program );
+		BindUniform( modelMatrix );
 		BindUniform( viewMatrix );
 		BindUniform( projectionMatrix );
+		SetModelMatrix( identity );
+		SetViewProjectionMatrices( identity, identity );
 	}
 	virtual void Use() {
 		glUseProgram( program );
 	}
-	void SetMatrices( Mat &view, Mat projection ) {
+	void SetViewProjectionMatrices( Mat &view, Mat projection ) {
 		glUniformMatrix4fv( viewMatrix, 1, false, view.elements );
 		glUniformMatrix4fv( projectionMatrix, 1, false, projection.elements );
+	}	
+	void SetModelMatrix( Mat &model ) {
+		glUniformMatrix4fv( modelMatrix, 1, false, model.elements );
 	}
 	Shader( const char *vertexSource, const char *fragmentSource ) : vertexSource( vertexSource ), fragmentSource( fragmentSource ) {}
 	Shader( const char *vertexSource, const char *geometrySource, const char *fragmentSource ) : vertexSource( vertexSource ), geometrySource( geometrySource ), fragmentSource( fragmentSource ) {}
@@ -71,13 +77,6 @@ struct WorldShader : Shader {
 		glUniformMatrix4fv( mapViews, 4, false, mapViewMatrix[0].elements );
 		glUniformMatrix4fv( mapProjections, 4, false, mapProjectionMatrix[0].elements );
 		glUniform1i( pageSize, fboShadows.pageSize );
-		/*static int x = 0;
-		for ( int i = GLFW_KEY_F2; i <= GLFW_KEY_F5; i++ ) // F2-F5 toggle color display for x,y,z,w
-			if ( keyStates[i] ) {
-				x = i - GLFW_KEY_F2;
-				keyStates[i] = 0;
-			}
-		glUniform1i( colorComp, x );*/
 		glUniform1iv( f, 13, &keyStates[GLFW_KEY_F1-1] );
 		glUniform1i( depthTexture, 0 );
 		glUniform1i( depthSubTexture, 1 );

@@ -1,18 +1,11 @@
 #pragma once
 
-const int lineCount = 31;
-Vec vertexData[lineCount * 2];
+const int cubeCount = 31;
+Vec cubes[cubeCount];
 
 void ShuffleLines() {
-	for ( int i = 0; i < 2 * lineCount; i++ )
-		vertexData[i].random();
-	for ( int i = 0; i < lineCount; i++ ) {
-		const float distrib = 1.3f;
-		vertexData[i * 2] = vertexData[i * 2] * distrib * 2;
-		vertexData[i * 2] = vertexData[i * 2] + -distrib;
-		vertexData[i * 2 + 1] = vertexData[i * 2 + 1] * 0.4f + -.2f;
-		vertexData[i * 2 + 1] = vertexData[i * 2 + 1] + vertexData[i * 2];
-	}
+	for ( int i = 0; i < cubeCount; i++ )
+		cubes[i].random();
 }
 
 void Init() {
@@ -29,8 +22,8 @@ void Init() {
 }
 
 void drawWorld() {
-	glVertexAttribPointer( 0, 4, GL_FLOAT, false, 0, vertexData );
-	glDrawArrays( GL_LINES, 0, lineCount * 2 );
+	glVertexAttribPointer( 0, 4, GL_FLOAT, false, 0, cubeVertices );
+	glDrawArrays( GL_LINES, 0, 36 );
 }
 
 void lightView() {
@@ -42,7 +35,7 @@ void lightView() {
 	glBlendFunc( GL_ONE, GL_ZERO ); // ROP overwrite
 	shadowShader.Use();
 	for ( int side = 0; side < 4; side++ ) {
-		shadowShader.SetMatrices( mapViewMatrix[side], mapProjectionMatrix[side] );
+		shadowShader.SetViewProjectionMatrices( mapViewMatrix[side], mapProjectionMatrix[side] );
 		fboShadows.Bind( side );
 		drawWorld();
 	}
@@ -56,7 +49,7 @@ void lightView() {
 
 void mainView() {
 	passthroughShader.Use();
-	passthroughShader.SetMatrices( identity, mainProjectionMatrix );
+	passthroughShader.SetViewProjectionMatrices( identity, mainProjectionMatrix );
 
 	// Z-near 
 	glColor4f( 0, 1, 1, 1 );
@@ -73,7 +66,7 @@ void mainView() {
 
 	glColor4f( 1, 1, 1, 1 );
 	worldShader.Use();
-	worldShader.SetMatrices( identity, mainProjectionMatrix );
+	worldShader.SetViewProjectionMatrices( identity, mainProjectionMatrix );
 	drawWorld();
 
 	if ( !keyStates[GLFW_KEY_F1] ) {									// space light up
