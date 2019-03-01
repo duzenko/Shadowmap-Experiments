@@ -46,5 +46,8 @@
     <None Include="shaders\shadow.vs">
       <Filter>shaders</Filter>
     </None>
+    <None Include="shaders\shadow.gs">
+      <Filter>shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

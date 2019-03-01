@@ -2,7 +2,7 @@ R"(#version 130
 
 in vec4 inMapSpace[4];
 
-uniform bool f;
+uniform bool f[13];
 uniform int colorComp;
 uniform int pageSize;
 #if 0
@@ -11,10 +11,11 @@ uniform sampler2DShadow depthTexture;
 uniform sampler2D depthTexture;
 #endif
 uniform sampler2D depthSubTexture;
+uniform mat4 mapProjections[4];
+
 int mapSide = -1;
 vec2 mapProjection;
-
-float halfTexel = 0.5 / pageSize;
+float halfTexel = 0. / pageSize;
 
 void FindMap() {
 	for(int i=0; i<4; i++) {
@@ -30,10 +31,10 @@ void FindMap() {
 
 void main() {
 	gl_FragColor = gl_Color;	
-	if (f)                                                                              // debug vis
+	if( f[1] )                                                                          // debug vis
 	    return;
 	FindMap();                                                                          // find the atlas page to sample from
-	if(mapSide < 0)	 {		                                                            // show error as purple color
+	if( mapSide < 0 ) {		                                                            // show error as purple color
 		gl_FragColor.rgb = vec3(1, 0, 1);	
 		return;
 	}
@@ -50,5 +51,21 @@ void main() {
 	float lit = float( thisDepth < depthSample.r );
 #endif
 	gl_FragColor.rgb = vec3(1-lit, lit, 0);
-	//gl_FragColor.rg = proj2tex;
+    if( !f[2] ) {
+        float n2 = mapProjections[mapSide][3][2];
+        float thisZ = -0.5*n2 / (1 - thisDepth);
+        float sampleZ = -0.5*n2 / (1 - depthSample.r);
+        float error = thisZ - sampleZ;
+        error = 1e-6/error/error/error/error/error;
+	    gl_FragColor.rg = vec2(error) * vec2(-1,1);
+        if( f[3] ) {
+	        vec4 depthSubSample = texture(depthSubTexture, depthTexCoord);
+	        gl_FragColor.rg = depthSubSample.rg;
+        }
+        if(abs(error)<.1) {
+            gl_FragColor.b = .7;
+	        vec4 depthSubSample = texture(depthSubTexture, depthTexCoord);
+	        gl_FragColor.rg = depthSubSample.rg;
+        }
+    }
 })"

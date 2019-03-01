@@ -36,7 +36,7 @@ void drawWorld() {
 void lightView() {
 	calcLightMatrices();
 
-	glClearColor( 0.4f, 0, 0, 1 );
+	glClearColor( 0, 0, 0, 1 );
 	glColor3f( 0.8f, 0.4f, 0.2f );
 	glLineWidth( 2 );		// HW smoothing conflict with line width = 1
 	glBlendFunc( GL_ONE, GL_ZERO ); // ROP overwrite
@@ -59,6 +59,7 @@ void mainView() {
 	passthroughShader.SetMatrices( identity, mainProjectionMatrix );
 
 	// Z-near 
+	glColor4f( 0, 1, 1, 1 );
 	glVertexAttribPointer( 0, 4, GL_FLOAT, false, 0, mapCorners );
 	glDrawArrays( GL_LINE_LOOP, 0, 4 );
 
@@ -70,15 +71,17 @@ void mainView() {
 	glVertexAttribPointer( 0, 4, GL_FLOAT, false, 0, glData );
 	glDrawArrays( GL_LINES, 0, 4 * 2 );
 
+	glColor4f( 1, 1, 1, 1 );
 	worldShader.Use();
 	worldShader.SetMatrices( identity, mainProjectionMatrix );
 	drawWorld();
 
-	glColor4f( 1, 1, 1, .25f );
-	drawCenterRect( 2 );
-	glColor4f( 1, 1, 1, 1 );
+	if ( !keyStates[GLFW_KEY_F1] ) {									// space light up
+		glColor4f( 1, 1, 1, .25f );
+		drawCenterRect( 2 );
+	}
 
-	float magnify = (float)vpDefault.h / fboShadows.pageSize / 12;
+	float magnify = (float)vpDefault.h / fboShadows.pageSize / 8;
 	ViewPort vpVisual = { vpDefault.h / 99.f, vpDefault.h / 99.f, fboShadows.pageSize * magnify, fboShadows.pageSize * magnify * 4 };
 	fboShadows.BlitTo( vpVisual );
 }

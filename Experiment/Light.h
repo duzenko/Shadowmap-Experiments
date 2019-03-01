@@ -9,6 +9,8 @@ void calcLightMatrices() {
 	if ( keyStates[GLFW_KEY_F] ) // anti-flicker #1
 		squeeze = floor( squeeze );
 	squeeze = (float) pow( 2, squeeze );
+	if ( keyStates[GLFW_KEY_D] )
+		squeeze = 1.00001f;
 	mapSideNear[0] = BASE_NEAR * squeeze;
 	mapSideNear[2] = BASE_NEAR / squeeze;
 

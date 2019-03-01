@@ -177,6 +177,7 @@
     <None Include="shaders\generic.fs" />
     <None Include="shaders\generic.vs" />
     <None Include="shaders\shadow.fs" />
+    <None Include="shaders\shadow.gs" />
     <None Include="shaders\shadow.vs" />
     <None Include="shaders\world.fs" />
     <None Include="shaders\world.vs" />

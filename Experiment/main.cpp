@@ -73,6 +73,9 @@ int main() {
 		return 3;
 
 	glfwSetWindowTitle(window, (char *)glGetString( GL_VERSION ));
+	int width, height;
+	glfwGetWindowSize( window, &width, &height );
+	glfwSetCursorPos( window, width/2, height/2 );
 
 	while ( !glfwWindowShouldClose( window ) ) {
 		lightView();
@@ -83,7 +86,6 @@ int main() {
 		glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
 		glfwPollEvents();
-		int width, height;
 		glfwGetWindowSize( window, &width, &height );
 		glViewport( 0, 0, width, height );
 		glScissor( 0, 0, width, height );
