@@ -25,7 +25,7 @@ ViewPort vpDefault;
 
 struct Framebuffer {
 	GLuint glHandle, textures[2];
-	int pageSize = 4;
+	int pageSize = 64;
 	ViewPort vpInternal = {0, 0, pageSize, pageSize*4 };
 
 	void Init() {
