@@ -1,4 +1,4 @@
-R"(#version 130
+R"(#version 400
 
 in vec4 inMapSpace[4];
 
@@ -46,12 +46,11 @@ void main() {
 	float lit = texture(depthTexture, depthTexCoord);
     //lit = lit * 2 - 1;
 #else
-    vec2 depthTexCoord = proj2tex;
-	vec4 depthSample = texture(depthTexture, depthTexCoord);
+	vec4 depthSample = texture(depthTexture, proj2tex);
 	float lit = float( thisDepth < depthSample.r );
 #endif
 	gl_FragColor.rgb = vec3(1-lit, lit, 0);
-    if( !f[2] ) {
+    if( f[2] ) {
         float n2 = mapProjections[mapSide][3][2];
         float thisZ = -0.5*n2 / (1 - thisDepth);
         float sampleZ = -0.5*n2 / (1 - depthSample.r);
@@ -59,13 +58,36 @@ void main() {
         error = 1e-6/error/error/error/error/error;
 	    gl_FragColor.rg = vec2(error) * vec2(-1,1);
         if( f[3] ) {
-	        vec4 depthSubSample = texture(depthSubTexture, depthTexCoord);
+	        vec4 depthSubSample = texture(depthSubTexture, proj2tex);
 	        gl_FragColor.rg = depthSubSample.rg;
         }
         if(abs(error)<.1) {
             gl_FragColor.b = .7;
-	        vec4 depthSubSample = texture(depthSubTexture, depthTexCoord);
+	        vec4 depthSubSample = texture(depthSubTexture, proj2tex);
 	        gl_FragColor.rg = depthSubSample.rg;
+        }
+    }
+    if( !f[3] ) { // anti-flicker for shadow edges
+	    depthSample = textureGather(depthTexture, proj2tex);
+        vec2 lit2 = vec2(lessThan(vec2(thisDepth), depthSample.xy));
+        if( lit2[0] + lit2[1] == 0 ) {
+        	gl_FragColor.rgb = vec3(1, 0, 0);
+            return;
+        }
+        if( lit2[0] + lit2[1] == 2 ) {
+        	gl_FragColor.rgb = vec3(0, 1, 0);
+            return;
+        }
+    	float thisX = fract(pageSize*proj2tex.x + .5);
+        if( lit2[0] == 0 ) {
+	        float sampleX = textureGather(depthSubTexture, proj2tex, 1)[0];
+            lit = float(thisX > sampleX);
+	        gl_FragColor.rgb = vec3(1-lit, lit, 0);
+        }
+        if( lit2[1] == 0 ) {
+	        float sampleX = textureGather(depthSubTexture, proj2tex)[1];
+            lit = float(thisX < sampleX);
+	        gl_FragColor.rgb = vec3(1-lit, lit, 0);
         }
     }
 })"
