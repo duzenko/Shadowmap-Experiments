@@ -22,18 +22,11 @@ struct Mat {
 		elements[10] = elements[15] = 1;
 	}
 	void projectionFor( float l, float r, float t, float b, float n ) {
-		elements[0] = 2 * n / (r - l );
+		elements[0] = 2 * n / (r - l);
 		elements[4] = -(r + l) / (r - l);
-		elements[5] = 2 * n / (t - b);
 		elements[6] = elements[7] = 1;
 		elements[9] = 1;
 		elements[14] = -2 * n;
-	}
-	void viewFrom( float x, float y, float z ) {
-		*this = identity;
-		elements[4] = -x;
-		elements[8] = -y;
-		elements[12] = -z;
 	}
 };
 

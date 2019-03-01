@@ -97,7 +97,7 @@ int main() {
 			playerPosition.y = (float)(ypos - vpDefault.h / 2) / vpDefault.h * 2;
 		}
 		vpDefault.ReadCurrent();
-		mainProjectionMatrix.elements[0] = (float)vpDefault.h / vpDefault.w;
+		mainProjectionMatrix.projectionFor( 0.1f, (float)width/height );
 	}
 
 	glfwTerminate();

@@ -4,8 +4,10 @@ const int cubeCount = 31;
 Vec cubes[cubeCount];
 
 void ShuffleLines() {
-	for ( int i = 0; i < cubeCount; i++ )
+	for ( int i = 0; i < cubeCount; i++ ) {
 		cubes[i].random();
+		cubes[i] = (cubes[i] + -.5) * 3;
+	}
 }
 
 void Init() {
@@ -22,8 +24,16 @@ void Init() {
 }
 
 void drawWorld() {
-	glVertexAttribPointer( 0, 4, GL_FLOAT, false, 0, cubeVertices );
-	glDrawArrays( GL_LINES, 0, 36 );
+	glVertexAttribPointer( 0, 3, GL_FLOAT, false, 0, cubeVertices );
+	for ( int i = 0; i < cubeCount; i++ ) {
+		Mat model;
+		Vec v( playerPosition.x, 0 );
+		model.translationTo( cubes[i] );
+		//model.translationTo( v );
+		Shader::current->SetModelMatrix( model );
+		glDrawArrays( GL_TRIANGLES, 0, 36 );
+	}
+	Shader::current->SetModelMatrix( Mat::identity );
 }
 
 void lightView() {
@@ -37,7 +47,7 @@ void lightView() {
 	for ( int side = 0; side < 4; side++ ) {
 		shadowShader.SetViewProjectionMatrices( mapViewMatrix[side], mapProjectionMatrix[side] );
 		fboShadows.Bind( side );
-		drawWorld();
+		//drawWorld();
 	}
 	fboShadows.Unbind();
 	glBlendFunc( GL_SRC_ALPHA, GL_ONE ); // ROP blend
@@ -48,8 +58,10 @@ void lightView() {
 }
 
 void mainView() {
+	Mat view;
+	view.viewFrom( Vec( 3, 2, 9, 1 ) );
 	passthroughShader.Use();
-	passthroughShader.SetViewProjectionMatrices( identity, mainProjectionMatrix );
+	passthroughShader.SetViewProjectionMatrices( view, mainProjectionMatrix );
 
 	// Z-near 
 	glColor4f( 0, 1, 1, 1 );
@@ -64,9 +76,9 @@ void mainView() {
 	glVertexAttribPointer( 0, 4, GL_FLOAT, false, 0, glData );
 	glDrawArrays( GL_LINES, 0, 4 * 2 );
 
-	glColor4f( 1, 1, 1, 1 );
+	glColor4f( 1, 1, 0, 0.1f );
 	worldShader.Use();
-	worldShader.SetViewProjectionMatrices( identity, mainProjectionMatrix );
+	worldShader.SetViewProjectionMatrices( view, mainProjectionMatrix );
 	drawWorld();
 
 	if ( !keyStates[GLFW_KEY_F1] ) {									// space light up

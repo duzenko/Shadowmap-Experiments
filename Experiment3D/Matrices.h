@@ -2,6 +2,7 @@
 
 struct Mat {
 	float elements[16];
+	static const Mat identity;
 	Vec operator *( Vec &a ) {
 		Vec r;
 		r.x = a.x * elements[0] + a.y * elements[4] + a.z * elements[8] + a.w * elements[12];
@@ -21,17 +22,39 @@ struct Mat {
 		elements[10] = elements[15] = 1;
 	}
 	void projectionFor( float l, float r, float t, float b, float n ) {
-		elements[0] = 2 * n / (r - l );
+		elements[0] = 2 * n / (r - l);
 		elements[4] = -(r + l) / (r - l);
 		elements[6] = elements[7] = 1;
 		elements[9] = 1;
 		elements[14] = -2 * n;
 	}
+	void projectionFor( float n, float a ) {
+		memset( elements, 0, sizeof( elements ) );
+		elements[0] = 1/a;
+		elements[5] = 1;
+		elements[10] = -1;
+		elements[11] = -1;
+		elements[14] = -2 * n;
+	}
+	void viewFrom( Vec v ) {
+		*this = identity;
+		elements[12] = -v.x;
+		elements[13] = -v.y;
+		elements[14] = -v.z;
+	}	
+	void translationTo( Vec v ) {
+		*this = identity;
+		elements[3] = v.x;
+		elements[7] = v.y;
+		elements[11] = v.z;
+	}
 };
 
-Mat identity = {
+const Mat Mat::identity = {
 	1, 0, 0, 0,
 	0, 1, 0, 0,
 	0, 0, 1, 0,
 	0, 0, 0, 1,
-}, mainProjectionMatrix = identity, mapViewMatrix[4], mapProjectionMatrix[4];
+}; 
+
+Mat mainProjectionMatrix = Mat::identity, mapViewMatrix[4], mapProjectionMatrix[4];

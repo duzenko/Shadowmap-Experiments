@@ -5,6 +5,7 @@
 struct Shader {
 	const char *vertexSource, *geometrySource, *fragmentSource;
 	GLuint program, modelMatrix, viewMatrix, projectionMatrix;
+	static Shader* current;
 	void Load() {
 		program = LoadShader( vertexSource, geometrySource, fragmentSource );
 		LocateUniforms();
@@ -16,17 +17,18 @@ struct Shader {
 		BindUniform( modelMatrix );
 		BindUniform( viewMatrix );
 		BindUniform( projectionMatrix );
-		SetModelMatrix( identity );
-		SetViewProjectionMatrices( identity, identity );
+		SetModelMatrix( Mat::identity );
+		SetViewProjectionMatrices( Mat::identity, Mat::identity );
 	}
 	virtual void Use() {
 		glUseProgram( program );
+		current = this;
 	}
-	void SetViewProjectionMatrices( Mat &view, Mat projection ) {
+	void SetViewProjectionMatrices( const Mat &view, const Mat &projection ) {
 		glUniformMatrix4fv( viewMatrix, 1, false, view.elements );
 		glUniformMatrix4fv( projectionMatrix, 1, false, projection.elements );
 	}	
-	void SetModelMatrix( Mat &model ) {
+	void SetModelMatrix( const Mat &model ) {
 		glUniformMatrix4fv( modelMatrix, 1, false, model.elements );
 	}
 	Shader( const char *vertexSource, const char *fragmentSource ) : vertexSource( vertexSource ), fragmentSource( fragmentSource ) {}
@@ -172,3 +174,5 @@ void LoadShaders() {
 	shadowShader.Load();
 	passthroughShader.Load();
 }
+
+Shader* Shader::current = NULL;
