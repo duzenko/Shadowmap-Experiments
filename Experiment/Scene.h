@@ -39,17 +39,15 @@ void lightView() {
 	glClearColor( 0.4f, 0, 0, 1 );
 	glColor3f( 0.8f, 0.4f, 0.2f );
 	glLineWidth( 2 );		// HW smoothing conflict with line width = 1
+	glBlendFunc( GL_ONE, GL_ZERO ); // ROP overwrite
 	shadowShader.Use();
 	for ( int side = 0; side < 4; side++ ) {
 		shadowShader.SetMatrices( mapViewMatrix[side], mapProjectionMatrix[side] );
 		fboShadows.Bind( side );
 		drawWorld();
 	}
-	float magnify = (float)vpDefault.h / fboShadows.pageSize / 12;
-	ViewPort vpVisual = { vpDefault.h / 99.f, vpDefault.h / 99.f, fboShadows.pageSize * magnify, fboShadows.pageSize * magnify * 4 };
-	fboShadows.BlitTo( vpVisual );
 	fboShadows.Unbind();
-
+	glBlendFunc( GL_SRC_ALPHA, GL_ONE ); // ROP blend
 	glLineWidth( 1 );
 	glClearColor( 0, 0, 0, 1 );
 	glColor3f( 1, 1, 1 );
@@ -60,9 +58,11 @@ void mainView() {
 	passthroughShader.Use();
 	passthroughShader.SetMatrices( identity, mainProjectionMatrix );
 
+	// Z-near 
 	glVertexAttribPointer( 0, 4, GL_FLOAT, false, 0, mapCorners );
 	glDrawArrays( GL_LINE_LOOP, 0, 4 );
 
+	// page frustum boundaries
 	glColor3f( 0.7f, 0, 1 );
 	Vec glData[4 * 2];
 	for ( int i = 0; i < 4; i++ ) 
@@ -72,10 +72,13 @@ void mainView() {
 
 	worldShader.Use();
 	worldShader.SetMatrices( identity, mainProjectionMatrix );
-	glBindTexture( GL_TEXTURE_2D, fboShadows.depthTexture );
 	drawWorld();
 
 	glColor4f( 1, 1, 1, .25f );
 	drawCenterRect( 2 );
 	glColor4f( 1, 1, 1, 1 );
+
+	float magnify = (float)vpDefault.h / fboShadows.pageSize / 12;
+	ViewPort vpVisual = { vpDefault.h / 99.f, vpDefault.h / 99.f, fboShadows.pageSize * magnify, fboShadows.pageSize * magnify * 4 };
+	fboShadows.BlitTo( vpVisual );
 }

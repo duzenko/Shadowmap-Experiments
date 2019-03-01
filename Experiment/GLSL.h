@@ -28,14 +28,28 @@ struct Shader {
 #include "shaders/generic.vs"
 		,
 #include "shaders/generic.fs"
-	) {};
+	) {}
 };
 
 struct ShadowShader : Shader {
+	GLint pageSize;
+	ShadowShader(): Shader(
+#include "shaders/shadow.vs"
+		,
+#include "shaders/shadow.fs"
+	) {}
+	virtual void LocateUniforms() {
+		Shader::LocateUniforms();
+		BindUniform( pageSize );
+	}
+	virtual void Use() {
+		Shader::Use();
+		glUniform1i( pageSize, fboShadows.pageSize );
+	}
 };
 
 struct WorldShader : Shader {
-	GLint mapView, mapProjection, f, colorComp, pageSize;
+	GLint mapView, mapProjection, f, colorComp, pageSize, depthTexture, depthSubTexture;
 	using Shader::Shader;
 	virtual void LocateUniforms() {
 		Shader::LocateUniforms();
@@ -44,6 +58,8 @@ struct WorldShader : Shader {
 		BindUniform( f );
 		BindUniform( colorComp );
 		BindUniform( pageSize );
+		BindUniform( depthTexture );
+		BindUniform( depthSubTexture );
 	}
 	virtual void Use() {
 		Shader::Use();
@@ -58,6 +74,14 @@ struct WorldShader : Shader {
 				keyStates[i] = 0;
 			}
 		glUniform1i( colorComp, x );
+		glUniform1i( f, keyStates[GLFW_KEY_F1] );
+		glUniform1i( depthTexture, 0 );
+		glUniform1i( depthSubTexture, 1 );
+		glActiveTexture( GL_TEXTURE0 );
+		glBindTexture( GL_TEXTURE_2D, fboShadows.textures[0] );
+		glActiveTexture( GL_TEXTURE1 );
+		glBindTexture( GL_TEXTURE_2D, fboShadows.textures[1] );
+		glCheck();
 	}
 	WorldShader() : Shader(
 #include "shaders/world.vs"

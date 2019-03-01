@@ -24,35 +24,35 @@ struct ViewPort {
 ViewPort vpDefault;
 
 struct Framebuffer {
-	GLuint glHandle, depthTexture, rboColor;
+	GLuint glHandle, textures[2];
 	int pageSize = 64;
 	ViewPort vpInternal = {0, 0, pageSize, pageSize*4 };
 
 	void Init() {
-		glGenTextures( 1, &depthTexture );
-		glBindTexture( GL_TEXTURE_2D, depthTexture );
+		glGenTextures( 2, textures );
+		glBindTexture( GL_TEXTURE_2D, textures[0] );
 		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE );
 		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE );
 		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST );
-		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
-		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_R_TO_TEXTURE );
-		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_COMPARE_FUNC, GL_LEQUAL );
+		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST );
+		/*glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_R_TO_TEXTURE );
+		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_COMPARE_FUNC, GL_LEQUAL );*/
 		glTexImage2D( GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, vpInternal.w, vpInternal.h, 0, GL_DEPTH_COMPONENT, GL_UNSIGNED_INT, NULL );
+		glCheck();
+		glBindTexture( GL_TEXTURE_2D, textures[1] );
+		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE );
+		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE );
+		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST );
+		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST );
+		glTexImage2D( GL_TEXTURE_2D, 0, GL_RGBA, vpInternal.w, vpInternal.h, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL );
 		glCheck();
 
 		vpDefault.ReadCurrent();
 		glGenFramebuffers( 1, &glHandle );
 		glBindFramebuffer( GL_FRAMEBUFFER, glHandle );
 		glCheck();
-		glGenRenderbuffers( 1, &rboColor );
-		glCheck();
-		glBindRenderbuffer( GL_RENDERBUFFER, rboColor );
-		glCheck();
-		glRenderbufferStorage( GL_RENDERBUFFER, GL_RGBA, vpInternal.w, vpInternal.h );
-		glCheck();
-		glFramebufferRenderbuffer( GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, rboColor );
-		glCheck();
-		glFramebufferTexture( GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, depthTexture, 0 );
+		glFramebufferTexture( GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, textures[0], 0 );
+		glFramebufferTexture( GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, textures[1], 0 );
 		glCheck();
 		if ( glCheckFramebufferStatus( GL_FRAMEBUFFER ) != GL_FRAMEBUFFER_COMPLETE )
 			Beep( 99, 99 );
@@ -64,10 +64,10 @@ struct Framebuffer {
 		if ( vpInternal.w != pageSize ) {
 			vpInternal.w = pageSize;
 			vpInternal.h = pageSize*4;
-			glBindTexture( GL_TEXTURE_2D, depthTexture );
+			glBindTexture( GL_TEXTURE_2D, textures[0] );
 			glTexImage2D( GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, vpInternal.w, vpInternal.h, 0, GL_DEPTH_COMPONENT, GL_UNSIGNED_INT, NULL );
-			glBindRenderbuffer( GL_RENDERBUFFER, rboColor );
-			glRenderbufferStorage( GL_RENDERBUFFER, GL_RGBA, vpInternal.w, vpInternal.h );
+			glBindTexture( GL_TEXTURE_2D, textures[1] );
+			glTexImage2D( GL_TEXTURE_2D, 0, GL_RGBA, vpInternal.w, vpInternal.h, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL );
 		}
 
 		glBindFramebuffer( GL_FRAMEBUFFER, glHandle );
@@ -86,10 +86,10 @@ struct Framebuffer {
 	void BlitTo( ViewPort &dest ) {
 		glCheck();
 		vpDefault.MakeCurrent();
+		glBindFramebuffer( GL_READ_FRAMEBUFFER, glHandle );
 		glBindFramebuffer( GL_DRAW_FRAMEBUFFER, 0 );
 		glBlitFramebuffer( 0, 0, vpInternal.w, vpInternal.h,
 			dest.x, dest.y, dest.x + dest.w, dest.y + dest.h, GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT, GL_NEAREST );
-		glBindFramebuffer( GL_DRAW_FRAMEBUFFER, glHandle );
 		//viewPort.MakeCurrent();
 		glCheck();
 	}

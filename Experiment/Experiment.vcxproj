@@ -176,6 +176,8 @@
     <None Include="misc.h" />
     <None Include="shaders\generic.fs" />
     <None Include="shaders\generic.vs" />
+    <None Include="shaders\shadow.fs" />
+    <None Include="shaders\shadow.vs" />
     <None Include="shaders\world.fs" />
     <None Include="shaders\world.vs" />
   </ItemGroup>

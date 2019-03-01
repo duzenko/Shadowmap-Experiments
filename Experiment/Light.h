@@ -5,7 +5,7 @@ Vec playerPosition;
 void calcLightMatrices() {
 	float squeeze = log2( playerPosition.Length() / BASE_NEAR ) - 1;
 	squeeze = std::max<float>( squeeze, 0 );
-	std::cout << squeeze << '\n';
+	//std::cout << squeeze << '\n';
 	if ( keyStates[GLFW_KEY_F] ) // anti-flicker #1
 		squeeze = floor( squeeze );
 	squeeze = (float) pow( 2, squeeze );
