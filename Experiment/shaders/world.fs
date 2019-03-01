@@ -5,11 +5,7 @@ in vec4 inMapSpace[4];
 uniform bool f[13];
 uniform int colorComp;
 uniform int pageSize;
-#if 0
-uniform sampler2DShadow depthTexture;
-#else
 uniform sampler2D depthTexture;
-#endif
 uniform sampler2D depthSubTexture;
 uniform mat4 mapProjections[4];
 
@@ -41,32 +37,9 @@ void main() {
 	float thisDepth = inMapSpace[mapSide].z / inMapSpace[mapSide].w * .5 + .5;
     vec2 proj2tex = (mapProjection * 0.5 + 0.5) * (1-2*halfTexel) + halfTexel;          // -1..1 to halfTexel..1-halfTexel
     proj2tex = proj2tex * vec2(1, 0.25) + vec2(0, 0.25 * mapSide);                      // page space to atlas space
-#if 0
-	vec3 depthTexCoord = vec3(proj2tex, thisDepth);
-	float lit = texture(depthTexture, depthTexCoord);
-    //lit = lit * 2 - 1;
-#else
 	vec4 depthSample = texture(depthTexture, proj2tex);
 	float lit = float( thisDepth < depthSample.r );
-#endif
 	gl_FragColor.rgb = vec3(1-lit, lit, 0);
-    if( f[2] ) {
-        float n2 = mapProjections[mapSide][3][2];
-        float thisZ = -0.5*n2 / (1 - thisDepth);
-        float sampleZ = -0.5*n2 / (1 - depthSample.r);
-        float error = thisZ - sampleZ;
-        error = 1e-6/error/error/error/error/error;
-	    gl_FragColor.rg = vec2(error) * vec2(-1,1);
-        if( f[3] ) {
-	        vec4 depthSubSample = texture(depthSubTexture, proj2tex);
-	        gl_FragColor.rg = depthSubSample.rg;
-        }
-        if(abs(error)<.1) {
-            gl_FragColor.b = .7;
-	        vec4 depthSubSample = texture(depthSubTexture, proj2tex);
-	        gl_FragColor.rg = depthSubSample.rg;
-        }
-    }
     if( !f[3] ) { // anti-flicker for shadow edges
 	    depthSample = textureGather(depthTexture, proj2tex);
         vec2 lit2 = vec2(lessThan(vec2(thisDepth), depthSample.xy));
