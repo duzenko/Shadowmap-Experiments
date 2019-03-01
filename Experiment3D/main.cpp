@@ -1,21 +1,104 @@
-// Experiment3D.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
-#include "pch.h"
 #include <iostream>
+#define _USE_MATH_DEFINES
+#include <math.h>
+#include <algorithm>
+#include <random>
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
 
-int main()
-{
-    std::cout << "Hello World!\n"; 
+#include "Vectors.h"
+#include "misc.h"
+#include "Matrices.h"
+#include "FBO.h"
+#include "GLSL.h"
+#include "Light.h"
+#include "Scene.h"
+
+int seed = 0;
+
+void key_callback( GLFWwindow* window, int key, int scancode, int action, int mods ) {
+	if ( action != GLFW_PRESS )
+		return;
+	if ( key >= MAX_KEY ) {
+		Beep( 99, 99 );
+		return;
+	}
+	keyStates[key] = !keyStates[key];
+	switch ( key ) {
+	case GLFW_KEY_ESCAPE:
+		glfwSetWindowShouldClose( window, GLFW_TRUE );
+		break;
+	case GLFW_KEY_SPACE:
+		memset( keyStates, 0, sizeof( keyStates ) );
+		break;
+	case GLFW_KEY_TAB:
+		random_engine.seed( seed++ );
+		ShuffleLines();
+		break;
+	case GLFW_KEY_KP_ADD:
+		fboShadows.pageSize *= 2;
+		break;
+	case GLFW_KEY_KP_SUBTRACT:
+		fboShadows.pageSize /= 2;
+		break;
+	default:
+		break;
+	}
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
+int main() {
+	GLFWwindow* window;
 
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+	if ( !glfwInit() )
+		return -1;
+
+	glfwWindowHint( GLFW_MAXIMIZED, 1 );
+	window = glfwCreateWindow( 1280, 768, "Hello World", NULL, NULL );
+	if ( !window ) {
+		glfwTerminate();
+		return -1;
+	}
+
+	glfwMakeContextCurrent( window );
+	if ( !gladLoadGL() )
+		return -2;
+
+	glfwSetKeyCallback( window, key_callback );
+	glfwSwapInterval( GLFW_TRUE );
+
+	random_engine.seed( 20 );
+	Init();
+
+	if ( !passthroughShader.program || !worldShader.program )
+		return 3;
+
+	glfwSetWindowTitle(window, (char *)glGetString( GL_VERSION ));
+	int width, height;
+	glfwGetWindowSize( window, &width, &height );
+	glfwSetCursorPos( window, width/2, height/2 );
+
+	while ( !glfwWindowShouldClose( window ) ) {
+		lightView();
+		mainView();
+		glCheck();
+
+		glfwSwapBuffers( window );
+		glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
+
+		glfwPollEvents();
+		glfwGetWindowSize( window, &width, &height );
+		glViewport( 0, 0, width, height );
+		glScissor( 0, 0, width, height );
+		double xpos, ypos;
+		glfwGetCursorPos( window, &xpos, &ypos );
+		int focused = glfwGetWindowAttrib( window, GLFW_FOCUSED ); 
+		if ( focused ) {
+			playerPosition.x = (float)(xpos - vpDefault.w / 2) / vpDefault.h * 2;
+			playerPosition.y = (float)(ypos - vpDefault.h / 2) / vpDefault.h * 2;
+		}
+		vpDefault.ReadCurrent();
+		mainProjectionMatrix.elements[0] = (float)vpDefault.h / vpDefault.w;
+	}
+
+	glfwTerminate();
+}

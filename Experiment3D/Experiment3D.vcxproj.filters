@@ -1,6 +1,53 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
+    <Filter Include="util">
+      <UniqueIdentifier>{333bc913-453a-450c-9705-5a28ca63702b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shaders">
+      <UniqueIdentifier>{e394eb91-7deb-4a89-ba13-eb5a9afa66fc}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="shaders\generic.fs">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\generic.vs">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\shadow.fs">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\shadow.gs">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\shadow.vs">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\world.fs">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\world.vs">
+      <Filter>shaders</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\glad\src\glad.c">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="Vectors.h" />
+    <ClInclude Include="misc.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="Matrices.h" />
+    <ClInclude Include="FBO.h" />
+    <ClInclude Include="GLSL.h" />
+    <ClInclude Include="Light.h" />
   </ItemGroup>
 </Project>
