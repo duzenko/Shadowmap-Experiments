@@ -26,7 +26,7 @@ void FindMap() {
 }
 
 void main() {
-	gl_FragColor = gl_Color;	
+	gl_FragColor = vec4(1);	
 	if( f[1] )                                                                          // debug vis
 	    return;
 	FindMap();                                                                          // find the atlas page to sample from
