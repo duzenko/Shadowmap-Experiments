@@ -1,6 +1,7 @@
 R"(#version 400
 
 in vec4 inMapSpace[4];
+in vec4 color;
 
 uniform bool f[13];
 uniform int colorComp;
@@ -26,8 +27,8 @@ void FindMap() {
 }
 
 void main() {
-	gl_FragColor = vec4(1);	
-	if( f[1] )                                                                          // debug vis
+	gl_FragColor = vec4(color);	
+	if( !f[1] )                                                                          // debug vis
 	    return;
 	FindMap();                                                                          // find the atlas page to sample from
 	if( mapSide < 0 ) {		                                                            // show error as purple color

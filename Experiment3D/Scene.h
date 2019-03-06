@@ -6,7 +6,7 @@ Vec cubes[cubeCount];
 void ShuffleLines() {
 	for ( int i = 0; i < cubeCount; i++ ) {
 		cubes[i].random();
-		cubes[i] = (cubes[i] + -.5) * 3;
+		cubes[i] = (cubes[i] + -.5) * 29;
 	}
 }
 
@@ -30,8 +30,6 @@ void drawWorld() {
 	for ( int i = 0; i < cubeCount; i++ ) {
 		Mat model;
 		model.translationTo( cubes[i] );
-		Vec v( playerPosition.x, 0 );
-		model.translationTo( v );
 		glCheck();
 		Shader::current->SetModelMatrix( model );
 		glCheck();
@@ -48,7 +46,6 @@ void lightView() {
 
 	glClearColor( 0, 0, 0, 1 );
 	glColor3f( 0.8f, 0.4f, 0.2f );
-	glLineWidth( 2 );		// HW smoothing conflict with line width = 1
 	glBlendFunc( GL_ONE, GL_ZERO ); // ROP overwrite
 	shadowShader.Use();
 	for ( int side = 0; side < 0; side++ ) {
@@ -57,7 +54,7 @@ void lightView() {
 		drawWorld();
 	}
 	fboShadows.Unbind();
-	glBlendFunc( GL_SRC_ALPHA, GL_ONE ); // ROP blend
+	glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA ); // ROP blend
 	glLineWidth( 1 );
 	glClearColor( 0, 0, 0, 1 );
 	glColor3f( 1, 1, 1 );
@@ -66,7 +63,7 @@ void lightView() {
 
 void mainView() {
 	Mat view;
-	view.viewFrom( Vec( 3, 2, 9, 1 ) );
+	view.viewFrom( Vec( 0, 0, 9, 1 ) );
 	passthroughShader.Use();
 	passthroughShader.SetViewProjectionMatrices( view, mainProjectionMatrix );
 
