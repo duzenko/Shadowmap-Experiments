@@ -66,7 +66,7 @@ int main() {
 	glfwSetKeyCallback( window, key_callback );
 	glfwSwapInterval( GLFW_TRUE );
 
-	random_engine.seed( 20 );
+	random_engine.seed( 4 );
 	Init();
 
 	if ( !passthroughShader.program || !worldShader.program )

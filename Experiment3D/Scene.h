@@ -25,7 +25,7 @@ void Init() {
 
 void drawWorld() {
 	glCheck();
-	glVertexAttribPointer( 0, 3, GL_FLOAT, false, 0, cubeVertices );
+	glVertexAttribPointer( 0, 3, GL_FLOAT, false, 0, cube_vertices );
 	glCheck();
 	for ( int i = 0; i < cubeCount; i++ ) {
 		Mat model;
@@ -33,7 +33,8 @@ void drawWorld() {
 		glCheck();
 		Shader::current->SetModelMatrix( model );
 		glCheck();
-		glDrawArrays( GL_TRIANGLES, 0, 36 );
+		//glDrawArrays( GL_TRIANGLES, 0, 36 );
+		glDrawElements( GL_TRIANGLES, 36, GL_UNSIGNED_SHORT, cube_elements );
 		glCheck();
 	}
 	glCheck();
@@ -63,7 +64,7 @@ void lightView() {
 
 void mainView() {
 	Mat view;
-	view.viewFrom( Vec( 0, 0, 9, 1 ) );
+	view.viewFrom( Vec( 0, 0, 11, 1 ) );
 	passthroughShader.Use();
 	passthroughShader.SetViewProjectionMatrices( view, mainProjectionMatrix );
 
@@ -86,6 +87,10 @@ void mainView() {
 	drawWorld();
 
 	if ( !keyStates[GLFW_KEY_F1] ) {									// space light up
+		Mat model;
+		model.translationTo( Vec(0, 0, -1, 1 ) );
+		glCheck();
+		Shader::current->SetModelMatrix( model );
 		glColor4f( 1, 1, 1, .25f );
 		drawCenterRect( 12 );
 	}
