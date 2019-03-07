@@ -87,7 +87,7 @@ void mainView() {
 
 	if ( !keyStates[GLFW_KEY_F1] ) {									// space light up
 		glColor4f( 1, 1, 1, .25f );
-		drawCenterRect( 2 );
+		drawCenterRect( 12 );
 	}
 
 	float magnify = (float)vpDefault.h / fboShadows.pageSize / 8;

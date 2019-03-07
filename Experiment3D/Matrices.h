@@ -6,9 +6,6 @@ struct Mat {
 	Vec & operator [] ( int i ) {
 		return ((Vec *)elements)[i];
 	}
-	/*float & operator [] (int i) {
-		return elements[i];
-	}*/
 	Vec operator *( Vec &a ) {
 		Vec r;
 		for(int i=0; i<4; i++ )
@@ -24,7 +21,7 @@ struct Mat {
 	}
 	void projectionFor( float l, float r, float t, float b, float n ) {
 		elements[0] = 2 * n / (r - l);
-		elements[3] = -(r + l) / (r - l);
+		elements[1] = -(r + l) / (r - l);
 		elements[6] = 1;
 		elements[9] = 1;
 		elements[11] = -2 * n;

@@ -10,5 +10,5 @@ void main() {
 	gl_Position = gl_Vertex * modelMatrix * viewMatrix * projectionMatrix;
 	color.rgb = abs(sin(gl_Position.xyz));
 	for(int i=0; i<4; i++)
-		inMapSpace[i] = gl_Vertex * mapViews[i] * mapProjections[i];
+		inMapSpace[i] = gl_Vertex * modelMatrix * mapViews[i] * mapProjections[i];
 })"

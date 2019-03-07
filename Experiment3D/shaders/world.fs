@@ -28,20 +28,23 @@ void FindMap() {
 
 void main() {
 	gl_FragColor = vec4(color);	
-	if( !f[1] )                                                                          // debug vis
+	if( f[1] )                                                                          // debug vis
 	    return;
 	FindMap();                                                                          // find the atlas page to sample from
 	if( mapSide < 0 ) {		                                                            // show error as purple color
 		gl_FragColor.rgb = vec3(1, 0, 1);	
 		return;
 	}
+    gl_FragColor.rgb = vec3(0);
+    gl_FragColor.r = mapSide * .3;
+    //return;
 	float thisDepth = inMapSpace[mapSide].z / inMapSpace[mapSide].w * .5 + .5;
     vec2 proj2tex = (mapProjection * 0.5 + 0.5) * (1-2*halfTexel) + halfTexel;          // -1..1 to halfTexel..1-halfTexel
     proj2tex = proj2tex * vec2(1, 0.25) + vec2(0, 0.25 * mapSide);                      // page space to atlas space
 	vec4 depthSample = texture(depthTexture, proj2tex);
 	float lit = float( thisDepth < depthSample.r );
 	gl_FragColor.rgb = vec3(1-lit, lit, 0);
-    if( !f[3] ) { // anti-flicker for shadow edges
+    if( f[3] ) { // anti-flicker for shadow edges
 	    depthSample = textureGather(depthTexture, proj2tex);
         vec2 lit2 = vec2(lessThan(vec2(thisDepth), depthSample.xy));
         if( lit2[0] + lit2[1] == 0 ) {
