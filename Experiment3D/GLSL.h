@@ -47,8 +47,8 @@ struct ShadowShader : Shader {
 	GLint pageSize;
 	ShadowShader(): Shader(
 #include "shaders/shadow.vs"
-		,
-#include "shaders/shadow.gs"
+//		,
+//#include "shaders/shadow.gs"
 		,
 #include "shaders/shadow.fs"
 	) {}

@@ -44,11 +44,11 @@ void drawWorld() {
 void lightView() {
 	calcLightMatrices();
 
-	glClearColor( 0, 0, 0, 1 );
+	glClearColor( 0, 0, 1, 1 );
 	glColor3f( 0.8f, 0.4f, 0.2f );
 	glBlendFunc( GL_ONE, GL_ZERO ); // ROP overwrite
 	shadowShader.Use();
-	for ( int side = 0; side < 0; side++ ) {
+	for ( int side = 0; side < 4; side++ ) {
 		shadowShader.SetViewProjectionMatrices( mapViewMatrix[side], mapProjectionMatrix[side] );
 		fboShadows.Bind( side );
 		drawWorld();

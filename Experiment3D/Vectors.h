@@ -8,6 +8,9 @@ struct Vec {
 	Vec() : x( 0 ), y( 0 ), z( 0 ), w( 1 ) {};
 	Vec( float x, float y ) : x( x ), y( y ), z( 0 ), w( 1 ) {};
 	Vec( float x, float y, float z, float w ) : x( x ), y( y ), z( z ), w( w ) {};
+	float & operator [] (int i) {
+		return (&x)[i];
+	}
 	Vec operator + ( Vec &a ) {
 		return { x + a.x, y + a.y };
 	}
@@ -16,6 +19,9 @@ struct Vec {
 	}
 	Vec operator * ( float a ) {
 		return { x * a, y * a };
+	}
+	float operator * ( Vec &a ) {
+		return x*a.x + y*a.y + z*a.z + w*a.w;
 	}
 	operator float * () {
 		return &x;

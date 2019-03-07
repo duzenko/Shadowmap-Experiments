@@ -3,30 +3,32 @@
 struct Mat {
 	float elements[16];
 	static const Mat identity;
+	Vec & operator [] ( int i ) {
+		return ((Vec *)elements)[i];
+	}
+	/*float & operator [] (int i) {
+		return elements[i];
+	}*/
 	Vec operator *( Vec &a ) {
 		Vec r;
-		r.x = a.x * elements[0] + a.y * elements[4] + a.z * elements[8] + a.w * elements[12];
-		r.y = a.x * elements[1] + a.y * elements[5] + a.z * elements[9] + a.w * elements[13];
-		r.z = a.x * elements[2] + a.y * elements[6] + a.z * elements[10] + a.w * elements[14];
-		r.w = a.x * elements[3] + a.y * elements[7] + a.z * elements[11] + a.w * elements[15];
+		for(int i=0; i<4; i++ )
+			r[i] = (*this)[i] * a;
 		return r;
-	}
-	float & operator [] (int i) {
-		return elements[i];
 	}
 	void rotateToNorm( float fromAngle ) {
 		memset( elements, 0, sizeof( elements ) );
 		elements[0] = elements[5] = cos( fromAngle );
-		elements[1] = sin( fromAngle );
+		elements[1] = -sin( fromAngle );
 		elements[4] = -elements[1];
 		elements[10] = elements[15] = 1;
 	}
 	void projectionFor( float l, float r, float t, float b, float n ) {
 		elements[0] = 2 * n / (r - l);
-		elements[4] = -(r + l) / (r - l);
-		elements[6] = elements[7] = 1;
+		elements[3] = -(r + l) / (r - l);
+		elements[6] = 1;
 		elements[9] = 1;
-		elements[14] = -2 * n;
+		elements[11] = -2 * n;
+		elements[13] = 1;
 	}
 	void projectionFor( float n, float a ) {
 		memset( elements, 0, sizeof( elements ) );

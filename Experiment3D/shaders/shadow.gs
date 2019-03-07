@@ -1,6 +1,6 @@
 R"(#version 150
 
-layout (lines) in;
+layout (triangles) in;
 layout (line_strip, max_vertices = 2) out;
 
 out vec4 clipSpace;
